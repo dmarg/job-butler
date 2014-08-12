@@ -16,7 +16,9 @@ var UserSchema = new Schema({
   provider: String,
   salt: String,
   google: {},
-  github: {}
+  github: {},
+  accessToken: String,
+  refreshToken: String
 });
 
 /**

@@ -18,7 +18,9 @@ exports.setup = function (User, config) {
             role: 'user',
             username: profile.username,
             provider: 'google',
-            google: profile._json
+            google: profile._json,
+            accessToken: accessToken,
+            refreshToken: refreshToken
           });
           user.save(function(err) {
             if (err) done(err);
