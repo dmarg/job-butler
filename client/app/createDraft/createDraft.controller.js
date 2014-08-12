@@ -6,9 +6,11 @@ angular.module('jobButlerApp')
 
     $scope.createDraft = function() {
       var draft = {
-            userId: 'me',
+            userId: "me",
             message: {
-              raw: "Hello World"
+              to: "google@google.com",
+              subjectLine: "Hello World",
+              bodyOfEmail: "Body of the email goes here"
             }
           }
 

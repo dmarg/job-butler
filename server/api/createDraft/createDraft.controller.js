@@ -13,29 +13,35 @@ var oauth2Client = new OAuth2(process.env.GOOGLE_ID, process.env.GOOGLE_SECRET, 
 exports.createDraft = function(req, res) {
 
   oauth2Client.setCredentials({
-   access_token: req.user.accessToken,
-   refresh_token: req.user.refreshToken
+   access_token: req.user.google.accessToken,
+   refresh_token: req.user.google.refreshToken
   });
 
-  console.log(req.body.userId, ": ", req.body.message.raw);
-  console.log(oauth2Client)
-    var email_lines = [];
+  // console.log(req.body.userId, ": ", req.body.message.raw);
+  console.log(oauth2Client);
 
-    email_lines.push("From: \"Some Name Here\" <rootyadaim@gmail.com>");
-    email_lines.push("To: hanochg@gmail.com");
-    email_lines.push('Content-type: text/html;charset=iso-8859-1');
-    email_lines.push('MIME-Version: 1.0');
-    email_lines.push("Subject: New future subject here");
-    email_lines.push("");
-    email_lines.push("And the body text goes here");
-    email_lines.push("<b>And the bold text goes here</b>");
+  var to_email = req.body.message.to;
+  var subjectLine = req.body.message.subjectLine;
+  var bodyOfEmail = req.body.message.bodyOfEmail;
 
-    var email = email_lines.join("\r\n").trim();
+  var email_lines = [];
 
-    // var base64EncodedEmail = new Buffer(email).toString('base64');
+  email_lines.push("From: \"Some Name Here\" <rootyadaim@gmail.com>");
+  email_lines.push("To: " + to_email);
+  email_lines.push('Content-type: text/html;charset=iso-8859-1');
+  email_lines.push('MIME-Version: 1.0');
+  email_lines.push("Subject: " + subjectLine);
+  email_lines.push("");
+  email_lines.push(bodyOfEmail);
+  email_lines.push("<b>And the bold text goes here</b>");
 
-  var encodedEmail = req.body.message.raw;
-  console.log(encodedEmail);
+  var email = email_lines.join("\r\n").trim();
+
+  // var base64EncodedEmail = new Buffer(email).toString('base64');
+
+  // var encodedEmail = req.body.message.raw;
+  console.log("email to send in base64: ", email);
+
   gmail.users.drafts.create({
     auth: oauth2Client,
     userId: "me",
