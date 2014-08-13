@@ -1,6 +1,8 @@
 'use strict';
+
 var _ = require('lodash');
-var Createdraft = require('./createDraft.model');
+var Draft = require('./draft.model');
+
 var User = require('../user/user.model');
 
 var google = require('googleapis');
@@ -69,52 +71,51 @@ exports.createDraft = function(req, res) {
 
 
 
-
-// Get list of createDrafts
+// Get list of drafts
 exports.index = function(req, res) {
-  Createdraft.find(function (err, createDrafts) {
+  Draft.find(function (err, drafts) {
     if(err) { return handleError(res, err); }
-    return res.json(200, createDrafts);
+    return res.json(200, drafts);
   });
 };
 
-// Get a single createDraft
+// Get a single draft
 exports.show = function(req, res) {
-  Createdraft.findById(req.params.id, function (err, createDraft) {
+  Draft.findById(req.params.id, function (err, draft) {
     if(err) { return handleError(res, err); }
-    if(!createDraft) { return res.send(404); }
-    return res.json(createDraft);
+    if(!draft) { return res.send(404); }
+    return res.json(draft);
   });
 };
 
-// Creates a new createDraft in the DB.
+// Creates a new draft in the DB.
 exports.create = function(req, res) {
-  Createdraft.create(req.body, function(err, createDraft) {
+  Draft.create(req.body, function(err, draft) {
     if(err) { return handleError(res, err); }
-    return res.json(201, createDraft);
+    return res.json(201, draft);
   });
 };
 
-// Updates an existing createDraft in the DB.
+// Updates an existing draft in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Createdraft.findById(req.params.id, function (err, createDraft) {
+  Draft.findById(req.params.id, function (err, draft) {
     if (err) { return handleError(res, err); }
-    if(!createDraft) { return res.send(404); }
-    var updated = _.merge(createDraft, req.body);
+    if(!draft) { return res.send(404); }
+    var updated = _.merge(draft, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.json(200, createDraft);
+      return res.json(200, draft);
     });
   });
 };
 
-// Deletes a createDraft from the DB.
+// Deletes a draft from the DB.
 exports.destroy = function(req, res) {
-  Createdraft.findById(req.params.id, function (err, createDraft) {
+  Draft.findById(req.params.id, function (err, draft) {
     if(err) { return handleError(res, err); }
-    if(!createDraft) { return res.send(404); }
-    createDraft.remove(function(err) {
+    if(!draft) { return res.send(404); }
+    draft.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.send(204);
     });

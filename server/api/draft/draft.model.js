@@ -3,10 +3,10 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var CreatedraftSchema = new Schema({
+var DraftSchema = new Schema({
   name: String,
   info: String,
   active: Boolean
 });
 
-module.exports = mongoose.model('Createdraft', CreatedraftSchema);
+module.exports = mongoose.model('Draft', DraftSchema);

@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('CreatedraftCtrl', function ($scope, $http) {
-    $scope.message = 'Hello';
+  .controller('DraftsCtrl', function ($scope, $http) {
 
     $scope.createDraft = function() {
       var draft = {
@@ -14,8 +13,9 @@ angular.module('jobButlerApp')
             }
           }
 
-      $http.post('/api/createDrafts/create', draft).success(function(data) {
+      $http.post('/api/drafts/create', draft).success(function(data) {
         console.log('returned from create: ', data.results)
       })
     };
+
   });

@@ -4,21 +4,21 @@
 
 'use strict';
 
-var Createdraft = require('./createDraft.model');
+var Draft = require('./draft.model');
 
 exports.register = function(socket) {
-  Createdraft.schema.post('save', function (doc) {
+  Draft.schema.post('save', function (doc) {
     onSave(socket, doc);
   });
-  Createdraft.schema.post('remove', function (doc) {
+  Draft.schema.post('remove', function (doc) {
     onRemove(socket, doc);
   });
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('createDraft:save', doc);
+  socket.emit('draft:save', doc);
 }
 
 function onRemove(socket, doc, cb) {
-  socket.emit('createDraft:remove', doc);
+  socket.emit('draft:remove', doc);
 }

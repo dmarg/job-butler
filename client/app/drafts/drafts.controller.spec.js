@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: CreatedraftCtrl', function () {
+describe('Controller: DraftsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('jobButlerApp'));
 
-  var CreatedraftCtrl, scope;
+  var DraftsCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    CreatedraftCtrl = $controller('CreatedraftCtrl', {
+    DraftsCtrl = $controller('DraftsCtrl', {
       $scope: scope
     });
   }));
