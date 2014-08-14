@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $rootScope, $http, socket, Auth) {
     $scope.awesomeThings = [];
+
+    $rootScope.user = Auth.getCurrentUser();
+
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;

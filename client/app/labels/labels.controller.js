@@ -5,7 +5,7 @@ angular.module('jobButlerApp')
     $scope.createLabel = function() {
       var label = {
         userId: "me",
-        labelName: "Job Butler/Microsoft"
+        labelName: "Job Butler/Fullstack"
       };
 
       $http.post('/api/labels/create', label).success(function(data) {
