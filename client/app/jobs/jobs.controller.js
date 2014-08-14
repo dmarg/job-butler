@@ -18,6 +18,13 @@ angular.module('jobButlerApp')
       // socket.syncUpdates('job', $scope.jobApps);
     });
 
+    // socket.on('job:save', function(_userId) {
+    //   if(_userId === $scope.user._id) {
+
+    //   }
+    // });
+
+
     $scope.createJob = function() {
       var job = $scope.job;
       job.userId = $scope.user._id;
