@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/jobbutler-dev'
   },
 
-  seedDB: true
+  seedDB: false
 };

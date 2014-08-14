@@ -1,0 +1,18 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="col-md-12" ng-controller="JobsCtrl">
+  <div>
+    <form ng-submit="createJob()">
+      Company Name: <input type="text" ng-model='job.companyName'>
+      Position: <input type="text" ng-model='job.positionTitle'>
+      Stage: <input type="text" ng-model='job.stage'>
+      <button>Submit</button>
+    </form>
+  </div>
+  <div>
+    <ul ng-repeat="jobApp in jobApps">
+      <li>Company Name: {{jobApp.companyName}}</li>
+      <li>User ID: {{jobApp._userId}}</li>
+    </ul>
+  </div>
+</div>
