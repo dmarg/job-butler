@@ -3,6 +3,33 @@
 angular.module('jobButlerApp')
   .controller('MessagesCtrl', function ($scope, $http) {
 
+    $scope.application = {
+      to: '',
+      subjectLine: '',
+      bodyOfEmail: ''
+    };
+
+    $scope.sendApplication = function() {
+      var message = {
+        userId: "me",
+        message: {
+          to: $scope.application.to,
+          subjectLine: $scope.application.subjectLine,
+          bodyOfEmail: $scope.application.bodyOfEmail
+        }
+      };
+
+      $scope.application = {
+        to: '',
+        subjectLine: '',
+        bodyOfEmail: ''
+      };
+
+      $http.post('/api/messages/send', message).success(function(data) {
+        console.log('returned from create: ', data.results)
+      })
+    };
+
 
 
     $scope.sendMessage = function() {

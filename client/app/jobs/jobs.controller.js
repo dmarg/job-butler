@@ -4,10 +4,12 @@ angular.module('jobButlerApp')
   .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth) {
     $scope.user = Auth.getCurrentUser();
 
+    $scope.stages = ['Applied', 'Interview', 'Post-Interview', 'Negotiation'];
+
     $scope.job = {
       companyName: '',
       positionTitle: '',
-      stage: ''
+      stage: {}
     };
 
     $http.get('/api/jobs').success(function(jobs) {

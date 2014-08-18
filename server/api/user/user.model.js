@@ -18,7 +18,8 @@ var UserSchema = new Schema({
   google: {},
   github: {},
   accessToken: String,
-  refreshToken: String
+  refreshToken: String,
+  sharedViews: []
 });
 
 /**

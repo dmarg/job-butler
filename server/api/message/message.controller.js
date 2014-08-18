@@ -18,7 +18,8 @@ exports.sendMessage = function(req, res) {
    refresh_token: req.user.google.refreshToken
   });
 
-  // console.log(req.body.userId, ": ", req.body.message.raw);
+  // console.log(req.body.userId, ": ", req.body.message.raw);'
+  console.log('this is oauth2');
   console.log(oauth2Client);
 
   var to_email = req.body.message.to;
@@ -27,14 +28,15 @@ exports.sendMessage = function(req, res) {
 
   var email_lines = [];
 
-  email_lines.push("From: \"Some Name Here\" <rootyadaim@gmail.com>");
+  // email_lines.push("From: \"Some Name Here\" <rootyadaim@gmail.com>");
   email_lines.push("To: " + to_email);
   email_lines.push('Content-type: text/html;charset=iso-8859-1');
   email_lines.push('MIME-Version: 1.0');
   email_lines.push("Subject: " + subjectLine);
   email_lines.push("");
   email_lines.push(bodyOfEmail);
-  email_lines.push("<b>And the bold text goes here</b>");
+
+  console.log(email_lines);
 
   var email = email_lines.join("\r\n").trim();
 

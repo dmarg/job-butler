@@ -11,6 +11,7 @@ exports.setup = function (User, config) {
       User.findOne({
         'google.id': profile.id
       }, function(err, user) {
+        console.log("passport user:", accessToken, refreshToken);
         if (!user) {
           user = new User({
             name: profile.displayName,
@@ -27,7 +28,15 @@ exports.setup = function (User, config) {
             return done(err, user);
           });
         } else {
-          return done(err, user);
+          console.log("passport found user:", user);
+
+          user.google.accessToken = accessToken;
+          user.google.refreshToken = refreshToken;
+          user.save(function() {
+            console.log("passport found user2:", user);
+
+            return done(err, user);
+          });
         }
       });
     }

@@ -11,6 +11,14 @@ exports.index = function(req, res) {
   });
 };
 
+// Get list of jobs for specified user
+exports.index = function(req, res) {
+  Job.find({_userId: req.body.userId}, function (err, jobs) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, jobs);
+  });
+};
+
 // Get a single job
 exports.show = function(req, res) {
   Job.findById(req.params.id, function (err, job) {

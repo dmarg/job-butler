@@ -3,10 +3,18 @@
 <div class="col-md-12" ng-controller="JobsCtrl">
   <div>
     <form ng-submit="createJob()">
-      Company Name: <input type="text" ng-model='job.companyName'>
-      Position: <input type="text" ng-model='job.positionTitle'>
-      Stage: <input type="text" ng-model='job.stage'>
-      <button>Submit</button>
+      Company Name: <input class='form-control' type="text" ng-model='job.companyName'>
+      Position: <input class='form-control' type="text" ng-model='job.positionTitle'>
+      Stage: <select class='form-control' ng-model='job.stage.stageName' ng-options='stage as stage for stage in stages'></select>
+      <button class='btn btn-success'>Submit</button>
+    </form>
+  </div>
+  <div ng-controller='MessagesCtrl'>
+    <form ng-submit="sendApplication()">
+      To: <input class='form-control' type="text" ng-model='application.to'>
+      Email's Subject Line: <input class='form-control' type="text" ng-model='application.subjectLine'>
+      Email's Body Text: <textarea rows='10' class='form-control' type="text" ng-model='application.bodyOfEmail'></textarea>
+      <button class='btn btn-danger'>Submit</button>
     </form>
   </div>
   <div>
