@@ -18,6 +18,12 @@
     </form>
   </div>
   <div>
+    <form ng-submit="shareView()">
+      User to share View With: <input class='form-control' type="text" ng-model='email.email'>
+      <button class='btn btn-success'>Submit</button>
+    </form>
+  </div>
+  <div>
     <ul ng-repeat="jobApp in jobApps">
       <li>Company Name: {{jobApp.companyName}}</li>
       <li>User ID: {{jobApp._userId}}</li>

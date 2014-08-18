@@ -6,6 +6,8 @@ angular.module('jobButlerApp')
 
     $scope.stages = ['Applied', 'Interview', 'Post-Interview', 'Negotiation'];
 
+    $scope.email = {};
+
     $scope.job = {
       companyName: '',
       positionTitle: '',
@@ -44,6 +46,15 @@ angular.module('jobButlerApp')
         // console.log('jobApps: ', $scope.jobApps);
         // console.log('data: ', data);
       })
+    };
+
+    $scope.shareView = function() {
+      var email = $scope.email;
+
+      $http.post('/api/users/shareView', email).success(function(data) {
+        console.log('posted to users schema: ', data);
+      })
+
     };
 
 

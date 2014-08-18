@@ -12,8 +12,10 @@ exports.index = function(req, res) {
 };
 
 // Get list of jobs for specified user
-exports.index = function(req, res) {
-  Job.find({_userId: req.body.userId}, function (err, jobs) {
+exports.showSharedViews = function(req, res) {
+  console.log('req.user: ', req.user.sharedViews);
+  Job.find({_userId: { $in: req.user.sharedViews }}, function (err, jobs) {
+    console.log('jobs: ', jobs);
     if(err) { return handleError(res, err); }
     return res.json(200, jobs);
   });
@@ -35,6 +37,7 @@ exports.create = function(req, res) {
   newJob.positionTitle = req.body.positionTitle;
   newJob.companyName = req.body.companyName;
   newJob.stage = req.body.stage;
+  newJob.user = req.user;
   newJob.save(function(err, job) {
     if (err) {
       console.log('error: ', err);

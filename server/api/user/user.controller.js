@@ -35,7 +35,7 @@ exports.create = function (req, res, next) {
 };
 
 /**
- * Get a single user
+ * Get a single user by id
  */
 exports.show = function (req, res, next) {
   var userId = req.params.id;
@@ -44,6 +44,25 @@ exports.show = function (req, res, next) {
     if (err) return next(err);
     if (!user) return res.send(401);
     res.json(user.profile);
+  });
+};
+
+/**
+ * Get a single user by email
+ */
+exports.shareView = function (req, res, next) {
+  var email = req.body.email;
+  console.log('finding user with email: ', email);
+
+  User.findOne({email: email}, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.send(401);
+    console.log('pushing user with id: ', req.user._id, req.user.name);
+    user.sharedViews.push(req.user._id);
+    user.save(function(err) {
+      if (err) return handleError(err);
+      res.send(res.user);
+    });
   });
 };
 

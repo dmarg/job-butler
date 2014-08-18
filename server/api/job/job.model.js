@@ -16,6 +16,7 @@ var JobSchema = new Schema({
   linkToJobPost: String,
   positionTitle: String,
   description: String,
+  user: {},
   stage: [StageSchema],
   active: Boolean
 });

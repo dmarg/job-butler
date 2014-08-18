@@ -1,3 +1,10 @@
-<div class="col-md-12">
+<div ng-controller='SharedCtrl' class="col-md-12">
 This is the shared view.
+  <button ng-click='loadSharedViews()'>Load Views</button>
+  <ul ng-repeat="view in sharedViews | filter: companyName">
+    <li>User Name: {{view.user.name}}</li>
+    <li>Company Name: {{view.companyName}}</li>
+    <li>Position Title: {{view.positionTitle}} </li>
+    <li>Stage: {{view.stage[0].stageName}}</li>
+  </ul>
 </div>

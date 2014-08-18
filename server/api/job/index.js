@@ -8,6 +8,7 @@ var auth = require('../../auth/auth.service');
 var router = express.Router();
 
 router.get('/', auth.isAuthenticated(), controller.index);
+router.get('/sharedViews', auth.isAuthenticated(), controller.showSharedViews);
 router.get('/:id', controller.show);
 router.post('/create', auth.isAuthenticated(), controller.create);
 router.put('/:id', controller.update);
