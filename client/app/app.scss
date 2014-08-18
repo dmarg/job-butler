@@ -1,12 +1,183 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 $fa-font-path: "/bower_components/font-awesome/fonts";
 
+
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';
+
+
+#profilePic {
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 50%;
+  margin: 5px 5px 0 -5px;
+  padding: 0;
+}
+
+// Variable Colors
+// GENERAL
+$menu-background-color: #65CFF0;
+$shadow-color: #000;
+$item-separator-color: #FFF;
+$borders-color: #65CFF0;
+
+// TITLE
+$title-background-color: #06C0F2;
+$title-font-color: #000;
+
+// ANCHOR OR LABEL
+$lbl-font-color: #000;
+$lbl-hover-background-color: #65CFF0;
+$lbl-active-background-color: #65CFF0;
+$lbl-active-font-color: #000;
+
+// BUTTONS
+
+$btn-background-color: #06C0F2;
+$btn-font-color: #000;
+$caret-color-closed: #000;
+$caret-color-opened: #000;
+
+// SIZES
+$spmenu-vertical-width: 320px;
+$spmenu-horizontal-height: 150px;
+
+
+// /**
+//  * Nav Bar Menu Style
+//  */
+
+// .jb-spmenu {
+//   background: #47a3da;
+//   position: fixed;
+// }
+
+// .jb-spmenu h3 {
+//   color: #afdefa;
+//   font-size: 1.9em;
+//   padding: 20px;
+//   margin: 0;
+//   font-weight: 300;
+//   background: #0d77b6;
+// }
+
+// .jb-spmenu a {
+//   display: block;
+//   color: #fff;
+//   font-size: 1.1em;
+//   font-weight: 300;
+// }
+
+// .jb-spmenu a:hover {
+//   background: #258ecd;
+// }
+
+// .jb-spmenu a:active {
+//   background: #afdefa;
+//   color: #47a3da;
+// }
+
+// .jb-spmenu-vertical {
+//   width: 240px;
+//   height: 100%;
+//   top: 0;
+//   z-index: 1000;
+// }
+
+// .jb-spmenu-vertical a {
+//   border-bottom: 1px solid #258ecd;
+//   padding: 1em;
+// }
+
+// /* Vertical menu that slides from the left or right */
+
+// .jb-spmenu-left {
+//   left: -240px;
+// }
+
+// .jb-spmenu-right {
+//   right: -240px;
+// }
+
+// .jb-spmenu-left.jb-spmenu-open {
+//   left: 0px;
+// }
+
+// .jb-spmenu-right.jb-spmenu-open {
+//   right: 0px;
+// }
+
+
+// /* Push classes applied to the body */
+
+// .jb-spmenu-push {
+//   overflow-x: hidden;
+//   position: relative;
+//   left: 0;
+// }
+
+// .jb-spmenu-push-toright {
+//   left: 240px;
+// }
+
+// .jb-spmenu-push-toleft {
+//   left: -240px;
+// }
+
+// /* Transitions */
+
+// .jb-spmenu,
+// .jb-spmenu-push {
+//   -webkit-transition: all 0.3s ease;
+//   -moz-transition: all 0.3s ease;
+//   transition: all 0.3s ease;
+// }
+
+// /* Example media queries */
+
+// @media screen and (max-width: 55.1875em){
+
+//   .jb-spmenu-horizontal {
+//       font-size: 75%;
+//       height: 110px;
+//   }
+
+//   .jb-spmenu-top {
+//       top: -110px;
+//   }
+
+//   .jb-spmenu-bottom {
+//       bottom: -110px;
+//   }
+
+// }
+
+// @media screen and (max-height: 26.375em){
+
+//   .jb-spmenu-vertical {
+//       font-size: 90%;
+//       width: 190px;
+//   }
+
+//   .jb-spmenu-left,
+//   .jb-spmenu-push-toleft {
+//       left: -190px;
+//   }
+
+//   .jb-spmenu-right {
+//       right: -190px;
+//   }
+
+//   .jb-spmenu-push-toright {
+//       left: 190px;
+//   }
+// }
+
 
 /**
  * App-wide Styles
  */
+
 
 .browsehappy {
     margin: 0.2em 0;
@@ -15,13 +186,6 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
-#profilePic {
-  max-width: 40px;
-  max-height: 40px;
-  border-radius: 50%;
-  margin-top: 5px;
-  padding: 0;
-}
 
 // Component styles are injected through grunt
 // injector
@@ -31,5 +195,6 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'jobs/jobs.scss';
 @import 'labels/labels.scss';
 @import 'main/main.scss';
+@import 'menuSlidePush/slidepush.scss';
 @import 'messages/messages.scss';
 // endinjector

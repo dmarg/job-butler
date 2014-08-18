@@ -5,6 +5,7 @@ angular.module('jobButlerApp')
     $scope.awesomeThings = [];
 
     $rootScope.user = Auth.getCurrentUser();
+    $scope.isLoggedIn = Auth.isLoggedIn;
 
 
     $http.get('/api/things').success(function(awesomeThings) {
