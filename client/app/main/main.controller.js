@@ -5,12 +5,13 @@ angular.module('jobButlerApp')
     $scope.awesomeThings = [];
 
     $rootScope.user = Auth.getCurrentUser();
-
+    $scope.isLoggedIn = Auth.isLoggedIn;
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
+
 
     $scope.addThing = function() {
       if($scope.newThing === '') {

@@ -14,6 +14,7 @@
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/ng-grid/ng-grid.css" />
+      <link rel="stylesheet" href="bower_components/angular-snap/angular-snap.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -28,7 +29,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ui-view=""></div>
+    <!-- <div ui-view=""></div> -->
+    <div ui-view id="content"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -58,6 +60,8 @@
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/ng-grid/build/ng-grid.js"></script>
+      <script src="bower_components/snapjs/snap.js"></script>
+      <script src="bower_components/angular-snap/angular-snap.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
@@ -78,6 +82,7 @@
           <script src="app/labels/labels.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
+          <script src="app/menuSlidePush/menuSlidePush.service.js"></script>
           <script src="app/messages/messages.controller.js"></script>
           <script src="app/messages/messages.js"></script>
           <script src="app/shared/shared.controller.js"></script>
@@ -89,5 +94,6 @@
           <script src="components/socket/socket.service.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
+
 </body>
 </html>

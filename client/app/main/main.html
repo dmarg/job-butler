@@ -1,51 +1,87 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
-
-<div class="container">
-  <div class="col-lg-12">
-    <div class="col-lg-12">
-      <div ng-include="'app/drafts/drafts.html'"></div>
-      <div ng-include="'app/labels/labels.html'"></div>
-      <div ng-include="'app/messages/messages.html'"></div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<!-- Begin Original Template -->
-<!-- <header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header> -->
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
-      </ul>
-    </div>
-  </div>
-
-  <form class="thing-form">
-    <label>Syncs in realtime across clients</label>
-    <p class="input-group">
-      <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addThing()">Add New</button>
-      </span>
-    </p>
-  </form>
+<!-- <div class="snap-drawers">
+  <h3>Menu</h3>
+  <a href="#">Item 1</a>
+  <a href="#">Item 2</a>
+  <a href="#">Item 3</a>
+  <a href="#">Item 4</a>
+  <a href="#">Item 5</a>
+  <a href="#">Item 6</a>
 </div> -->
-<!-- End Original Template -->
 
-<footer class="footer">
-  <div class="container">
-      <p>created by team Jo Butler!</p>
+<snap-drawers>
+  <div id="shelf-1" snap-drawer class="snap-drawer snap-drawer-left">
+    <h3>Menu</h3>
+    <ul>
+      <li><a href="#">Item 1</a></li>
+      <li><a href="#">Item 2</a></li>
+      <li><a href="#">Item 3</a></li>
+      <li><a href="#">Item 4</a></li>
+      <li><a href="#">Item 5</a></li>
+      <li><a href="#">Item 6</a></li>
+    </ul>
   </div>
-</footer>
+</snap-drawers>
+
+  <snap-content id="content" class="scrollable">
+
+
+    <div ng-include="'components/navbar/navbar.html'"></div>
+
+    <div class="container" ng-show="isLoggedIn()">
+      <div class="col-lg-12">
+        <div class="col-lg-12">
+          <div ng-include="'app/drafts/drafts.html'"></div>
+          <div ng-include="'app/labels/labels.html'"></div>
+          <div ng-include="'app/messages/messages.html'"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- Begin Original Template -->
+    <div ng-show="!isLoggedIn()">
+      <header class="hero-unit" id="banner">
+
+        <div ng-controller="LoginCtrl">
+          <a class="btn btn-google-plus" href="" ng-click="loginOauth('google')">
+            <i class="fa fa-google-plus"></i> Connect with Google+
+          </a>
+        </div>
+        <!-- <div class="container">
+          <h1>'Allo, 'Allo!</h1>
+          <p class="lead">Kick-start your next web app with Angular Fullstack</p>
+          <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+        </div> -->
+      </header>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="page-header">Features:</h1>
+            <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
+              <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <form class="thing-form">
+          <label>Syncs in realtime across clients</label>
+          <p class="input-group">
+            <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary" ng-click="addThing()">Add New</button>
+            </span>
+          </p>
+        </form>
+      </div>
+    </div>
+    <!-- End Original Template -->
+
+    <footer class="footer">
+      <div class="container">
+          <p>created by team Jo Butler!</p>
+      </div>
+    </footer>
+</snap-content>
