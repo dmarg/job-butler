@@ -5,7 +5,6 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';
 
-
 #profilePic {
   max-width: 40px;
   max-height: 40px;
@@ -53,6 +52,7 @@ html, body, #content {
 }
 
 #content {
+  padding-top: 70px;
   background-color: #fff;
 
   -moz-box-shadow: 0 0 20px #888;
@@ -81,6 +81,10 @@ html, body, #content {
     -webkit-overflow-scrolling: touch;
 }
 
+.fa-bars {
+  font-size: 2em;
+  margin-top: 11px;
+}
 
 // /**
 //  * Nav Bar Menu Style

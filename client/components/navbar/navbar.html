@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
+<div class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl">
 
 <!--   <ng-slide-push-menu position="left" button="push" button-icon-class="glyphicon glyphicon-cog">
     <h3>Menu</h3>
@@ -10,10 +10,31 @@
     <a href="#">Item 6</a>
   </ng-slide-push-menu> -->
 
+<div class="row">
   <div class="container">
-    <div class="navbar-header" ng-show="isLoggedIn()">
-      <button snap-toggle="left" class="btn btn-warning btn-large"><i class="fa fa-bars"></i></button>
+    <div class="col-md-4" ng-show="isLoggedIn()">
+      <i snap-toggle="left" class="fa fa-bars"></i>
+
     </div>
+
+    <div class="col-md-4">
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="nav navbar-nav navbar-right" dropdown ng-show="isLoggedIn()">
+        <div ng-show="isLoggedIn()" class="dropdown-toggle"><p class="navbar-text">{{ getCurrentUser().name }}</p> <img ng-src="{{ user.google.picture }}" id="profilePic" alt=""></div>
+
+        <ul class="dropdown-menu">
+          <li><a href="/settings">Settings</a></li>
+          <li><a href="" ng-click="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+  </div>
 
     <!-- <div class="navbar-header" ng-show="!isLoggedIn()">
       <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
@@ -25,15 +46,7 @@
       <a href="/" class="navbar-brand">JoButler</a>
     </div> -->
 
-    <a href="/" class="navbar-brand">JoButler</a>
-    <div class="nav navbar-nav navbar-right" dropdown ng-show="isLoggedIn()">
-      <div ng-show="isLoggedIn()" class="dropdown-toggle"><p class="navbar-text">{{ getCurrentUser().name }}</p> <img ng-src="{{ user.google.picture }}" id="profilePic" alt=""></div>
 
-      <ul class="dropdown-menu">
-        <li><a href="/settings">Settings</a></li>
-        <li><a href="" ng-click="logout()">Logout</a></li>
-      </ul>
-    </div>
 
     <!-- <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
@@ -52,5 +65,7 @@
       </ul>
     </div> -->
 
-  </div>
+
+
+
 </div>
