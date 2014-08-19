@@ -1,5 +1,11 @@
-<div ng-controller='SharedCtrl' class="col-md-12">
-  <strong>Filter:</strong> </string><input type="text" ng-model="filterOptions.filterText" />
-  <div class="gridStyle" ng-grid="gridOptions">
+<snap-content id="content" class="scrollable">
+  <div ng-include="'components/navbar/navbar.html'"></div>
+
+    <div ng-controller='SharedCtrl' class="col-md-12">
+      <strong>Filter:</strong> </string><input type="text" ng-model="filterOptions.filterText" />
+      <div class="gridStyle" ng-grid="gridOptions">
+      </div>
+    </div>
+
   </div>
-</div>
+</snap-content>
