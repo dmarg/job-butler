@@ -30,6 +30,20 @@
 
     <!-- Add your site or application content here -->
     <!-- <div ui-view=""></div> -->
+    <snap-drawers ng-controller="MainCtrl">
+      <div id="shelf-1" snap-drawer class="snap-drawer snap-drawer-left" ng-show="isLoggedIn">
+        <h3>Menu</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/jobs">Jobs</a></li>
+          <li><a href="#">Item 3</a></li>
+          <li><a href="#">Item 4</a></li>
+          <li><a href="#">Item 5</a></li>
+          <li><a href="#">Item 6</a></li>
+        </ul>
+      </div>
+    </snap-drawers>
+
     <div ui-view id="content"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
