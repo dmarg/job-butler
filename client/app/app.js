@@ -7,14 +7,18 @@ angular.module('jobButlerApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'slidePushMenu'
+  'snap'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, snapRemoteProvider) {
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+
+    snapRemoteProvider.globalOptions = {
+      disable: 'right'
+    };
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {

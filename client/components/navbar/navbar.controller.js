@@ -13,7 +13,14 @@ angular.module('jobButlerApp')
     //   }
     // });
 
-
+    // $scope.menuRight = [{
+    //     'title': 'Settings',
+    //     'link': '/settings'
+    //   },{
+    //     'title': 'Logout',
+    //     'link': '/settings'
+    //   }
+    // ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
@@ -32,4 +39,5 @@ angular.module('jobButlerApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
   });
