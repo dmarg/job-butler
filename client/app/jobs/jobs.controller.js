@@ -16,7 +16,7 @@ angular.module('jobButlerApp')
 
     $scope.filterOptions = {};
 
-    var removeTemplate = '<input type="button" value="remove" ng-click="removeRow($index)" />';
+    var removeTemplate = '<input class="btn" type="button" value="remove" ng-click="removeRow($index)" />';
     $scope.removeRow = function() {
       // console.log(this.row.entity._id);
       var jobId = this.row.entity._id;
