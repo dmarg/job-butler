@@ -68,6 +68,7 @@ exports.update = function(req, res) {
 
 // Deletes a job from the DB.
 exports.destroy = function(req, res) {
+  console.log('delete req is :', req.params);
   Job.findById(req.params.id, function (err, job) {
     if(err) { return handleError(res, err); }
     if(!job) { return res.send(404); }

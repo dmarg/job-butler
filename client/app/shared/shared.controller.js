@@ -5,12 +5,23 @@ angular.module('jobButlerApp')
 
     var user = Auth.getCurrentUser();
 
-    $scope.loadSharedViews = function() {
-      var sharedViews = [];
-      console.log('shared views for current user: ', user.sharedViews);
-        $http.get('/api/jobs/sharedViews').success(function(data) {
-          console.log('http get request data: ', data);
-          $scope.sharedViews = data;
-        })
-      };
-    });
+    $scope.filterOptions = {};
+
+    $scope.gridOptions = {
+    data: 'sharedViews',
+    enableCellSelection: false,
+    enableRowSelection: false,
+    filterOptions: $scope.filterOptions,
+    columnDefs: [ {field: 'user.name', displayName: 'Name'},
+                  {field: 'companyName', displayName: 'Company Name'},
+                  {field: 'positionTitle', displayName: 'Position Title'},
+                  {field: 'stage[0].stageName', displayName: 'Status'} ]
+    };
+
+    var sharedViews = [];
+    $http.get('/api/jobs/sharedViews').success(function(data) {
+      console.log('http get request data: ', data);
+      $scope.sharedViews = data;
+    })
+
+  });

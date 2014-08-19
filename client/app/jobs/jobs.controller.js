@@ -14,20 +14,35 @@ angular.module('jobButlerApp')
       stage: {}
     };
 
+    $scope.filterOptions = {};
+
+    var removeTemplate = '<input type="button" value="remove" ng-click="removeRow($index)" />';
+    $scope.removeRow = function() {
+      // console.log(this.row.entity._id);
+      var jobId = this.row.entity._id;
+      var job = {id: jobId};
+      var index = this.row.rowIndex;
+      $scope.gridOptions.selectItem(index, false);
+      $scope.jobApps.splice(index, 1);
+      $http.delete('/api/jobs/'+jobId).success(function(data) {
+        console.log('deleted job response: ', data);
+      })
+    };
+
+    $scope.gridOptions = {
+      data: 'jobApps',
+      enableCellSelection: false,
+      enableRowSelection: false,
+      filterOptions: $scope.filterOptions,
+      columnDefs: [{field: 'companyName', displayName: 'Company Name'},
+                    {field: 'positionTitle', displayName: 'Position Title'},
+                    {field: 'stage[0].stageName', displayName: 'Stage'},
+                    {field: 'remove', displayName: '', cellTemplate: removeTemplate}]
+    };
+
     $http.get('/api/jobs').success(function(jobs) {
-      // console.log('jobs: ', jobs);
       $scope.jobApps = jobs || [];
-
-      // $scope.jobApps = jobs;
-      // socket.syncUpdates('job', $scope.jobApps);
     });
-
-    // socket.on('job:save', function(_userId) {
-    //   if(_userId === $scope.user._id) {
-
-    //   }
-    // });
-
 
     $scope.createJob = function() {
       var job = $scope.job;

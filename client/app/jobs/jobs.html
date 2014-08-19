@@ -23,10 +23,7 @@
       <button class='btn btn-success'>Submit</button>
     </form>
   </div>
-  <div>
-    <ul ng-repeat="jobApp in jobApps">
-      <li>Company Name: {{jobApp.companyName}}</li>
-      <li>User ID: {{jobApp._userId}}</li>
-    </ul>
+  <strong>Filter:</strong> </string><input type="text" ng-model="filterOptions.filterText" />
+  <div class="gridStyle" ng-grid="gridOptions">
   </div>
 </div>
