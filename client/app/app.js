@@ -8,9 +8,10 @@ angular.module('jobButlerApp', [
   'ui.router',
   'ui.bootstrap',
   'ngGrid',
-  'snap'
+  'snap',
+  'angular-momentjs'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, snapRemoteProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, snapRemoteProvider, $momentProvider) {
     $urlRouterProvider
       .otherwise('/');
 
@@ -20,6 +21,10 @@ angular.module('jobButlerApp', [
     snapRemoteProvider.globalOptions = {
       disable: 'right'
     };
+
+    $momentProvider
+      .asyncLoading(false)
+      .scriptUrl('//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js');
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {

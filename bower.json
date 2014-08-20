@@ -17,7 +17,9 @@
     "angular-socket-io": "~0.6.0",
     "angular-ui-router": "~0.2.10",
     "ng-grid": "~2.0.12",
-    "angular-snap": "~1.5.4"
+    "angular-snap": "~1.5.4",
+    "angular-momentjs": "~0.1.8",
+    "moment": "~2.8.1"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

@@ -18,23 +18,23 @@
     </div>
 
     <div collapse='isCollapsedJob'>
-      <form ng-submit="createJob()">
-        Company Name: <input class='form-control' type="text" ng-model='job.companyName'>
-        Position: <input class='form-control' type="text" ng-model='job.positionTitle'>
-        Stage: <select class='form-control' ng-model='job.stage.stageName' ng-options='stage as stage for stage in stages'></select>
-        <button class='btn btn-success'>Submit New Pursuit</button>
-      </form>
+      <div ng-include="'app/jobs/addpursuit.html'"></div>
+      <br>
+      <br>
+      <br>
     </div>
+
+
 
     <div class='row'>
       <div class='col-md-3 col-md-offset-3'>
         <input class='form-control'type="text" ng-model="filterOptions.filterText" />
       </div>
       <div>
-        <button class="col-md-1 btn btn-default" ng-click="isCollapsedJob = !isCollapsedJob">Add Pursuit</button>
+        <button class="col-md-1 btn btn-default" ng-click="isCollapsedJob = !isCollapsedJob; isCollapsedShare = true">Add Pursuit</button>
       </div>
       <div>
-        <button class="col-md- 1 btn btn-default" ng-click="isCollapsedShare = !isCollapsedShare">Share</button>
+        <button class="col-md- 1 btn btn-default" ng-click="isCollapsedShare = !isCollapsedShare; isCollapsedJob = true">Share</button>
       </div>
     </div>
 

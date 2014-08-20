@@ -5,18 +5,18 @@ var mongoose = require('mongoose'),
 
 var StageSchema = new Schema({
   stageName: String,
-  date: Date,
+  date: String,
   unixTC: String,
-  notes: Array
+  notes: String
 });
 
 var JobSchema = new Schema({
   _userId: {type: Schema.Types.ObjectId, ref: 'User' , index: true},
   companyName: String,
-  linkToJobPost: String,
+  link: String,
   positionTitle: String,
   description: String,
-  user: {},
+  userName: String,
   stage: [StageSchema],
   active: Boolean
 });

@@ -1,17 +1,28 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth) {
+  .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment) {
     $scope.user = Auth.getCurrentUser();
 
-    $scope.stages = ['Applied', 'Interview', 'Post-Interview', 'Negotiation'];
+    // $scope.timeNow = function() {
+    //   console.log($moment().format('X'));
+    //   // console.log($moment('1408550400', 'X').format('YYYY-MM-DD'));
+    // };
+
+    $scope.stages = {
+      "values": ['Applied', 'Interview', 'Post-Interview', 'Negotiation']
+    };
 
     $scope.email = {};
 
     $scope.job = {
       companyName: '',
       positionTitle: '',
-      stage: {}
+      link: '',
+      stage: {
+        stageName: "Applied",
+        notes: ''
+      }
     };
 
     $scope.filterOptions = {};
@@ -52,14 +63,21 @@ angular.module('jobButlerApp')
       var job = $scope.job;
       job.userId = $scope.user._id;
       // console.log('job is: ', job);
+      $scope.job.stage.unixTC = $moment().format('X');
+      $scope.job.stage.date = $moment().format('YYYY-MM-DD');
 
       $http.post('/api/jobs/create', job).success(function(data) {
+        console.log(data);
         $scope.jobApps.push(data);
-
+        $scope.isCollapsedJob = true;
         $scope.job = {
           companyName: '',
           positionTitle: '',
-          stage: ''
+          link: '',
+          stage: {
+            stageName: "Applied",
+            notes: ''
+          }
         };
 
         // console.log('jobApps: ', $scope.jobApps);

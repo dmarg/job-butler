@@ -37,12 +37,13 @@ exports.create = function(req, res) {
   newJob.positionTitle = req.body.positionTitle;
   newJob.companyName = req.body.companyName;
   newJob.stage = req.body.stage;
-  newJob.user = req.user;
+  newJob.userName = req.user.name;
   newJob.save(function(err, job) {
     if (err) {
       console.log('error: ', err);
       return res.send(500);
     }
+    console.log(job);
     return res.send(job);
   })
 

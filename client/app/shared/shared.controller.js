@@ -12,10 +12,10 @@ angular.module('jobButlerApp')
     enableCellSelection: false,
     enableRowSelection: false,
     filterOptions: $scope.filterOptions,
-    columnDefs: [ {field: 'user.name', displayName: 'Name'},
+    columnDefs: [ {field: 'userName', displayName: 'Name'},
                   {field: 'companyName', displayName: 'Company Name'},
                   {field: 'positionTitle', displayName: 'Position Title'},
-                  {field: 'stage[0].stageName', displayName: 'Status'} ]
+                  {field: 'stage[stage.length-1].stageName', displayName: 'Status'} ]
     };
 
     var sharedViews = [];
