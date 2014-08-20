@@ -10,16 +10,14 @@
         <button class='btn btn-danger'>Submit</button>
       </form>
     </div> -->
-    <div>
+    <div collapse='isCollapsedShare'>
       <form ng-submit="shareView()">
         User to share View With: <input class='form-control' type="text" ng-model='email.email'>
         <button class='btn btn-success'>Submit</button>
       </form>
     </div>
 
-    <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Add Pursuit</button>
-
-    <div collapse='isCollapsed'>
+    <div collapse='isCollapsedJob'>
       <form ng-submit="createJob()">
         Company Name: <input class='form-control' type="text" ng-model='job.companyName'>
         Position: <input class='form-control' type="text" ng-model='job.positionTitle'>
@@ -28,7 +26,18 @@
       </form>
     </div>
 
-    <strong>Filter:</strong> </string><input type="text" ng-model="filterOptions.filterText" />
+    <div class='row'>
+      <div class='col-md-3 col-md-offset-3'>
+        <input class='form-control'type="text" ng-model="filterOptions.filterText" />
+      </div>
+      <div>
+        <button class="col-md-1 btn btn-default" ng-click="isCollapsedJob = !isCollapsedJob">Add Pursuit</button>
+      </div>
+      <div>
+        <button class="col-md- 1 btn btn-default" ng-click="isCollapsedShare = !isCollapsedShare">Share</button>
+      </div>
+    </div>
+
     <div class='row'>
       <div class="col-md-3 col-md-offset-3 gridStyle" ng-grid="gridOptions"></div>
     </div>

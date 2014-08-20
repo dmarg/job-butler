@@ -16,7 +16,8 @@ angular.module('jobButlerApp')
 
     $scope.filterOptions = {};
 
-    $scope.isCollapsed = true;
+    $scope.isCollapsedJob = true;
+    $scope.isCollapsedShare = true;
 
     var removeTemplate = '<input class="btn" type="button" value="remove" ng-click="removeRow($index)" />';
     $scope.removeRow = function() {
