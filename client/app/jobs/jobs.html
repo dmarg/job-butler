@@ -51,8 +51,6 @@
       <br>
     </div>
 
-
-
     <div class='row'>
       <div class='col-md-3 col-md-offset-3'>
         <input class='form-control'type="text" ng-model="filterOptions.filterText" />
@@ -65,9 +63,40 @@
       </div>
     </div>
 
-    <div class='row'>
-      <div class="col-md-3 col-md-offset-3 gridStyle" ng-grid="gridOptions"></div>
+
+    <div>
+      <table st-table='jobApps' st-safe-src='jobApps' class='table table-striped'>
+        <thead>
+          <tr>
+            <th st-sort='companyName'>Company Name</th>
+            <th>Position Title</th>
+            <th>Status</th>
+            <th>Last Updated</th>
+          </tr>
+          <tr>
+            <th>
+              <input st-search="companyName" placeholder="search for firstname" class="input-sm form-control" type="search"/>
+            </th>
+            <th colspan="4">
+              <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='jobApp in jobApps'>
+            <td>{{jobApp.companyName}}</td>
+            <td>{{jobApp.positionTitle}}</td>
+            <td>{{jobApp.stage[jobApp.stage.length-1].stageName}}</td>
+            <td>{{jobApp.stage[jobApp.stage.length-1].date}}</td>
+            <td><i class="fa fa-pencil-square"></i></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <!-- <div class='row'>
+      <div class="col-md-3 col-md-offset-3 gridStyle" ng-grid="gridOptions"></div>
+    </div> -->
 
 
 

@@ -9,6 +9,8 @@ angular.module('jobButlerApp')
     //   // console.log($moment('1408550400', 'X').format('YYYY-MM-DD'));
     // };
 
+    $scope.jobApps = [];
+
     $scope.stages = {
       "values": ['Applied', 'Interview', 'Post-Interview', 'Negotiation']
     };
@@ -43,17 +45,18 @@ angular.module('jobButlerApp')
       })
     };
 
-    $scope.gridOptions = {
-      data: 'jobApps',
-      enableCellSelection: false,
-      enableRowSelection: false,
-      filterOptions: $scope.filterOptions,
-      columnDefs: [ {field: 'companyName', displayName: 'Company Name', width: 150},
-                    {field: 'positionTitle', displayName: 'Position Title', width: 150},
-                    {field: 'stage[stage.length-1].stageName', displayName: 'Stage', width: 150},
-                    {field: 'stage[stage.length-1].date', displayName: 'Last Updated', width: 150},
-                    {field: 'remove', displayName: '', cellTemplate: removeTemplate, width: 150}]
-    };
+
+    // $scope.gridOptions = {
+    //   data: 'jobApps',
+    //   enableCellSelection: false,
+    //   enableRowSelection: false,
+    //   filterOptions: $scope.filterOptions,
+    //   columnDefs: [ {field: 'companyName', displayName: 'Company Name', width: 150},
+    //                 {field: 'positionTitle', displayName: 'Position Title', width: 150},
+    //                 {field: 'stage[stage.length-1].stageName', displayName: 'Stage', width: 150},
+    //                 {field: 'stage[stage.length-1].date', displayName: 'Last Updated', width: 150},
+    //                 {field: 'remove', displayName: '', cellTemplate: removeTemplate, width: 150}]
+    // };
 
     $http.get('/api/jobs').success(function(jobs) {
       $scope.jobApps = jobs || [];

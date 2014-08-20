@@ -30,7 +30,7 @@
 
     <!-- Add your site or application content here -->
     <!-- <div ui-view=""></div> -->
-    <snap-drawers ng-controller="MainCtrl">
+    <snap-drawers ng-controller="MainCtrl" ng-cloak>
       <div id="shelf-1" snap-drawer class="snap-drawer snap-drawer-left" ng-show="isLoggedIn">
         <h3>Menu</h3>
         <ul>
@@ -78,6 +78,7 @@
       <script src="bower_components/angular-snap/angular-snap.js"></script>
       <script src="bower_components/angular-momentjs/angular-momentjs.js"></script>
       <script src="bower_components/moment/moment.js"></script>
+      <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 

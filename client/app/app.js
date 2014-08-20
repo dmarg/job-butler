@@ -9,7 +9,8 @@ angular.module('jobButlerApp', [
   'ui.bootstrap',
   'ngGrid',
   'snap',
-  'angular-momentjs'
+  'angular-momentjs',
+  'smart-table'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, snapRemoteProvider, $momentProvider) {
     $urlRouterProvider
