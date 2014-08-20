@@ -16,6 +16,8 @@ angular.module('jobButlerApp')
 
     $scope.filterOptions = {};
 
+    $scope.isCollapsed = true;
+
     var removeTemplate = '<input class="btn" type="button" value="remove" ng-click="removeRow($index)" />';
     $scope.removeRow = function() {
       // console.log(this.row.entity._id);
@@ -34,14 +36,15 @@ angular.module('jobButlerApp')
       enableCellSelection: false,
       enableRowSelection: false,
       filterOptions: $scope.filterOptions,
-      columnDefs: [{field: 'companyName', displayName: 'Company Name'},
-                    {field: 'positionTitle', displayName: 'Position Title'},
-                    {field: 'stage[0].stageName', displayName: 'Stage'},
-                    {field: 'remove', displayName: '', cellTemplate: removeTemplate}]
+      columnDefs: [ {field: 'companyName', displayName: 'Company Name', width: 150},
+                    {field: 'positionTitle', displayName: 'Position Title', width: 150},
+                    {field: 'stage[0].stageName', displayName: 'Stage', width: 150},
+                    {field: 'remove', displayName: '', cellTemplate: removeTemplate, width: 150}]
     };
 
     $http.get('/api/jobs').success(function(jobs) {
       $scope.jobApps = jobs || [];
+      console.log($scope.jobApps);
     });
 
     $scope.createJob = function() {
@@ -67,10 +70,7 @@ angular.module('jobButlerApp')
       var email = $scope.email;
 
       $http.post('/api/users/shareView', email).success(function(data) {
-        console.log('posted to users schema: ', data);
+        $scope.email = '';
       })
-
     };
-
-
   });
