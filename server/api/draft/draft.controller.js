@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Draft = require('./draft.model');
+var config = require('../../config/environment');
 
 var User = require('../user/user.model');
 
@@ -9,8 +10,9 @@ var google = require('googleapis');
 var gmail = google.gmail('v1');
 
 var OAuth2 = google.auth.OAuth2;
-var oauth2Client = new OAuth2(process.env.GOOGLE_ID, process.env.GOOGLE_SECRET, "http://localhost:9000/auth/google/callback");
+var oauth2Client = new OAuth2(process.env.GOOGLE_ID, process.env.GOOGLE_SECRET, config.google.callbackURL);
 
+// google.options({ auth: oauth2Client});
 
 exports.createDraft = function(req, res) {
 
@@ -52,14 +54,14 @@ exports.createDraft = function(req, res) {
       body: email
     }
   }, function(err, results) {
-    if(err) { return console.log('error: ', err)};
+    if(err) {
+      console.log('error: ', err);
+      return res.send(err);
+    }
+    console.log('results:', results);
     return res.send({results: results});
   })
 };
-
-
-
-
 
 
 

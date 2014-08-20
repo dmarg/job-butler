@@ -29,7 +29,7 @@ exports.setup = function (User, config) {
           });
         } else {
           console.log("passport found user:", user);
-
+          user.google = profile._json;
           user.google.accessToken = accessToken;
           user.google.refreshToken = refreshToken;
           user.save(function() {
