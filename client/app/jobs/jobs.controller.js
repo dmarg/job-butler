@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment) {
+  .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $modal, $log) {
     $scope.user = Auth.getCurrentUser();
 
     // $scope.timeNow = function() {
@@ -97,4 +97,45 @@ angular.module('jobButlerApp')
         $scope.isCollapsedShare = true;
       })
     };
-  });
+
+
+    $scope.open = function (size) {
+
+      $scope.isCollapsedJob = true;
+      $scope.isCollapsedShare = true;
+
+
+      var modalInstance = $modal.open({
+        templateUrl: 'editJobModal.html',
+        controller: 'EditJobCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+
+
+
+  }).controller("EditJobCtrl", function ($scope, $modalInstance, items) {
+
+      // $scope.items = items;
+      // $scope.selected = {
+      //   item: $scope.items[0]
+      // };
+
+      $scope.ok = function () {
+        $modalInstance.close($scope.selected.item);
+      };
+
+    });
+

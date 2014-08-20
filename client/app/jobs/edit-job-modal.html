@@ -1,0 +1,58 @@
+
+<div class="modal-body">
+  <div class="well well-sm">
+    <form class="form-horizontal" ng-submit="createJob()">
+    <fieldset>
+
+      <legend class="text-center">Edit Pursuit</legend>
+
+      <!-- Company Name input-->
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="coName">Company Name</label>
+        <div class="col-md-9">
+          <input id="coName" name="coName" type="text" class="form-control" ng-model="job.companyName">
+        </div>
+      </div>
+
+      <!-- Position input-->
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="position">Position Title</label>
+        <div class="col-md-9">
+          <input id="position" name="position" type="text" class="form-control" ng-model='job.positionTitle'>
+        </div>
+      </div>
+
+      <!-- Link input-->
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="positionLink">Link to Posting</label>
+        <div class="col-md-9">
+          <input id="positionLink" name="positionLink" type="text" class="form-control" ng-model='job.link'>
+        </div>
+      </div>
+
+      <!-- Stage input-->
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="stageStatus">Status</label>
+        <div class="col-md-9">
+          <select id="stageStatus" name="stageStatus" class='form-control' ng-model='job.stage.stageName' ng-options='stage for stage in stages.values'></select>
+        </div>
+      </div>
+
+      <!-- Notes  -->
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="notes">Notes</label>
+        <div class="col-md-9">
+          <textarea class="form-control" id="notes" name="notes" rows="5" ng-model='job.stage.notes'></textarea>
+        </div>
+      </div>
+
+      <!-- Form actions -->
+      <div class="modal-footer">
+        <div class="col-md-12">
+          <button class="btn btn-primary btn-lg">Submit</button>
+        </div>
+      </div>
+    </fieldset>
+    </form>
+  </div>
+</div>
