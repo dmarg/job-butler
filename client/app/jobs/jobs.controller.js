@@ -50,7 +50,8 @@ angular.module('jobButlerApp')
       filterOptions: $scope.filterOptions,
       columnDefs: [ {field: 'companyName', displayName: 'Company Name', width: 150},
                     {field: 'positionTitle', displayName: 'Position Title', width: 150},
-                    {field: 'stage[0].stageName', displayName: 'Stage', width: 150},
+                    {field: 'stage[stage.length-1].stageName', displayName: 'Stage', width: 150},
+                    {field: 'stage[stage.length-1].date', displayName: 'Last Updated', width: 150},
                     {field: 'remove', displayName: '', cellTemplate: removeTemplate, width: 150}]
     };
 
@@ -90,6 +91,7 @@ angular.module('jobButlerApp')
 
       $http.post('/api/users/shareView', email).success(function(data) {
         $scope.email = '';
+        $scope.isCollapsedShare = true;
       })
     };
   });

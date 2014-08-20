@@ -11,10 +11,37 @@
       </form>
     </div> -->
     <div collapse='isCollapsedShare'>
-      <form ng-submit="shareView()">
-        User to share View With: <input class='form-control' type="text" ng-model='email.email'>
-        <button class='btn btn-success'>Submit</button>
-      </form>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="well well-sm">
+              <form class="form-horizontal" ng-submit="shareView()">
+              <fieldset>
+                <legend class="text-center">Add Pursuit</legend>
+
+                <!-- Share with User input-->
+                <div class="form-group">
+                  <label class="col-md-3 control-label" for="share">Share with</label>
+                  <div class="col-md-9">
+                    <input id="share" name="share" placeholder="Enter email address of user to share pursuits with." type="text" class="form-control" ng-model="email.email">
+                  </div>
+                </div>
+
+                <!-- Form actions -->
+                <div class="form-group">
+                  <div class="col-md-12 text-right">
+                    <button class="btn btn-success btn-lg">Submit</button>
+                  </div>
+                </div>
+              </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
     </div>
 
     <div collapse='isCollapsedJob'>
