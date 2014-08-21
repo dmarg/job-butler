@@ -4,10 +4,6 @@ angular.module('jobButlerApp')
   .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $modal, $log) {
     $scope.user = Auth.getCurrentUser();
 
-    // $scope.timeNow = function() {
-    //   console.log($moment().format('X'));
-    //   // console.log($moment('1408550400', 'X').format('YYYY-MM-DD'));
-    // };
 
     $scope.jobApps = [];
 
@@ -46,22 +42,12 @@ angular.module('jobButlerApp')
     };
 
 
-    // $scope.gridOptions = {
-    //   data: 'jobApps',
-    //   enableCellSelection: false,
-    //   enableRowSelection: false,
-    //   filterOptions: $scope.filterOptions,
-    //   columnDefs: [ {field: 'companyName', displayName: 'Company Name', width: 150},
-    //                 {field: 'positionTitle', displayName: 'Position Title', width: 150},
-    //                 {field: 'stage[stage.length-1].stageName', displayName: 'Stage', width: 150},
-    //                 {field: 'stage[stage.length-1].date', displayName: 'Last Updated', width: 150},
-    //                 {field: 'remove', displayName: '', cellTemplate: removeTemplate, width: 150}]
-    // };
-
     $http.get('/api/jobs').success(function(jobs) {
       $scope.jobApps = jobs || [];
-      console.log($scope.jobApps);
+      $scope.jobAppsDisplay = [].concat($scope.jobApps);
     });
+
+
 
     $scope.createJob = function() {
       var job = $scope.job;
