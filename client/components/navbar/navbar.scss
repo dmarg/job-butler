@@ -1,0 +1,86 @@
+
+.navbar {
+  background-color: $dashboard-color;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $dashboard-text;
+}
+
+.navbar-default .navbar-text {
+  color: $dashboard-text;
+}
+
+#nav-wrapper {
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: $dashboard-text-highlight;
+  background-color: $dashboard-highlight;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: $dashboard-text-highlight;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: $dashboard-highlight;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: $dashboard-text;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: $dashboard-text;
+}
+
+.userName {
+  color: $dashboard-text;
+  margin-right: 5px;
+}
+
+#profilePic {
+  max-width: 42px;
+  max-height: 42px;
+  border-radius: 50%;
+  margin: 4px 5px 0px -5px;
+  padding: 2px;
+  border: 1px solid $dashboard-text;
+}
+
+
+@media (max-width: 768px) {
+  .navbar-toggle {
+    float: left;
+    left: 15px;
+  }
+  .navbar-toggle {
+    float: left;
+    left: 15px;
+  }
+
+  .navbar-right {
+    float: right;
+    margin-top: -49px;
+    margin-right: 20px;
+  }
+
+}
+
+.container > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-header, .container-fluid > .navbar-collapse {
+  margin-right: 0px;
+  margin-left: 0px;
+  float: left;
+}
+
+// .navbar-right {
+//   float: auto;
+// }
+
+// .navbar-toggle {
+//     float: left;
+//   }

@@ -1,7 +1,6 @@
-<snap-content id="content" class="scrollable">
-  <div ng-include="'components/navbar/navbar.html'"></div>
+<div ng-include="'components/navbar/navbar.html'"></div>
 
-  <div class="col-md-12" ng-controller="JobsCtrl">
+<div class="col-md-12" ng-controller="JobsCtrl">
     <!-- <div ng-controller='MessagesCtrl'>
       <form ng-submit="sendApplication()">
         To: <input class='form-control' type="text" ng-model='application.to'>
@@ -57,33 +56,33 @@
     </div>
 
 
-    <div>
-      <table st-table='jobAppsDisplay' st-safe-src="jobApps" class='table table-striped'>
-        <thead>
-          <tr>
-            <th st-sort='companyName'>Company Name</th>
-            <th st-sort='positionTitle'>Position Title</th>
-            <th st-sort='stage[stage.length-1].stageName'>Status</th>
-            <th st-sort='stage[stage.length-1].date'>Last Updated</th>
-            <th>Edit</th>
-          </tr>
-          <tr>
-            <th colspan="5">
-              <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat='jobApp in jobAppsDisplay'>
-            <td>{{jobApp.companyName}}</td>
-            <td>{{jobApp.positionTitle}}</td>
-            <td>{{jobApp.stage[jobApp.stage.length-1].stageName}}</td>
-            <td>{{jobApp.stage[jobApp.stage.length-1].date}}</td>
-            <td><i class="fa fa-pencil-square" ng-click="open(jobApp)"></i></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div>
+    <table st-table='jobAppsDisplay' st-safe-src="jobApps" class='table table-striped'>
+      <thead>
+        <tr>
+          <th st-sort='companyName'>Company Name</th>
+          <th st-sort='positionTitle'>Position Title</th>
+          <th st-sort='stage[stage.length-1].stageName'>Status</th>
+          <th st-sort='stage[stage.length-1].date'>Last Updated</th>
+          <th>Edit</th>
+        </tr>
+        <tr>
+          <th colspan="5">
+            <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='jobApp in jobAppsDisplay'>
+          <td>{{jobApp.companyName}}</td>
+          <td>{{jobApp.positionTitle}}</td>
+          <td>{{jobApp.stage[jobApp.stage.length-1].stageName}}</td>
+          <td>{{jobApp.stage[jobApp.stage.length-1].date}}</td>
+          <td><i class="fa fa-pencil-square" ng-click="open()"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 
 <script type="text/ng-template" id="editJobModal.html">
@@ -92,6 +91,4 @@
 
 
 
-  </div>
-
-</snap-content>
+</div>

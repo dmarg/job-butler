@@ -5,228 +5,84 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';
 
-#profilePic {
-  max-width: 40px;
-  max-height: 40px;
-  border-radius: 50%;
-  margin: 5px 5px 0 -5px;
-  padding: 0;
+
+/**
+ * App-wide Variable Colors for Color Scheme
+ */
+
+// Dashboard Colors
+$dashboard-color: #354D5D;
+$dashboard-highlight: #2A3B47;
+
+// Dahsboard Text
+$dashboard-text: #97BAD1;
+$dashboard-text-highlight: #FFFFFF;
+
+
+// Icons, Infographics, & Buttons
+// Green
+$ib-green: #49B49D;
+$ib-green-highlight: #439C89;
+
+// Yellow
+$ib-yellow: #FCD942;
+$ib-yellow-highlight: #E4BD15;
+
+// Orange
+$ib-orange: #E07A31;
+$ib-orange-highlight: #C06321;
+
+// Red
+$ib-red: #DD5742;
+$ib-red-highlight: #CA3A24;
+
+
+// Content Area Background Colors
+// Main Background
+$background-main: #EDEFF0;
+
+// Supporting Background Colors
+$background-s1: #E1E1E1;
+$background-s2: #B8C0C5;
+
+/**
+* End Variable Colors
+*/
+
+
+
+
+body {
+  margin-top: 75px;
+  background-color: $background-main;
 }
 
-// Variable Colors
-// GENERAL
-$menu-background-color: #65CFF0;
-$shadow-color: #000;
-$item-separator-color: #FFF;
-$borders-color: #65CFF0;
 
-// TITLE
-$title-background-color: #06C0F2;
-$title-font-color: #000;
-
-// ANCHOR OR LABEL
-$lbl-font-color: #000;
-$lbl-hover-background-color: #65CFF0;
-$lbl-active-background-color: #65CFF0;
-$lbl-active-font-color: #000;
-
-// BUTTONS
-
-$btn-background-color: #06C0F2;
-$btn-font-color: #000;
-$caret-color-closed: #000;
-$caret-color-opened: #000;
-
-// SIZES
-$spmenu-vertical-width: 320px;
-$spmenu-horizontal-height: 150px;
-
-
-.fa-pencil-square {
-  font-size: 2em;
-  color: #49B49D;
-}
-
-.fa-pencil-square:hover {
-  color: #439C89;
-}
-
-.well {
-  margin-bottom: 0;
-}
 // /**
 //  * Left Menu Style
 //  */
 
-html, body, #content {
-  height: 100%;
-  width: 100%;
-}
-
-#content {
-  padding-top: 70px;
-  background-color: #fff;
-
-  -moz-box-shadow: 0 0 20px #888;
-  -webkit-box-shadow: 0 0 20px #888;
-  box-shadow: 0 0 20px #888;
-}
-
-#shelf-1 {
-  width: 235px;
-  padding: 0 10px;
-}
-
-#nav-wrapper {
-  width: 100%;
-  text-align: center;
-}
-
-.scrollable{
-    overflow: auto;
-    -webkit-transition-property: top, bottom;
-    transition-property: top, bottom;
-    -webkit-transition-duration: .2s, .2s;
-    transition-duration: .2s, .2s;
-    -webkit-transition-timing-function: linear, linear;
-    transition-timing-function: linear, linear;
-    -webkit-overflow-scrolling: touch;
-}
-
-.fa-bars {
-  font-size: 2em;
-  margin-top: 11px;
-}
-
-// /**
-//  * Nav Bar Menu Style
-//  */
-
-// .jb-spmenu {
-//   background: #47a3da;
-//   position: fixed;
-// }
-
-// .jb-spmenu h3 {
-//   color: #afdefa;
-//   font-size: 1.9em;
-//   padding: 20px;
-//   margin: 0;
-//   font-weight: 300;
-//   background: #0d77b6;
-// }
-
-// .jb-spmenu a {
-//   display: block;
-//   color: #fff;
-//   font-size: 1.1em;
-//   font-weight: 300;
-// }
-
-// .jb-spmenu a:hover {
-//   background: #258ecd;
-// }
-
-// .jb-spmenu a:active {
-//   background: #afdefa;
-//   color: #47a3da;
-// }
-
-// .jb-spmenu-vertical {
-//   width: 240px;
+// html, body {
 //   height: 100%;
-//   top: 0;
-//   z-index: 1000;
+//   width: 100%;
 // }
 
-// .jb-spmenu-vertical a {
-//   border-bottom: 1px solid #258ecd;
-//   padding: 1em;
+// #content {
+//   padding-top: 70px;
+//   background-color: #fff;
+
+//   -moz-box-shadow: 0 0 20px #888;
+//   -webkit-box-shadow: 0 0 20px #888;
+//   box-shadow: 0 0 20px #888;
 // }
 
-// /* Vertical menu that slides from the left or right */
-
-// .jb-spmenu-left {
-//   left: -240px;
-// }
-
-// .jb-spmenu-right {
-//   right: -240px;
-// }
-
-// .jb-spmenu-left.jb-spmenu-open {
-//   left: 0px;
-// }
-
-// .jb-spmenu-right.jb-spmenu-open {
-//   right: 0px;
+// #shelf-1 {
+//   width: 235px;
+//   padding: 0 10px;
 // }
 
 
-// /* Push classes applied to the body */
 
-// .jb-spmenu-push {
-//   overflow-x: hidden;
-//   position: relative;
-//   left: 0;
-// }
-
-// .jb-spmenu-push-toright {
-//   left: 240px;
-// }
-
-// .jb-spmenu-push-toleft {
-//   left: -240px;
-// }
-
-// /* Transitions */
-
-// .jb-spmenu,
-// .jb-spmenu-push {
-//   -webkit-transition: all 0.3s ease;
-//   -moz-transition: all 0.3s ease;
-//   transition: all 0.3s ease;
-// }
-
-// /* Example media queries */
-
-// @media screen and (max-width: 55.1875em){
-
-//   .jb-spmenu-horizontal {
-//       font-size: 75%;
-//       height: 110px;
-//   }
-
-//   .jb-spmenu-top {
-//       top: -110px;
-//   }
-
-//   .jb-spmenu-bottom {
-//       bottom: -110px;
-//   }
-
-// }
-
-// @media screen and (max-height: 26.375em){
-
-//   .jb-spmenu-vertical {
-//       font-size: 90%;
-//       width: 190px;
-//   }
-
-//   .jb-spmenu-left,
-//   .jb-spmenu-push-toleft {
-//       left: -190px;
-//   }
-
-//   .jb-spmenu-right {
-//       right: -190px;
-//   }
-
-//   .jb-spmenu-push-toright {
-//       left: 190px;
-//   }
-// }
 
 
 /**
@@ -234,19 +90,14 @@ html, body, #content {
  */
 
 
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
+// .browsehappy {
+//     margin: 0.2em 0;
+//     background: #ccc;
+//     color: #000;
+//     padding: 0.2em 0;
+// }
 
 
-.gridStyle {
-    border: 1px solid rgb(212,212,212);
-    width: 600px;
-    height: 300px;
-}
 
 // Component styles are injected through grunt
 // injector
@@ -256,7 +107,7 @@ html, body, #content {
 @import 'jobs/jobs.scss';
 @import 'labels/labels.scss';
 @import 'main/main.scss';
-@import 'menuSlidePush/slidepush.scss';
 @import 'messages/messages.scss';
 @import 'shared/shared.scss';
+@import 'navbar/navbar.scss';
 // endinjector
