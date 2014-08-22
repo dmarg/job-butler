@@ -8,7 +8,7 @@ angular.module('jobButlerApp')
     $scope.jobApps = [];
 
     $scope.stages = {
-      "values": ['Applied', 'Interview', 'Post-Interview', 'Negotiation']
+      "values": ['Applied', 'Interview', 'Post-Interview', 'Negotiation', 'Closed']
     };
 
     $scope.email = {};
@@ -28,18 +28,18 @@ angular.module('jobButlerApp')
     $scope.isCollapsedJob = true;
     $scope.isCollapsedShare = true;
 
-    var removeTemplate = '<input class="btn" type="button" value="remove" ng-click="removeRow($index)" />';
-    $scope.removeRow = function() {
-      // console.log(this.row.entity._id);
-      var jobId = this.row.entity._id;
-      var job = {id: jobId};
-      var index = this.row.rowIndex;
-      $scope.gridOptions.selectItem(index, false);
-      $scope.jobApps.splice(index, 1);
-      $http.delete('/api/jobs/'+jobId).success(function(data) {
-        console.log('deleted job response: ', data);
-      })
-    };
+    // var removeTemplate = '<input class="btn" type="button" value="remove" ng-click="removeRow($index)" />';
+    // $scope.removeRow = function() {
+    //   // console.log(this.row.entity._id);
+    //   var jobId = this.row.entity._id;
+    //   var job = {id: jobId};
+    //   var index = this.row.rowIndex;
+    //   $scope.gridOptions.selectItem(index, false);
+    //   $scope.jobApps.splice(index, 1);
+    //   $http.delete('/api/jobs/'+jobId).success(function(data) {
+    //     console.log('deleted job response: ', data);
+    //   })
+    // };
 
 
     $http.get('/api/jobs').success(function(jobs) {
@@ -84,20 +84,19 @@ angular.module('jobButlerApp')
       })
     };
 
-
-    $scope.open = function (size) {
-
+    $scope.open = function (jobApp) {
+      $scope.jobApp = jobApp
       $scope.isCollapsedJob = true;
       $scope.isCollapsedShare = true;
-
 
       var modalInstance = $modal.open({
         templateUrl: 'editJobModal.html',
         controller: 'EditJobCtrl',
-        size: size,
+
+        // size: size,
         resolve: {
-          items: function () {
-            return $scope.items;
+          jobApps: function () {
+            return $scope.jobApp;
           }
         }
       });
@@ -112,12 +111,25 @@ angular.module('jobButlerApp')
 
 
 
-  }).controller("EditJobCtrl", function ($scope, $modalInstance, items) {
+  }).controller("EditJobCtrl", function ($scope, $modalInstance, $http, $moment, jobApps) {
 
-      // $scope.items = items;
-      // $scope.selected = {
-      //   item: $scope.items[0]
-      // };
+      $scope.jobModal = jobApps;
+      console.log($scope.jobModal);
+      var job = $scope.jobModal;
+      console.log(job._id);
+
+      $scope.stages = {
+        "values": ['Applied', 'Interview', 'Post-Interview', 'Negotiation', 'Closed']
+      };
+
+      $scope.submitJobEdits = function() {
+        job.stage[job.stage.length-1].unixTC = $moment().format('X');
+        job.stage[job.stage.length-1].date = $moment().format('YYYY-MM-DD');
+        $http.put('/api/jobs/'+job._id, job).success(function(data) {
+          console.log(data);
+          $modalInstance.close();
+          })
+        };
 
       $scope.ok = function () {
         $modalInstance.close($scope.selected.item);

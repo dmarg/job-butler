@@ -48,11 +48,8 @@
     </div>
 
     <div class='row'>
-      <div class='col-md-3 col-md-offset-3'>
-        <input class='form-control'type="text" ng-model="filterOptions.filterText" />
-      </div>
       <div>
-        <button class="col-md-1 btn btn-default" ng-click="isCollapsedJob = !isCollapsedJob; isCollapsedShare = true">Add Pursuit</button>
+        <button class="col-md-1 col-md-offset-5 btn btn-default" ng-click="isCollapsedJob = !isCollapsedJob; isCollapsedShare = true">Add Pursuit</button>
       </div>
       <div>
         <button class="col-md- 1 btn btn-default" ng-click="isCollapsedShare = !isCollapsedShare; isCollapsedJob = true">Share</button>
@@ -82,7 +79,7 @@
             <td>{{jobApp.positionTitle}}</td>
             <td>{{jobApp.stage[jobApp.stage.length-1].stageName}}</td>
             <td>{{jobApp.stage[jobApp.stage.length-1].date}}</td>
-            <td><i class="fa fa-pencil-square" ng-click="open()"></i></td>
+            <td><i class="fa fa-pencil-square" ng-click="open(jobApp)"></i></td>
           </tr>
         </tbody>
       </table>
