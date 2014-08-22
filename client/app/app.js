@@ -7,21 +7,15 @@ angular.module('jobButlerApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'ngGrid',
-  'snap',
   'angular-momentjs',
   'smart-table'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, snapRemoteProvider, $momentProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $momentProvider) {
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
-
-    snapRemoteProvider.globalOptions = {
-      disable: 'right'
-    };
 
     $momentProvider
       .asyncLoading(false)

@@ -1,92 +1,92 @@
-<snap-content id="content" class="scrollable">
-  <div ng-include="'components/navbar/navbar.html'"></div>
 
-  <div class="col-md-12" ng-controller="JobsCtrl">
-    <!-- <div ng-controller='MessagesCtrl'>
-      <form ng-submit="sendApplication()">
-        To: <input class='form-control' type="text" ng-model='application.to'>
-        Email's Subject Line: <input class='form-control' type="text" ng-model='application.subjectLine'>
-        Email's Body Text: <textarea rows='10' class='form-control' type="text" ng-model='application.bodyOfEmail'></textarea>
-        <button class='btn btn-danger'>Submit</button>
-      </form>
-    </div> -->
-    <div collapse='isCollapsedShare'>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3">
-            <div class="well well-sm">
-              <form class="form-horizontal" ng-submit="shareView()">
-              <fieldset>
-                <legend class="text-center">Share Pursuits</legend>
+<div ng-include="'components/navbar/navbar.html'"></div>
 
-                <!-- Share with User input-->
-                <div class="form-group">
-                  <label class="col-md-3 control-label" for="share">Share with</label>
-                  <div class="col-md-9">
-                    <input id="share" name="share" placeholder="Enter email address of user to share pursuits with." type="text" class="form-control" ng-model="email.email">
-                  </div>
+<div class="col-md-12" ng-controller="JobsCtrl">
+  <!-- <div ng-controller='MessagesCtrl'>
+    <form ng-submit="sendApplication()">
+      To: <input class='form-control' type="text" ng-model='application.to'>
+      Email's Subject Line: <input class='form-control' type="text" ng-model='application.subjectLine'>
+      Email's Body Text: <textarea rows='10' class='form-control' type="text" ng-model='application.bodyOfEmail'></textarea>
+      <button class='btn btn-danger'>Submit</button>
+    </form>
+  </div> -->
+  <div collapse='isCollapsedShare'>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="well well-sm">
+            <form class="form-horizontal" ng-submit="shareView()">
+            <fieldset>
+              <legend class="text-center">Share Pursuits</legend>
+
+              <!-- Share with User input-->
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="share">Share with</label>
+                <div class="col-md-9">
+                  <input id="share" name="share" placeholder="Enter email address of user to share pursuits with." type="text" class="form-control" ng-model="email.email">
                 </div>
+              </div>
 
-                <!-- Form actions -->
-                <div class="form-group">
-                  <div class="col-md-12 text-right">
-                    <button class="btn btn-success btn-lg">Submit</button>
-                  </div>
+              <!-- Form actions -->
+              <div class="form-group">
+                <div class="col-md-12 text-right">
+                  <button class="btn btn-success btn-lg">Submit</button>
                 </div>
-              </fieldset>
-              </form>
-            </div>
+              </div>
+            </fieldset>
+            </form>
           </div>
         </div>
       </div>
-      <br><br>
     </div>
+    <br><br>
+  </div>
 
-    <div collapse='isCollapsedJob'>
-      <div ng-include="'app/jobs/addpursuit.html'"></div>
-      <br><br>
+  <div collapse='isCollapsedJob'>
+    <div ng-include="'app/jobs/addpursuit.html'"></div>
+    <br><br>
+  </div>
+
+  <div class='row'>
+    <div class='col-md-3 col-md-offset-3'>
+      <input class='form-control'type="text" ng-model="filterOptions.filterText" />
     </div>
-
-    <div class='row'>
-      <div class='col-md-3 col-md-offset-3'>
-        <input class='form-control'type="text" ng-model="filterOptions.filterText" />
-      </div>
-      <div>
-        <button class="col-md-1 btn btn-default" ng-click="isCollapsedJob = !isCollapsedJob; isCollapsedShare = true">Add Pursuit</button>
-      </div>
-      <div>
-        <button class="col-md- 1 btn btn-default" ng-click="isCollapsedShare = !isCollapsedShare; isCollapsedJob = true">Share</button>
-      </div>
-    </div>
-
-
     <div>
-      <table st-table='jobAppsDisplay' st-safe-src="jobApps" class='table table-striped'>
-        <thead>
-          <tr>
-            <th st-sort='companyName'>Company Name</th>
-            <th st-sort='positionTitle'>Position Title</th>
-            <th st-sort='stage[stage.length-1].stageName'>Status</th>
-            <th st-sort='stage[stage.length-1].date'>Last Updated</th>
-            <th>Edit</th>
-          </tr>
-          <tr>
-            <th colspan="5">
-              <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat='jobApp in jobAppsDisplay'>
-            <td>{{jobApp.companyName}}</td>
-            <td>{{jobApp.positionTitle}}</td>
-            <td>{{jobApp.stage[jobApp.stage.length-1].stageName}}</td>
-            <td>{{jobApp.stage[jobApp.stage.length-1].date}}</td>
-            <td><i class="fa fa-pencil-square" ng-click="open()"></i></td>
-          </tr>
-        </tbody>
-      </table>
+      <button class="col-md-1 btn btn-default" ng-click="isCollapsedJob = !isCollapsedJob; isCollapsedShare = true">Add Pursuit</button>
     </div>
+    <div>
+      <button class="col-md- 1 btn btn-default" ng-click="isCollapsedShare = !isCollapsedShare; isCollapsedJob = true">Share</button>
+    </div>
+  </div>
+
+
+  <div>
+    <table st-table='jobAppsDisplay' st-safe-src="jobApps" class='table table-striped'>
+      <thead>
+        <tr>
+          <th st-sort='companyName'>Company Name</th>
+          <th st-sort='positionTitle'>Position Title</th>
+          <th st-sort='stage[stage.length-1].stageName'>Status</th>
+          <th st-sort='stage[stage.length-1].date'>Last Updated</th>
+          <th>Edit</th>
+        </tr>
+        <tr>
+          <th colspan="5">
+            <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='jobApp in jobAppsDisplay'>
+          <td>{{jobApp.companyName}}</td>
+          <td>{{jobApp.positionTitle}}</td>
+          <td>{{jobApp.stage[jobApp.stage.length-1].stageName}}</td>
+          <td>{{jobApp.stage[jobApp.stage.length-1].date}}</td>
+          <td><i class="fa fa-pencil-square" ng-click="open()"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 
 <script type="text/ng-template" id="editJobModal.html">
@@ -95,6 +95,4 @@
 
 
 
-  </div>
-
-</snap-content>
+</div>

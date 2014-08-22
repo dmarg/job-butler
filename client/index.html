@@ -13,8 +13,6 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
-      <link rel="stylesheet" href="bower_components/ng-grid/ng-grid.css" />
-      <link rel="stylesheet" href="bower_components/angular-snap/angular-snap.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -29,22 +27,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <!-- <div ui-view=""></div> -->
-    <snap-drawers ng-controller="MainCtrl" ng-cloak>
-      <div id="shelf-1" snap-drawer class="snap-drawer snap-drawer-left" ng-show="isLoggedIn">
-        <h3>Menu</h3>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/jobs">Jobs</a></li>
-          <li><a href="/shared">Shared</a></li>
-          <li><a href="#">Item 4</a></li>
-          <li><a href="#">Item 5</a></li>
-          <li><a href="#">Item 6</a></li>
-        </ul>
-      </div>
-    </snap-drawers>
 
-    <div ui-view id="content"></div>
+    <div ui-view></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -73,9 +57,6 @@
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-      <script src="bower_components/ng-grid/build/ng-grid.js"></script>
-      <script src="bower_components/snapjs/snap.js"></script>
-      <script src="bower_components/angular-snap/angular-snap.js"></script>
       <script src="bower_components/angular-momentjs/angular-momentjs.js"></script>
       <script src="bower_components/moment/moment.js"></script>
       <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
@@ -99,7 +80,6 @@
           <script src="app/labels/labels.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
-          <script src="app/menuSlidePush/menuSlidePush.service.js"></script>
           <script src="app/messages/messages.controller.js"></script>
           <script src="app/messages/messages.js"></script>
           <script src="app/shared/shared.controller.js"></script>

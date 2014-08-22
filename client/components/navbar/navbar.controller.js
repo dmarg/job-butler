@@ -3,8 +3,14 @@
 angular.module('jobButlerApp')
   .controller('NavbarCtrl', function ($scope, $rootScope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
+      'title': 'Jobs',
+      'link': '/jobs'
+    }, {
+      'title': 'Shared',
+      'link': '/shared'
+    }, {
+      'title': 'Templates',
+      'link': '/templates'
     }];
 
     // $rootScope.$watch("user", function(newval, oldval) {
