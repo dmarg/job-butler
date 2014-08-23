@@ -4,7 +4,6 @@ angular.module('jobButlerApp')
   .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $modal, $log) {
     $scope.user = Auth.getCurrentUser();
 
-
     $scope.jobApps = [];
 
     $scope.stages = {
@@ -28,26 +27,10 @@ angular.module('jobButlerApp')
     $scope.isCollapsedJob = true;
     $scope.isCollapsedShare = true;
 
-    // var removeTemplate = '<input class="btn" type="button" value="remove" ng-click="removeRow($index)" />';
-    // $scope.removeRow = function() {
-    //   // console.log(this.row.entity._id);
-    //   var jobId = this.row.entity._id;
-    //   var job = {id: jobId};
-    //   var index = this.row.rowIndex;
-    //   $scope.gridOptions.selectItem(index, false);
-    //   $scope.jobApps.splice(index, 1);
-    //   $http.delete('/api/jobs/'+jobId).success(function(data) {
-    //     console.log('deleted job response: ', data);
-    //   })
-    // };
-
-
     $http.get('/api/jobs').success(function(jobs) {
       $scope.jobApps = jobs || [];
       $scope.jobAppsDisplay = [].concat($scope.jobApps);
     });
-
-
 
     $scope.createJob = function() {
       var job = $scope.job;
@@ -69,9 +52,6 @@ angular.module('jobButlerApp')
             notes: ''
           }
         };
-
-        // console.log('jobApps: ', $scope.jobApps);
-        // console.log('data: ', data);
       })
     };
 
@@ -92,8 +72,6 @@ angular.module('jobButlerApp')
       var modalInstance = $modal.open({
         templateUrl: 'editJobModal.html',
         controller: 'EditJobCtrl',
-
-        // size: size,
         resolve: {
           jobApps: function () {
             return $scope.jobApp;
@@ -107,13 +85,10 @@ angular.module('jobButlerApp')
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-
-
-
-
-  }).controller("EditJobCtrl", function ($scope, $modalInstance, $http, $moment, jobApps) {
+  }).controller("EditJobCtrl", function ($scope, $modalInstance, $http, $moment, $window, jobApps) {
 
       $scope.jobModal = jobApps;
+
       console.log($scope.jobModal);
       var job = $scope.jobModal;
       console.log(job._id);
@@ -128,8 +103,25 @@ angular.module('jobButlerApp')
         $http.put('/api/jobs/'+job._id, job).success(function(data) {
           console.log(data);
           $modalInstance.close();
+        })
+      };
+
+      $scope.cancelEdit = function () {
+        $modalInstance.close();
+      }
+
+      $scope.removeJob = function() {
+        if(confirm('Are you sure you want to delete this pursuit?')) {
+          console.log(job);
+          var jobId = job._id;
+          console.log(jobId);
+          $http.delete('/api/jobs/'+jobId).success(function(data) {
+            console.log('deleted job response: ', data);
+            $modalInstance.close();
+            $window.location.reload();
           })
-        };
+        }
+      };
 
       $scope.ok = function () {
         $modalInstance.close($scope.selected.item);

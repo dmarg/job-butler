@@ -24,7 +24,7 @@
               <td>{{sharedView.positionTitle}}</td>
               <td>{{sharedView.stage[sharedView.stage.length-1].stageName}}</td>
               <td>{{sharedView.stage[sharedView.stage.length-1].date}}</td>
-              <td><i class="fa fa-pencil-square" ng-click="open(jobApp)"></i></td>
+              <td><i class="fa fa-pencil-square" ng-click="open(sharedView)"></i></td>
             </tr>
           </tbody>
         </table>
@@ -32,6 +32,6 @@
     </div>
 
 <script type="text/ng-template" id="editJobModal.html">
-  <div ng-include="'app/jobs/edit-job-modal.html'"></div>
+  <div ng-include="'app/shared/shared-details-modal.html'"></div>
 </script>
 

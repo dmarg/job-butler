@@ -1,22 +1,10 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('SharedCtrl', function ($scope, $http, Auth) {
+  .controller('SharedCtrl', function ($scope, $http, $modal, $log, Auth) {
 
     var user = Auth.getCurrentUser();
 
-    // $scope.filterOptions = {};
-
-    // $scope.gridOptions = {
-    // data: 'sharedViews',
-    // enableCellSelection: false,
-    // enableRowSelection: false,
-    // filterOptions: $scope.filterOptions,
-    // columnDefs: [ {field: 'userName', displayName: 'Name'},
-    //               {field: 'companyName', displayName: 'Company Name'},
-    //               {field: 'positionTitle', displayName: 'Position Title'},
-    //               {field: 'stage[stage.length-1].stageName', displayName: 'Status'} ]
-    // };
 
     var sharedViews = [];
     $http.get('/api/jobs/sharedViews').success(function(data) {
@@ -25,4 +13,41 @@ angular.module('jobButlerApp')
       $scope.sharedViewsDisplay = [].concat($scope.sharedViews);
     })
 
+    $scope.open = function (jobApp) {
+      console.log(jobApp);
+      $scope.jobApp = jobApp
+      $scope.isCollapsedJob = true;
+      $scope.isCollapsedShare = true;
+
+      var modalInstance = $modal.open({
+        templateUrl: 'editJobModal.html',
+        controller: 'SharedDetailsCtrl',
+        resolve: {
+          jobApps: function () {
+            return $scope.jobApp;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+    }).controller("SharedDetailsCtrl", function ($scope, $modalInstance, $http, $moment, $window, jobApps) {
+
+      $scope.jobModal = jobApps;
+
+      console.log($scope.jobModal);
+      var job = $scope.jobModal;
+      console.log(job._id);
+
+      $scope.stages = {
+        "values": ['Applied', 'Interview', 'Post-Interview', 'Negotiation', 'Closed']
+      };
+
+      $scope.closeModal = function () {
+        $modalInstance.close();
+      }
   });

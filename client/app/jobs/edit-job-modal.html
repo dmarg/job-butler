@@ -1,7 +1,7 @@
 
 <div class="modal-body">
   <div class="well well-sm">
-    <form class="form-horizontal" ng-submit="submitJobEdits()">
+    <form class="form-horizontal">
     <fieldset>
 
       <legend class="text-center">Edit Pursuit</legend>
@@ -49,7 +49,9 @@
       <!-- Form actions -->
       <div class="modal-footer">
         <div class="col-md-12">
-          <button class="btn btn-primary btn-lg">Submit</button>
+          <button class="btn btn-primary btn-lg" ng-click="submitJobEdits()">Save Changes</button>
+          <button class="btn btn-warning btn-lg" ng-click="cancelEdit()">Cancel</button>
+          <button class="btn btn-danger btn-lg" ng-controller="JobsCtrl" ng-click="removeJob(jobModal)">Remove This Job</button>
         </div>
       </div>
     </fieldset>
