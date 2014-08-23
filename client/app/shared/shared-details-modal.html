@@ -1,0 +1,49 @@
+
+<div class="modal-body">
+  <div class="well well-sm">
+    <fieldset>
+
+      <legend class="text-center">Pursuit Details</legend>
+
+      <!-- Company Name input-->
+      <div>
+        <h3>Company Name</h3>
+        <div>{{jobModal.companyName}}</div>
+      </div>
+
+      <div>
+        <h3>Position Title</h3>
+        <div>{{jobModal.positionTitle}}</div>
+      </div>
+
+      <div>
+        <h3>Link to Posting</h3>
+        <div><a href="{{jobModal.link}}">{{jobModal.link}}</a></div>
+      </div>
+
+      <div>
+        <h3>Status</h3>
+        <div>{{jobModal.stage[jobModal.stage.length-1].stageName}}</div>
+      </div>
+
+      <div>
+        <h3>Notes</h3>
+        <ul>
+          <li>{{jobModal.stage[jobModal.stage.length-1].notes}}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Date Last Updated by {{jobModal.userName}}</h3>
+        <div>{{jobModal.stage[jobModal.stage.length-1].date}}</div>
+      </div>
+
+      <!-- Form actions -->
+      <div class="modal-footer">
+        <div class="col-md-12">
+          <button class="btn btn-primary btn-lg" ng-click="closeModal()">Close Details</button>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>
