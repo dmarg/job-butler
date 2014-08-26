@@ -4,6 +4,7 @@
   "main": "server/app.js",
   "dependencies": {
     "body-parser": "~1.0.0",
+    "cheerio": "^0.17.0",
     "composable-middleware": "^0.3.0",
     "compression": "~1.0.1",
     "connect-mongo": "^0.4.1",
@@ -23,6 +24,7 @@
     "passport": "~0.2.0",
     "passport-google-oauth": "latest",
     "passport-local": "~0.1.6",
+    "request": "^2.40.0",
     "socket.io": "~1.0.6",
     "socketio-jwt": "^2.0.2",
     "static-favicon": "~1.0.1"

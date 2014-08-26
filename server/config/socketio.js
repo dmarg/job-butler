@@ -18,6 +18,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/joblink/joblink.socket').register(socket);
   require('../api/job/job.socket').register(socket);
   require('../api/message/message.socket').register(socket);
   require('../api/draft/draft.socket').register(socket);

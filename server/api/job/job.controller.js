@@ -39,6 +39,8 @@ exports.create = function(req, res) {
   newJob.companyName = req.body.companyName;
   newJob.stage = req.body.stage;
   newJob.userName = req.user.name;
+  newJob.description = req.body.description;
+  newJob.benefits = req.body.benefits;
   newJob.save(function(err, job) {
     if (err) {
       console.log('error: ', err);

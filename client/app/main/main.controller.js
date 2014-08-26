@@ -12,6 +12,10 @@ angular.module('jobButlerApp')
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
 
+    $scope.job = {
+      url: ''
+    };
+
 
     $scope.addThing = function() {
       if($scope.newThing === '') {
@@ -28,4 +32,18 @@ angular.module('jobButlerApp')
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('thing');
     });
+
+
+    $scope.scrapeLink = function() {
+
+      $http.post('/api/joblinks/scrape', $scope.job).success(function(data) {
+        console.log('returned from scrape: ', data);
+
+        $scope.job = {
+          link: ''
+        };
+      });
+
+    };
+
   });
