@@ -18,7 +18,8 @@
     "angular-ui-router": "~0.2.10",
     "angular-momentjs": "~0.1.8",
     "moment": "~2.8.1",
-    "angular-smart-table": "*"
+    "angular-smart-table": "*",
+    "textAngular": "~1.2.2"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

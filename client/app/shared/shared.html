@@ -1,7 +1,8 @@
 
 <div ng-include="'components/navbar/navbar.html'"></div>
+<div ng-controller='SharedCtrl'>
 
-    <div ng-controller='SharedCtrl' class="col-md-12">
+    <div ng-show='defaultView' class="col-md-12">
       <div>
         <table st-table='sharedViewsDisplay' st-safe-src="sharedViews" class='table table-striped'>
           <thead>
@@ -24,14 +25,31 @@
               <td>{{sharedView.positionTitle}}</td>
               <td>{{sharedView.stage[sharedView.stage.length-1].stageName}}</td>
               <td>{{sharedView.stage[sharedView.stage.length-1].date}}</td>
-              <td><i class="fa fa-pencil-square" ng-click="open(sharedView)"></i></td>
+              <td><i class="fa fa-pencil-square" ng-click="openDetail(sharedView)"></i></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-<script type="text/ng-template" id="editJobModal.html">
-  <div ng-include="'app/shared/shared-details-modal.html'"></div>
-</script>
+  <div>
+    <div ng-show='detailView' class='row'>
+      <div class='col-md-12'>
+
+        <div class='col-md-12'>
+          <h1>Job Details</h1>
+          <div class='jumbotron'>
+            <h3>Company Name</h3>
+            <p>{{job.companyName}}</p>
+            <h3>Position Title</h3>
+            <p>{{job.positionTitle}}</p>
+          </div>
+          <button class='btn btn-primary' ng-click='back()'>Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 

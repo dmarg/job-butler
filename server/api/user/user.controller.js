@@ -66,6 +66,22 @@ exports.shareView = function (req, res, next) {
   });
 };
 
+exports.shareTemplate = function (req, res, next) {
+  var email = req.body.email;
+  console.log('finding user with email: ', email);
+
+  User.findOne({email: email}, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.send(401);
+    console.log('pushing user with id: ', req.user._id, req.user.name);
+    user.sharedTemplates.push(req.user._id);
+    user.save(function(err) {
+      if (err) return handleError(err);
+      res.send(res.user);
+    });
+  });
+};
+
 /**
  * Deletes a user
  * restriction: 'admin'

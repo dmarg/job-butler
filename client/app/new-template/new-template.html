@@ -1,0 +1,9 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="col-md-12">
+  <h1>Create New Template</h1>
+  <input class='form-control' placeholder='What do you want to name this template?' ng-model='newTemplate.name'></input><br>
+  <div text-angular ng-model="newTemplate.body" ta-toolbar-class='btn-toolbar' ta-toolbar-group-class="btn-group" ta-toolbar-button-class="btn btn-default" ta-toolbar-button-active-class="active"></div><br>
+  <button class='btn btn-primary' ng-click="save()">Create Template</button>
+  <button class='btn btn-warning' ng-click="cancel()">Cancel</button>
+</div>

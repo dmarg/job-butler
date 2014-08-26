@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $modal, $log) {
+  .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $window) {
     $scope.user = Auth.getCurrentUser();
 
     $scope.jobApps = [];
@@ -64,68 +64,117 @@ angular.module('jobButlerApp')
       })
     };
 
-    $scope.open = function (jobApp) {
-      $scope.jobApp = jobApp
-      $scope.isCollapsedJob = true;
-      $scope.isCollapsedShare = true;
-
-      var modalInstance = $modal.open({
-        templateUrl: 'editJobModal.html',
-        controller: 'EditJobCtrl',
-        resolve: {
-          jobApps: function () {
-            return $scope.jobApp;
-          }
-        }
-      });
-
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
+    $scope.defaultView = true;
+    $scope.detailView = false
+    $scope.editView = false;
+    $scope.openDetails = function(jobApp) {
+      $scope.jobDetail = jobApp;
+      $scope.defaultView = false;
+      $scope.detailView = true;
+      console.log(jobApp);
+      console.log($scope.jobDetail);
     };
-  }).controller("EditJobCtrl", function ($scope, $modalInstance, $http, $moment, $window, jobApps) {
+    $scope.openEdit = function(jobDetail) {
+      $scope.detailView = false;
+      $scope.editView = true;
+      $scope.job = jobDetail;
+      console.log($scope.job);
+    };
 
-      $scope.jobModal = jobApps;
+    $scope.submitJobEdits = function() {
+      var job = $scope.job;
+      job.stage[job.stage.length-1].unixTC = $moment().format('X');
+      job.stage[job.stage.length-1].date = $moment().format('YYYY-MM-DD');
+      $http.put('/api/jobs/'+job._id, job).success(function(data) {
+        console.log(data);
+        $scope.editView = false;
+        $scope.defaultView = true;
+      })
+    };
 
-      console.log($scope.jobModal);
-      var job = $scope.jobModal;
-      console.log(job._id);
-
-      $scope.stages = {
-        "values": ['Applied', 'Interview', 'Post-Interview', 'Negotiation', 'Closed']
-      };
-
-      $scope.submitJobEdits = function() {
-        job.stage[job.stage.length-1].unixTC = $moment().format('X');
-        job.stage[job.stage.length-1].date = $moment().format('YYYY-MM-DD');
-        $http.put('/api/jobs/'+job._id, job).success(function(data) {
-          console.log(data);
-          $modalInstance.close();
+    $scope.removeJob = function() {
+      var job = $scope.job;
+      console.log(job);
+      if(confirm('Are you sure you want to delete this pursuit?')) {
+        console.log(job);
+        var jobId = job._id;
+        console.log(jobId);
+        $http.delete('/api/jobs/'+jobId).success(function(data) {
+          console.log('deleted job response: ', data);
+          $window.location.reload();
+          $scope.editView = false;
+          $scope.defaultView = true;
         })
-      };
-
-      $scope.cancelEdit = function () {
-        $modalInstance.close();
       }
+    };
 
-      $scope.removeJob = function() {
-        if(confirm('Are you sure you want to delete this pursuit?')) {
-          console.log(job);
-          var jobId = job._id;
-          console.log(jobId);
-          $http.delete('/api/jobs/'+jobId).success(function(data) {
-            console.log('deleted job response: ', data);
-            $modalInstance.close();
-            $window.location.reload();
-          })
-        }
-      };
+    $scope.cancelEdit = function () {
+      $scope.editView = false;
+      $scope.defaultView = true;
+    };
 
-      $scope.ok = function () {
-        $modalInstance.close($scope.selected.item);
-      };
+  //   $scope.open = function (jobApp) {
+  //     $scope.jobApp = jobApp;
+  //     $scope.isCollapsedJob = true;
+  //     $scope.isCollapsedShare = true;
+
+  //     var modalInstance = $modal.open({
+  //       templateUrl: 'editJobModal.html',
+  //       controller: 'EditJobCtrl',
+  //       resolve: {
+  //         jobApps: function () {
+  //           return $scope.jobApp;
+  //         }
+  //       }
+  //     });
+
+  //     modalInstance.result.then(function (selectedItem) {
+  //       $scope.selected = selectedItem;
+  //     }, function () {
+  //       $log.info('Modal dismissed at: ' + new Date());
+  //     });
+  //   };
+  // }).controller("EditJobCtrl", function ($scope, $modalInstance, $http, $moment, $window, jobApps) {
+
+  //     $scope.jobModal = jobApps;
+
+  //     console.log($scope.jobModal);
+  //     var job = $scope.jobModal;
+  //     console.log(job._id);
+
+  //     $scope.stages = {
+  //       "values": ['Applied', 'Interview', 'Post-Interview', 'Negotiation', 'Closed']
+  //     };
+
+      // $scope.submitJobEdits = function() {
+      //   job.stage[job.stage.length-1].unixTC = $moment().format('X');
+      //   job.stage[job.stage.length-1].date = $moment().format('YYYY-MM-DD');
+      //   $http.put('/api/jobs/'+job._id, job).success(function(data) {
+      //     console.log(data);
+      //     $modalInstance.close();
+      //   })
+      // };
+
+      // $scope.cancelEdit = function () {
+      //   $modalInstance.close();
+      // }
+
+      // $scope.removeJob = function() {
+      //   if(confirm('Are you sure you want to delete this pursuit?')) {
+      //     console.log(job);
+      //     var jobId = job._id;
+      //     console.log(jobId);
+      //     $http.delete('/api/jobs/'+jobId).success(function(data) {
+      //       console.log('deleted job response: ', data);
+      //       $modalInstance.close();
+      //       $window.location.reload();
+      //     })
+      //   }
+      // };
+
+  //     $scope.ok = function () {
+  //       $modalInstance.close($scope.selected.item);
+  //     };
 
     });
 

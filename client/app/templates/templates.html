@@ -1,0 +1,50 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+
+<div class="col-md-12">
+  <h1>Select Template</h1>
+  <!-- <select class='form-control' ng-model='selectedTemplate' ng-options="template as template.name for template in templates"></select> -->
+  <tabset>
+    <tab ng-click='renderContent(template)' ng-repeat="template in templates" heading="{{template.name}}" active="template.active" disabled="template.disabled">
+    </tab>
+  </tabset>
+
+  <div text-angular ng-model="htmlVariable" ta-toolbar-class='btn-toolbar' ta-toolbar-group-class="btn-group" ta-toolbar-button-class="btn btn-default" ta-toolbar-button-active-class="active"></div><br>
+
+  <div collapse='isCollapsed'>
+    <div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="well well-sm">
+            <form class="form-horizontal">
+            <fieldset>
+              <legend class="text-center">Share This Template</legend>
+
+              <!-- Share with User input-->
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="share">Share with</label>
+                <div class="col-md-9">
+                  <input id="share" name="share" placeholder="Enter email address of user to share this template with." type="text" class="form-control" ng-model="email">
+                </div>
+              </div>
+
+              <!-- Form actions -->
+              <div class="form-group">
+                <div class="col-md-12 text-right">
+                  <button class="btn btn-success btn-lg" ng-click="sendTemplate()">Submit</button>
+                </div>
+              </div>
+            </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+  </div>
+
+  <button class='btn btn-primary' ng-click="createDraft()">Inject Template Into Drafts</button>
+  <button class='btn btn-success' ng-click="newTemplate()">Create New Template</button>
+  <button class='btn btn-danger' ng-show="deletable" ng-click="deleteTemplate(template)">Delete Template</button>
+  <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Email This Template</button><br><br><br>
+</div>

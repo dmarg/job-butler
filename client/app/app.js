@@ -8,7 +8,8 @@ angular.module('jobButlerApp', [
   'ui.router',
   'ui.bootstrap',
   'angular-momentjs',
-  'smart-table'
+  'smart-table',
+  'textAngular'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $momentProvider) {
     $urlRouterProvider

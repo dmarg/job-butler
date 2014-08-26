@@ -19,7 +19,8 @@ var UserSchema = new Schema({
   github: {},
   accessToken: String,
   refreshToken: String,
-  sharedViews: []
+  sharedViews: [],
+  sharedTemplates: []
 });
 
 /**

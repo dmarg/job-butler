@@ -14,7 +14,6 @@ exports.index = function(req, res) {
 
 // Get list of jobs for specified user
 exports.showSharedViews = function(req, res) {
-  console.log('req.user: ', req.user.sharedViews);
   Job.find({_userId: { $in: req.user.sharedViews }}, function (err, jobs) {
     console.log('jobs: ', jobs);
     if(err) { return handleError(res, err); }

@@ -37,7 +37,6 @@ exports.createDraft = function(req, res) {
   email_lines.push("Subject: " + subjectLine);
   email_lines.push("");
   email_lines.push(bodyOfEmail);
-  email_lines.push("<b>And the bold text goes here</b>");
 
   var email = email_lines.join("\r\n").trim();
 
