@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-12">
       <div class="well well-sm">
         <form class="form-horizontal" ng-submit="createJob()">
         <fieldset>
@@ -9,7 +9,7 @@
 
           <!-- Link input-->
           <div class="form-group">
-            <label class="col-md-3 control-label" for="positionLink">Link to Posting</label>
+            <label class="col-md-2 control-label" for="positionLink">Link to Posting</label>
             <div class="col-md-9">
               <input id="positionLink" name="positionLink" type="text" class="form-control" ng-model='job.url'>
             </div>
@@ -17,7 +17,7 @@
 
           <!-- Company Name input-->
           <div class="form-group">
-            <label class="col-md-3 control-label" for="coName">Company Name</label>
+            <label class="col-md-2 control-label" for="coName">Company Name</label>
             <div class="col-md-9">
               <input id="coName" name="coName" type="text" class="form-control" ng-model="job.companyName">
             </div>
@@ -25,7 +25,7 @@
 
           <!-- Position input-->
           <div class="form-group">
-            <label class="col-md-3 control-label" for="position">Position Title</label>
+            <label class="col-md-2 control-label" for="position">Position Title</label>
             <div class="col-md-9">
               <input id="position" name="position" type="text" class="form-control" ng-model='job.positionTitle'>
             </div>
@@ -33,7 +33,7 @@
 
           <!-- Stage input-->
           <div class="form-group">
-            <label class="col-md-3 control-label" for="stageStatus">Status</label>
+            <label class="col-md-2 control-label" for="stageStatus">Status</label>
             <div class="col-md-9">
               <select id="stageStatus" name="stageStatus" class='form-control' ng-model='job.stage.stageName' ng-options='stage for stage in stages.values'></select>
             </div>
@@ -41,47 +41,23 @@
 
           <!-- Notes  -->
           <div class="form-group">
-            <label class="col-md-3 control-label" for="notes">Notes</label>
+            <label class="col-md-2 control-label" for="notes">Notes</label>
             <div class="col-md-9">
               <textarea class="form-control" id="notes" name="notes" rows="5" ng-model='job.stage.notes' placeholder="Enter your notes here..."></textarea>
             </div>
           </div>
 
-          <!-- Description  -->
+          <!-- Job Details  -->
           <div class="form-group">
-            <label class="col-md-3 control-label" for="description">Description</label>
+            <label class="col-md-2 control-label" for="jobDetails">Job Details</label>
             <div class="col-md-9">
-              <textarea class="form-control" id="description" name="description" rows="5" ng-model='job.description'></textarea>
-            </div>
-          </div>
-
-          <!-- Skills  -->
-          <div class="form-group">
-            <label class="col-md-3 control-label" for="skills">Skills</label>
-            <div class="col-md-9">
-              <textarea class="form-control" id="skills" name="skills" rows="5" ng-model='job.skills'></textarea>
-            </div>
-          </div>
-
-          <!-- Benefits  -->
-          <div class="form-group">
-            <label class="col-md-3 control-label" for="benefits">Benefits</label>
-            <div class="col-md-9">
-              <textarea class="form-control" id="benefits" name="benefits" rows="5" ng-model='job.benefits'></textarea>
-            </div>
-          </div>
-
-          <!-- Notes  -->
-          <div class="form-group">
-            <label class="col-md-3 control-label" for="notes">Notes</label>
-            <div class="col-md-9">
-              <textarea class="form-control" id="notes" name="notes" rows="5" ng-model='job.stage.notes'></textarea>
+              <textarea class="form-control" id="jobDetails" name="jobDetails" rows="5" ng-model='job.jobDetails'></textarea>
             </div>
           </div>
 
           <!-- Form actions -->
           <div class="form-group">
-            <div class="col-md-12 text-right">
+            <div class="col-md-11 text-right">
               <button class="btn btn-primary btn-lg">Submit</button>
             </div>
           </div>

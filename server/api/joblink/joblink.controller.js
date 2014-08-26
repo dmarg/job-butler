@@ -7,71 +7,37 @@ var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
 
+var scrapers = {};
+scrapers['linkedin'] = require('./scrapers/linkedin.scraper');
+scrapers['stackoverflow'] = require('./scrapers/stackoverflow.scraper');
+scrapers['angel'] = require('./scrapers/angel.scraper');
+scrapers['indeed'] = require('./scrapers/indeed.scraper');
+scrapers['dice'] = require('./scrapers/dice.scraper');
 
 // Crawl Link that is submitted
 exports.scrape = function(req, res) {
 
   var url = req.body.url;
-
-  console.log(url);
-
+  var scraperToUse;
 
   if(url.indexOf("linkedin") > -1) {
-    request(url, function(error, response, body){
-
-      // console.log(body);
-
-      if(error) {
-        console.log('error: ', error);
-        return res.send({error: error});
-      }
-
-      if(!error) {
-        var $ = cheerio.load(body);
-
-        var companyName, positionTitle, description, skills, benefits;
-        var job = {companyName: "", positionTitle: "", description: "", skills: "", benefits: ""};
-
-        $('h1[itemprop="title"]').filter(function(){
-          var data = $(this);
-          positionTitle = data.text();
-          job.positionTitle = positionTitle;
-        })
-
-        $('span[itemprop="name"]').filter(function() {
-          var data = $(this);
-          companyName = data.text()
-          job.companyName = companyName;
-        })
-
-
-        $('.description-section li, .description-section p').filter(function() {
-          var el = $(this);
-          console.log('el: ', el['0']);
-          if(el['0'].name === 'li') {
-            job.description += "- " + $(el).text() + "\n";
-          } else {
-            job.description += $(el).text() + "\n";
-          }
-        })
-
-        // $('div[itemprop="description"]').filter(function() {
-        //   var data = $(this);
-        //   console.log('data: ', data)
-        //   description = data.text()
-        //   console.log('description: ', description);
-
-        //   job.description = description;
-        // })
-
-      }
-
-      return res.send(job);
-
-    })
+    scraperToUse = 'linkedin';
+  } else if(url.indexOf("stackoverflow") > -1) {
+    scraperToUse = 'stackoverflow';
+  } else if(url.indexOf("angel.co") > -1) {
+    scraperToUse = 'angel';
+  } else if(url.indexOf("indeed") > -1) {
+    scraperToUse = 'indeed';
+  } else if(url.indexOf("dice") > -1) {
+    scraperToUse = 'dice';
   } else {
-    return res.send({url: 'not found'});
+    return res.send({companyName: "", positionTitle: "", jobDetails: ""});
   }
+
+  scrapers[scraperToUse].scrape(url, function(data) {
+    // console.log('data from scraper: ', data);
+    res.json(data);
+  });
 
 
 };
