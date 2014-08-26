@@ -15,12 +15,14 @@ angular.module('jobButlerApp')
     $scope.job = {
       companyName: '',
       positionTitle: '',
-      link: '',
+      url: '',
+      jobDetails: '',
       stage: {
         stageName: "Applied",
         notes: ''
       }
     };
+
 
     $scope.filterOptions = {};
 
@@ -31,6 +33,33 @@ angular.module('jobButlerApp')
       $scope.jobApps = jobs || [];
       $scope.jobAppsDisplay = [].concat($scope.jobApps);
     });
+
+    $scope.$watch('job.url', function(newVal, oldVal) {
+
+      console.log('newVal:', newVal, ' oldVal: ', oldVal);
+
+      if(newVal === "") {
+        $scope.job = {
+          companyName: '',
+          positionTitle: '',
+          url: '',
+          jobDetails: '',
+          stage: {
+            stageName: "Applied",
+            notes: ''
+          }
+        };
+      } else if(newVal.length > 5) {
+        $http.post('/api/joblinks/scrape', $scope.job).success(function(data) {
+          console.log('returned from scrape: ', data);
+          $scope.job.companyName = data.companyName;
+          $scope.job.positionTitle = data.positionTitle;
+          $scope.job.jobDetails = data.jobDetails;
+        })
+      }
+
+    });
+
 
     $scope.createJob = function() {
       var job = $scope.job;
@@ -46,7 +75,8 @@ angular.module('jobButlerApp')
         $scope.job = {
           companyName: '',
           positionTitle: '',
-          link: '',
+          url: '',
+          jobDetails: '',
           stage: {
             stageName: "Applied",
             notes: ''

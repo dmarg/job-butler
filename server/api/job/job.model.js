@@ -12,10 +12,10 @@ var StageSchema = new Schema({
 
 var JobSchema = new Schema({
   _userId: {type: Schema.Types.ObjectId, ref: 'User' , index: true},
+  url: String,
   companyName: String,
-  link: String,
   positionTitle: String,
-  description: String,
+  jobDetails: String,
   userName: String,
   stage: [StageSchema],
   active: Boolean

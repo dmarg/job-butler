@@ -3,6 +3,9 @@
 angular.module('jobButlerApp')
   .controller('NavbarCtrl', function ($scope, $rootScope, $location, Auth) {
     $scope.menu = [{
+      'title': 'Home',
+      'link': '/'
+    }, {
       'title': 'Jobs',
       'link': '/jobs'
     }, {

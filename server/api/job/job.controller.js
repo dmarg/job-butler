@@ -34,10 +34,12 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   var newJob = new Job(req.body);
   newJob._userId = req.body.userId;
+  newJob.url = req.body.url;
   newJob.positionTitle = req.body.positionTitle;
   newJob.companyName = req.body.companyName;
   newJob.stage = req.body.stage;
   newJob.userName = req.user.name;
+  newJob.jobDetails = req.body.jobDetails;
   newJob.save(function(err, job) {
     if (err) {
       console.log('error: ', err);
