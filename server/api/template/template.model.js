@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var TemplateSchema = new Schema({
   name: String,
   body: String,
-  userId: String,
+  _userId: {type: Schema.Types.ObjectId, ref: 'User' , index: true},
   permanent: Boolean
 });
 

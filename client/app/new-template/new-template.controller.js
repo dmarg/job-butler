@@ -8,7 +8,7 @@ angular.module('jobButlerApp')
     $scope.newTemplate = {
       name: '',
       body: '',
-      userId: $scope.user._id,
+      _userId: $scope.user._id,
       permanent: false
     };
 

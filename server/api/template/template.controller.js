@@ -18,7 +18,7 @@ exports.index = function(req, res) {
 
 // Get list of templates for current user
 exports.render = function(req, res) {
-  Template.find({$or: [{userId: req.user._id}, {permanent: true}]}, function (err, templates) {
+  Template.find({$or: [{_userId: req.user._id}, {permanent: true}]}, function (err, templates) {
     if(err) { return handleError(res, err); }
     return res.json(200, templates);
   });
