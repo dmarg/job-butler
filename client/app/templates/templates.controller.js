@@ -1,20 +1,73 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('TemplatesCtrl', function ($scope, $http, $location, $window, Auth) {
+  .controller('TemplatesCtrl', function ($scope, $http, $location, $window, Auth, $modal, $log) {
 
     $scope.user = Auth.getCurrentUser();
     $scope.templates = '';
 
     $scope.email = '';
     $scope.deletable = false;
+    $scope.showFieldForm = false;
+    $scope.showNoMatch = false;
+    $scope.updateMatchSuccess = false;
     $scope.isCollapsed = true;
+
+    $http.get('/api/templates/renderTemplates').success(function(data) {
+      console.log('http get request data: ', data);
+      $scope.templates = data;
+      $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
+    });
+
+    // $scope.getTextToCopy = function() {
+    //   console.log()
+    //   return $scope.currentTemplate.body;
+    // };
+
+    $scope.findMatches = function() {
+      var template = $scope.currentTemplate.body;
+      var matches = template.match(/\[\[([^\]]*)\]\]/g);
+      if(matches === null) {
+        console.log('no matches found', matches);
+        $scope.showNoMatch = true;
+        return;
+      }
+      $scope.showFieldForm = true;
+      var temp;
+      var matchArr = [];
+      for(var i=0; i < matches.length; i++) {
+        temp = matches[i].split('[[')[1].split(']]')[0];
+        var matchObj = {trimmed: temp, original: matches[i]};
+        matchObj.replace = '';
+        matchArr.push(matchObj);
+      };
+      $scope.matchArr = matchArr;
+      console.log($scope.matchArr);
+      $scope.showNoMatch = false;
+    };
+
+    $scope.closeAlert = function() {
+      $scope.updateMatchSuccess = false;
+      $scope.showNoMatch = false;
+    }
+
+    $scope.replaceMatches = function() {
+      for(var i = 0; i < $scope.matchArr.length; i++) {
+        $scope.currentTemplate.body = $scope.currentTemplate.body.replace($scope.matchArr[i].original, $scope.matchArr[i].replace);
+      };
+      console.log($scope.currentTemplate.body);
+      $scope.showFieldForm = false;
+      $scope.updateMatchSuccess = true;
+    };
+
+    $scope.cancel = function() {
+      $scope.showFieldForm = false;
+    };
 
     $scope.renderContent = function(template) {
       console.log(template);
       $scope.currentTemplate = template;
 
-      // $scope.htmlVariable = template.body;
       if (template.permanent === false) {
         $scope.deletable = true;
       }
@@ -37,34 +90,33 @@ angular.module('jobButlerApp')
       }
     };
 
-    // $scope.shareTemplate = function() {
-    //   console.log('sharing template');
-    //   var email = $scope.email;
-
-    //   $http.post('/api/users/shareTemplate', email).success(function(data) {
-    //     $scope.email = '';
-    //     $scope.isCollapsedShare = true;
-    //   })
-    // };
-
     $scope.sendTemplate = function() {
-      var message = {
-        userId: "me",
-        message: {
-          to: $scope.email,
-          subjectLine: "My "+$scope.currentTemplate.name+" template sent via the Job Butler App.",
-          bodyOfEmail: $scope.currentTemplate.body
+      console.log($scope.currentTemplate);
+        var message = {
+          userId: "me",
+          message: {
+            to: $scope.email,
+            subjectLine: "My "+$scope.currentTemplate.name+" template sent via the Job Butler App.",
+            bodyOfEmail: $scope.currentTemplate.body
+          }
         }
-      }
 
-      $http.post('/api/messages/send', message).success(function(data) {
-        console.log('returned from create: ', data.results)
-        $scope.email = '';
-      })
+        $http.post('/api/messages/send', message).success(function(data) {
+          console.log('returned from create: ', data.results)
+          $scope.email = '';
+        })
+      // var email = {email: $scope.email}
+      // console.log('sending to backend: ', email)
+      // $http.get('/api/users/checkEmail', email).success(function() {
+
+      //   }).error(function() {
+      //     console.log('email not registered with Job Butler.')
+      //     $scope.showEmailError = true;
+      //   })
     };
 
     $scope.createDraft = function() {
-      if ($scope.htmlVariable === '') {
+      if ($scope.currentTemplate.body === '') {
         alert('The text area is empty!')
       }
       else {
@@ -73,7 +125,7 @@ angular.module('jobButlerApp')
               message: {
                 to: "",
                 subjectLine: "Template Draft from JobButler",
-                bodyOfEmail: $scope.htmlVariable
+                bodyOfEmail: $scope.currentTemplate.body
               }
             }
 
@@ -83,11 +135,7 @@ angular.module('jobButlerApp')
       }
     };
 
-    $http.get('/api/templates/renderTemplates').success(function(data) {
-      console.log('http get request data: ', data);
-      $scope.templates = data;
-      $scope.htmlVariable = $scope.templates[0].body;
-      $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
-    });
+
 
   });
+

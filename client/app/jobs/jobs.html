@@ -24,6 +24,7 @@
                   <label class="col-md-3 control-label" for="share">Share with</label>
                   <div class="col-md-9">
                     <input id="share" name="share" placeholder="Enter email address of user to share pursuits with." type="text" class="form-control" ng-model="email.email">
+                    <alert ng-show='showEmailError' type='danger' close='closeAlert()'>The email address provided is not a Job Butler user.</alert>
                   </div>
                 </div>
 

@@ -48,7 +48,7 @@ exports.show = function (req, res, next) {
 };
 
 /**
- * Get a single user by email
+ * Get a single user by email and save sharedView
  */
 exports.shareView = function (req, res, next) {
   var email = req.body.email;
@@ -63,6 +63,21 @@ exports.shareView = function (req, res, next) {
       if (err) return handleError(err);
       res.send(res.user);
     });
+  });
+};
+
+/**
+ * Get a single user by email
+ */
+exports.checkEmail = function (req, res, next) {
+  var email = req.body.email;
+  console.log('finding user with email: ', email);
+
+  User.findOne({email: email}, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.send(401);
+      if (err) return handleError(err);
+      res.send(res.user);
   });
 };
 

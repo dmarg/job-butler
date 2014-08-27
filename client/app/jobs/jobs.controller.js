@@ -25,9 +25,12 @@ angular.module('jobButlerApp')
 
 
     $scope.filterOptions = {};
-
     $scope.isCollapsedJob = true;
     $scope.isCollapsedShare = true;
+    $scope.showEmailError = false;
+    $scope.closeAlert = function() {
+      $scope.showEmailError = false;
+    }
 
     $http.get('/api/jobs').success(function(jobs) {
       $scope.jobApps = jobs || [];
@@ -91,6 +94,9 @@ angular.module('jobButlerApp')
       $http.post('/api/users/shareView', email).success(function(data) {
         $scope.email = '';
         $scope.isCollapsedShare = true;
+      }).error(function() {
+        $scope.showEmailError = true;
+        console.log('email not found');
       })
     };
 

@@ -9,7 +9,8 @@ angular.module('jobButlerApp', [
   'ui.bootstrap',
   'angular-momentjs',
   'smart-table',
-  'textAngular'
+  'textAngular',
+  'ngClipboard'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $momentProvider) {
     $urlRouterProvider
@@ -37,9 +38,9 @@ angular.module('jobButlerApp', [
       // Intercept 401s and redirect you to login
       responseError: function(response) {
         if(response.status === 401) {
-          $location.path('/login');
+          // $location.path('/');
           // remove any stale tokens
-          $cookieStore.remove('token');
+          // $cookieStore.remove('token');
           return $q.reject(response);
         }
         else {
@@ -54,7 +55,7 @@ angular.module('jobButlerApp', [
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
         if (next.authenticate && !loggedIn) {
-          $location.path('/login');
+          $location.path('/');
         }
       });
     });

@@ -1,7 +1,29 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 
-<div class="col-md-12">
+
+  <div ng-show='showFieldForm'>
+    <h1>Text Fields to Replace</h1>
+    <form>
+      <div class="form-group">
+        <div class='col-md-9' ng-repeat='match in matchArr'>
+          <strong>{{match.trimmed}}</strong> <input ng-model='match.replace' class='form-control'></input>
+        </div>
+      </div>
+    </form>
+    <button class='btn btn-primary' ng-click='replaceMatches()'>Replace Fields</button>
+    <button class='btn btn-danger' ng-click='cancel()'>Cancel</button>
+  </div>
+
+  <div>
+    <alert ng-show='showNoMatch' type='danger' close='closeAlert()'>Job Butler found no fields to edit. Please indicate fields to customize with words enclosed by double square bracks ([[ ]]).</alert>
+  </div>
+
+  <div>
+    <alert ng-show='updateMatchSuccess' type='success' close='closeAlert()'>Successfully updated matched fields!</alert>
+  </div>
+
+<div ng-hide='showFieldForm' class="col-md-12">
   <h1>Select Template</h1>
   <!-- <select class='form-control' ng-model='selectedTemplate' ng-options="template as template.name for template in templates"></select> -->
   <tabset>
@@ -9,7 +31,7 @@
     </tab>
   </tabset>
 
-  <div text-angular ng-model="htmlVariable" ta-toolbar-class='btn-toolbar' ta-toolbar-group-class="btn-group" ta-toolbar-button-class="btn btn-default" ta-toolbar-button-active-class="active"></div><br>
+  <div text-angular ng-model="currentTemplate.body" ta-toolbar-class='btn-toolbar' ta-toolbar-group-class="btn-group" ta-toolbar-button-class="btn btn-default" ta-toolbar-button-active-class="active"></div><br>
 
   <div collapse='isCollapsed'>
     <div>
@@ -43,8 +65,15 @@
     <br><br>
   </div>
 
+<!-- <script type="text/ng-template" id="editTemplateModal.html">
+  <div ng-include="'app/templates/edit-template-modal.html'"></div>
+</script> -->
+
   <button class='btn btn-primary' ng-click="createDraft()">Inject Template Into Drafts</button>
   <button class='btn btn-success' ng-click="newTemplate()">Create New Template</button>
   <button class='btn btn-danger' ng-show="deletable" ng-click="deleteTemplate(template)">Delete Template</button>
-  <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Email This Template</button><br><br><br>
+  <button class="btn btn-default" ng-show="deletable" ng-click="isCollapsed = !isCollapsed">Email This Template</button>
+  <button class='btn btn-danger' ng-click='findMatches()'>Find Matches</button>
+  <!-- <button class='btn btn-warning' clip-copy="getTextToCopy()" clip-click="showSuccess()">Copy to Clipboard</button><br><br><br> -->
+
 </div>

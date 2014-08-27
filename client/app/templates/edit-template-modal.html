@@ -1,0 +1,26 @@
+
+<div class="modal-body">
+  <div class="well well-sm">
+    <form class="form-horizontal">
+    <fieldset>
+
+      <legend class="text-center">Text Fields to Replace</legend>
+
+      <!-- Company Name input-->
+      <div class="form-group">
+        <div class='col-md-9' ng-repeat='match in matches'>
+          <strong>{{match.trimmed}}<strong> <input class='form-control'></input>
+        </div>
+      </div>
+
+      <!-- Form actions -->
+      <div class="modal-footer">
+        <div class="col-md-12">
+          <button class="btn btn-primary btn-lg" ng-click="submitJobEdits()">Save Changes</button>
+          <button class="btn btn-warning btn-lg" ng-click="closeModal()">Cancel</button>
+        </div>
+      </div>
+    </fieldset>
+    </form>
+  </div>
+</div>
