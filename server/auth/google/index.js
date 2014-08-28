@@ -15,7 +15,7 @@ router
       'https://www.googleapis.com/auth/gmail.modify'
     ],
     accessType: 'offline',
-    approvalPrompt: 'auto',
+    approvalPrompt: 'force',
     session: false
   }))
 

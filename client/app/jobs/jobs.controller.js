@@ -3,6 +3,7 @@
 angular.module('jobButlerApp')
   .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $window) {
     $scope.user = Auth.getCurrentUser();
+    console.log($scope.user);
 
     $scope.jobApps = [];
 
