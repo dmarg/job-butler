@@ -8,6 +8,8 @@ angular.module('jobButlerApp')
     $scope.sharedWithDisplay = [].concat($scope.user.sharedWith);
     console.log($scope.user);
 
+
+
     $scope.revokeAccess = function(user) {
       console.log("revoke access function called")
       console.log(user);
@@ -37,7 +39,7 @@ angular.module('jobButlerApp')
             $http.post('/api/users/update/'+$scope.user._id, $scope.user).success(function(data) {
               console.log(data);
             }).then(function() {
-              $window.location.reload();
+              $scope.sharedWith = $scope.user.sharedWith || [];
             })
           }
         }

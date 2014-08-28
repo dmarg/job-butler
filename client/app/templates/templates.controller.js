@@ -4,18 +4,20 @@ angular.module('jobButlerApp')
   .controller('TemplatesCtrl', function ($scope, $http, $location, $window, Auth, $modal, $log) {
 
     $scope.user = Auth.getCurrentUser();
-    $scope.templates = '';
+    $scope.templates = {};
 
-    $scope.email = '';
+    $scope.email = {
+      email: ''
+    };
+
     $scope.deletable = false;
     $scope.showFieldForm = false;
     $scope.showNoMatch = false;
     $scope.updateMatchSuccess = false;
     $scope.isCollapsed = true;
+    $scope.draftCreated = false;
 
     $http.get('/api/templates/renderTemplates').success(function(data) {
-      console.log('http get request data: ', data);
-      console.log('rendering templates')
       $scope.templates = data;
       $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
       console.log($scope.currentTemplate);
@@ -51,6 +53,7 @@ angular.module('jobButlerApp')
     $scope.closeAlert = function() {
       $scope.updateMatchSuccess = false;
       $scope.showNoMatch = false;
+      $scope.draftCreated = false;
     }
 
     $scope.replaceMatches = function() {
@@ -86,8 +89,13 @@ angular.module('jobButlerApp')
       if(confirm('Are you sure you want to delete this template?')) {
         var templateId = $scope.currentTemplate._id;
         $http.delete('/api/templates/'+templateId).success(function(data) {
-          console.log('delete success')
-          $window.location.reload();
+
+          $http.get('/api/templates/renderTemplates').success(function(data) {
+            $scope.templates = data;
+            $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
+          });
+
+          // $window.location.reload();
         });
       }
     };
@@ -97,7 +105,7 @@ angular.module('jobButlerApp')
         var message = {
           userId: "me",
           message: {
-            to: $scope.email,
+            to: $scope.email.email,
             subjectLine: "My "+$scope.currentTemplate.name+" template sent via the Job Butler App.",
             bodyOfEmail: $scope.currentTemplate.body
           }
@@ -105,7 +113,10 @@ angular.module('jobButlerApp')
 
         $http.post('/api/messages/send', message).success(function(data) {
           console.log('returned from create: ', data.results)
-          $scope.email = '';
+          $scope.isCollapsed = true;
+          $scope.email = {
+            email: ''
+          };
         })
       // var email = {email: $scope.email}
       // console.log('sending to backend: ', email)
@@ -132,12 +143,11 @@ angular.module('jobButlerApp')
             }
 
         $http.post('/api/drafts/create', draft).success(function(data) {
+          $scope.draftCreated = true;
           console.log('returned from create: ', data.results)
         })
       }
     };
-
-    console.log($scope.currentTemplate)
 
 
   });
