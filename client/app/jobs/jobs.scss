@@ -1,13 +1,36 @@
 
-.fa-pencil-square {
-  font-size: 2em;
+.fa-eye {
+  // font-size: 2em;
   color: #49B49D;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
 }
 
-.fa-pencil-square:hover {
+.fa-eye:hover {
   color: #439C89;
+}
+
+.fa-2x {
+  margin: -5px auto;
+  padding-left: 9px;
 }
 
 .well {
   margin-bottom: 0;
+}
+
+.smart-table {
+  margin-top: 10px;
+}
+
+.st-sort-descent:before {
+  content: '\25BC';
+}
+
+.st-sort-ascent:before {
+  content: '\25B2';
+}
+
+th {
+  cursor: hand;
+  cursor: pointer;
 }

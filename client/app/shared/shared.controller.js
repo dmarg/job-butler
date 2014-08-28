@@ -8,7 +8,7 @@ angular.module('jobButlerApp')
 
     var sharedViews = [];
     $http.get('/api/jobs/sharedViews').success(function(data) {
-      console.log('http get request data: ', data);
+      // console.log('http get request data: ', data);
       $scope.sharedViews = data;
       $scope.sharedViewsDisplay = [].concat($scope.sharedViews);
     });
@@ -16,7 +16,7 @@ angular.module('jobButlerApp')
     $scope.defaultView = true;
     $scope.detailView = false;
     $scope.openDetail = function(job) {
-      console.log(job);
+      // console.log(job);
       $scope.job = job;
       $scope.defaultView = false;
       $scope.detailView = true;
