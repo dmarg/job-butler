@@ -20,7 +20,7 @@ var UserSchema = new Schema({
   accessToken: String,
   refreshToken: String,
   sharedViews: [],
-  sharedTemplates: []
+  sharedWith:[],
 });
 
 /**

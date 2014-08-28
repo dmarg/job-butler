@@ -4,6 +4,7 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var _ = require('lodash');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -43,7 +44,7 @@ exports.show = function (req, res, next) {
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
-    res.json(user.profile);
+    res.json(user);
   });
 };
 
@@ -58,7 +59,11 @@ exports.shareView = function (req, res, next) {
     if (err) return next(err);
     if (!user) return res.send(401);
     console.log('pushing user with id: ', req.user._id, req.user.name);
+    var sharedObj = {name: user.name, id: user._id, email: user.email};
+    req.user.sharedWith.push(sharedObj);
+    console.log(req.user.sharedWith);
     user.sharedViews.push(req.user._id);
+    req.user.save();
     user.save(function(err) {
       if (err) return handleError(err);
       res.send(res.user);
@@ -111,6 +116,36 @@ exports.destroy = function(req, res) {
 /**
  * Change a users password
  */
+exports.update = function(req, res) {
+  console.log('user obj sent from front end: ', req.body);
+  console.log(req.params.id);
+  var updatedUser = req.body;
+  // if(req.body._id) { delete req.body._id; }
+  // if(req.body.__v) { delete req.body.__v; }
+  User.findById(req.params.id, function (err, user) {
+    if (err) { return handleError(res, err); }
+    if(!user) { return res.send(404); }
+    console.log('found user: ', user);
+    // user = updatedUser;
+    user.sharedViews = updatedUser.sharedViews;
+    user.sharedWith = updatedUser.sharedWith;
+    user.save();
+  //   // console.log('current job stage to be added', req.body.stage);
+  //   // var newStage = new Stage();
+  //   // newStage.stage = req.body.stage;
+  //   // console.log('new stage', newStage);
+  //   // var updated = _.merge(user, req.body);
+    // updated.save(function (err) {
+    //   if (err) { return handleError(res, err); }
+    //   return res.json(200, user);
+    // });
+  });
+};
+
+
+/**
+ * Change a users password
+ */
 exports.changePassword = function(req, res, next) {
   var userId = req.user._id;
   var oldPass = String(req.body.oldPassword);
@@ -149,3 +184,7 @@ exports.me = function(req, res, next) {
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
+
+function handleError(res, err) {
+  return res.send(500, err);
+}

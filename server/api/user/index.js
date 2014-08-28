@@ -16,5 +16,6 @@ router.post('/', controller.create);
 router.post('/shareView', auth.isAuthenticated(), controller.shareView);
 router.post('/shareTemplate', auth.isAuthenticated(), controller.shareTemplate);
 router.post('/checkEmail', auth.isAuthenticated(), controller.checkEmail);
+router.post('/update/:id', auth.isAuthenticated(), controller.update);
 
 module.exports = router;

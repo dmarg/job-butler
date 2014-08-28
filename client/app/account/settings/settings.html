@@ -4,37 +4,32 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h1>Change Password</h1>
+      <h1>Manage Shared Access</h1>
     </div>
     <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
-
-        <div class="form-group">
-          <label>Current Password</label>
-
-          <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
-                 mongoose-error/>
-          <p class="help-block" ng-show="form.password.$error.mongoose">
-              {{ errors.other }}
-          </p>
-        </div>
-
-        <div class="form-group">
-          <label>New Password</label>
-
-          <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
-                 ng-minlength="3"
-                 required/>
-          <p class="help-block"
-             ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)">
-            Password must be at least 3 characters.
-          </p>
-        </div>
-
-        <p class="help-block"> {{ message }} </p>
-
-        <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
-      </form>
+      <div>
+        <table st-table='sharedWithDisplay' st-safe-src="sharedWith" class='table table-striped'>
+          <thead>
+            <tr>
+              <th st-sort='name'>Company Name</th>
+              <!-- <th st-sort='id'>ID</th> -->
+              <th>Revoke Access</th>
+            </tr>
+<!--             <tr>
+              <th colspan="2">
+                <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+              </th>
+            </tr> -->
+          </thead>
+          <tbody>
+            <tr ng-repeat='shared in sharedWith'>
+              <td>{{shared.name}}</td>
+              <!-- <td>{{shared.id}}</td> -->
+              <td><i class="fa fa-pencil-square" ng-click="revokeAccess(shared)"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

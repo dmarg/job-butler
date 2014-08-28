@@ -91,13 +91,32 @@ angular.module('jobButlerApp')
     $scope.shareView = function() {
       var email = $scope.email;
 
-      $http.post('/api/users/shareView', email).success(function(data) {
-        $scope.email = '';
-        $scope.isCollapsedShare = true;
-      }).error(function() {
-        $scope.showEmailError = true;
-        console.log('email not found');
-      })
+      if($scope.user.email === email.email) {
+        console.log('same email')
+        alert("Enter an email of another Job Butler user.")
+        return;
+      }
+
+      var counter = 0;
+      for(var i = 0; i < $scope.user.sharedWith.length; i++) {
+        if($scope.user.sharedWith[i].email === email.email) {
+          counter++;
+        }
+      }
+      if (counter === 0) {
+        console.log('adding user');
+        $http.post('/api/users/shareView', email).success(function(data) {
+          $scope.email = '';
+          $scope.isCollapsedShare = true;
+          $window.location.reload();
+        }).error(function() {
+          $scope.showEmailError = true;
+          console.log('email not found');
+        })
+      }
+      else {
+        console.log('email already shared with');
+      }
     };
 
     $scope.defaultView = true;
