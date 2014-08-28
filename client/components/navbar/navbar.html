@@ -20,19 +20,20 @@
 
       </div>
 
+        <div class="nav navbar-nav navbar-right dropdown" ng-show="isLoggedIn()">
 
-        <div class="nav navbar-nav navbar-right" dropdown ng-show="isLoggedIn()">
           <div ng-show="isLoggedIn()" class="dropdown-toggle">
             <span class="userName">{{ getCurrentUser().name }}</span>
             <img ng-src="{{ user.google.picture }}" id="profilePic" alt="">
-            </div>
+          </div>
 
-          <ul class="dropdown-menu">
+
+          <ul class="dropdown-menu" role="menu">
             <li><a href="/settings">Settings</a></li>
             <li><a href="" ng-click="logout()">Logout</a></li>
           </ul>
-        </div>
 
+        </div>
 
 
       <div class="col-xs-6 col-sm-8 col-md-6 col-lg-">

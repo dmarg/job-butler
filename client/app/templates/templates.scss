@@ -1,5 +1,71 @@
-.ta-root.focussed .ta-scroll-window.form-control {
-  border-color: rgb(102, 175, 233);
-  outline: 0px;
-  -webkit-box-shadow: rgba(53, 77, 93, 0.0745098) 0px 1px 1px inset, rgba(53, 77, 93, 0.6) 0px 0px 8px;
+.ta-root.focussed:focus {
+  // border-color: rgb(102, 175, 233);
+  // outline: 0px;
+  // -webkit-box-shadow: rgba(53, 77, 93, 0.0745098) 0px 1px 1px inset, rgba(53, 77, 93, 0.6) 0px 0px 8px;
+
+  border-color: $dashboard-color;
+  color: $dashboard-color;
+  outline: 0;
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+}
+
+.ta-scroll-window:focus, .ta-text:focus, .ta-editor:focus {
+  border-color: $dashboard-color;
+  color: $dashboard-color;
+
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+}
+
+.nav-tabs {
+  margin-top: 2%;
+  border-bottom: 0px;
+}
+
+.nav-tabs > li > a {
+  border-radius: 2px 2px 0 0;
+  background-color: $background-s2;
+  color: $dashboard-highlight;
+  border: 0px;
+  border-bottom: 1px;
+
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+}
+
+.nav-tabs > li > a:hover {
+  background-color: $dashboard-color;
+  color: $dashboard-text-highlight;
+  border: 0px;
+  border-bottom: 1px;
+  cursor: hand;
+  cursor: pointer;
+
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  background-color: $dashboard-highlight;
+  color: $dashboard-text-highlight;
+  border: 0px;
+  border-bottom: 1px;
+
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+}
+
+h1 {
+  margin-top: 0px;
 }

@@ -30,6 +30,10 @@
   content: '\25B2';
 }
 
+.form-control {
+  color: $dashboard-highlight;
+}
+
 th {
   cursor: hand;
   cursor: pointer;
