@@ -66,7 +66,7 @@ exports.shareView = function (req, res, next) {
     req.user.save();
     user.save(function(err) {
       if (err) return handleError(err);
-      res.send(res.user);
+      res.send(req.user.sharedWith);
     });
   });
 };
@@ -97,7 +97,7 @@ exports.shareTemplate = function (req, res, next) {
     user.sharedTemplates.push(req.user._id);
     user.save(function(err) {
       if (err) return handleError(err);
-      res.send(res.user);
+      res.send(user);
     });
   });
 };
