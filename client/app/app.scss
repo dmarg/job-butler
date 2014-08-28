@@ -50,11 +50,161 @@ $background-s2: #B8C0C5;
 */
 
 
+// html {
+//   background-color: $dashboard-highlight;
+// }
+
+
+html, body {
+  color: $dashboard-color;
+  width: 100%;
+  height: 100%;
+}
 
 
 body {
-  margin-top: 75px;
+  margin-top: 80px;
   background-color: $background-main;
+}
+
+legend {
+  color: $dashboard-color;
+}
+
+a {
+  color: $dashboard-color;
+}
+
+a:hover, a:focus, a:active {
+  color: $dashboard-text;
+}
+
+// App wide Button styling
+
+.btn-toolbar-top {
+  margin-bottom: 5%;
+
+  .btn:first-of-type {
+    margin-right: 5px;
+  }
+}
+
+.btn, .btn:disabled {
+  border: 0px;
+  border-radius: 2px;
+
+  -webkit-box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    1px 1px 3px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         1px 1px 3px 0px rgba(50, 50, 50, 0.75);
+}
+
+.btn:focus {
+  outline: 0px auto $dashboard-highlight;
+}
+
+.btn:active {
+  box-shadow: 0px;
+}
+
+.btn-default {
+  color: $dashboard-highlight;
+}
+
+.btn-default:hover, .btn-default:active, .btn-default:focus {
+  color: $dashboard-highlight;
+  border-color: $dashboard-highlight;
+}
+
+.btn-primary {
+  background-color: $dashboard-color;
+  color: $dashboard-text-highlight;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+  background-color: $dashboard-highlight;
+  color: $dashboard-text-highlight;
+  border-color: $dashboard-highlight;
+}
+
+.btn-success {
+  background-color: $ib-green;
+  color: $dashboard-text-highlight;
+}
+
+.btn-success:hover, .btn-success:active, .btn-success:focus {
+  background-color: $ib-green-highlight;
+  color: $dashboard-text-highlight;
+}
+
+
+.btn-warning {
+  background-color: $ib-orange;
+  color: $dashboard-text-highlight;
+}
+
+.btn-warning:hover, .btn-warning:active, .btn-warning:focus {
+  background-color: $ib-orange-highlight;
+  color: $dashboard-text-highlight;
+}
+
+
+.btn-danger {
+  background-color: $ib-red;
+  color: $dashboard-text-highlight;
+}
+
+.btn-danger:hover, .btn-danger:active, .btn-danger:focus {
+  background-color: $ib-red-highlight;
+  color: $dashboard-text-highlight;
+}
+
+.btn-info {
+  background-color: $ib-yellow;
+  color: $dashboard-text-highlight;
+}
+
+.btn-info:hover, .btn-info:active, .btn-info:focus {
+  background-color: $ib-yellow-highlight;
+  color: $dashboard-text-highlight;
+}
+
+
+
+.btn-group {
+  // background-color: $dashboard-color;
+  color: $dashboard-text;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+
+
+.form-control:focus {
+  border-color: $dashboard-color;
+  color: $dashboard-color;
+  outline: 0;
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(53, 77, 93, 0.6);
+}
+
+.divider {
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
+
+
+// App wide well styling
+.well {
+  border: 1px solid rgba(53, 77, 93, 0.4);
+}
+
+legend {
+  font-size: 25px;
+  font-weight: bold;
+  border-bottom: 0px solid rgba(53, 77, 93, 0.2);
 }
 
 
@@ -80,8 +230,6 @@ body {
 //   width: 235px;
 //   padding: 0 10px;
 // }
-
-
 
 
 

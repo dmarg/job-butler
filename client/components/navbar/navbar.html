@@ -2,7 +2,7 @@
 <div class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl">
 
 
-<div class="row">
+<div class="row nav-shadow">
   <div class="container">
 
 
@@ -20,22 +20,23 @@
 
       </div>
 
+        <div class="nav navbar-nav navbar-right dropdown" ng-show="isLoggedIn()">
 
-        <div class="nav navbar-nav navbar-right" dropdown ng-show="isLoggedIn()">
           <div ng-show="isLoggedIn()" class="dropdown-toggle">
             <span class="userName">{{ getCurrentUser().name }}</span>
             <img ng-src="{{ user.google.picture }}" id="profilePic" alt="">
-            </div>
+          </div>
 
-          <ul class="dropdown-menu">
+
+          <ul class="dropdown-menu" role="menu">
             <li><a href="/settings">Settings</a></li>
             <li><a href="" ng-click="logout()">Logout</a></li>
           </ul>
+
         </div>
 
 
-
-      <div class="col-xs-6 col-sm-8 col-md-6 col-lg-4">
+      <div class="col-xs-6 col-sm-8 col-md-6 col-lg-">
         <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav navbar-left">
             <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">

@@ -1,4 +1,25 @@
 // Original Template SCSS
+
+.btn-google-plus {
+    color: $dashboard-text-highlight;
+    background-color: $ib-red;
+    border: 0px;
+}
+
+.btn-google-plus:hover, .btn-google-plus:focus, .btn-google-plus:active, .btn-google-plus.active, .open > .btn-google-plus.dropdown-toggle {
+    color: $dashboard-text-highlight;
+    background-color: $ib-red-highlight;
+    border: 0px;
+}
+
+.main-links {
+    color: $dashboard-text-highlight;
+}
+
+.main-links:hover {
+    color: $background-main;
+}
+
 .thing-form {
     margin: 20px 0;
 }
@@ -17,16 +38,37 @@
 .hero-unit {
     position: relative;
     padding: 30px 15px;
-    color: #F5F5F5;
+    color: $dashboard-text-highlight;
     text-align: center;
+    background: $dashboard-highlight;
+
+    -webkit-text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    -moz-text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: #4393B9;
 }
 
 .footer {
     text-align: center;
     padding: 30px 0;
-    margin-top: 70px;
-    border-top: 1px solid #E5E5E5;
+    margin-top: 190px;
+    margin-bottom: 65px;
+    color: $dashboard-text-highlight;
 }
 
+.created-by {
+    padding-left: 0px;
+    list-style: none;
+}
+
+.main-info {
+    margin-top: -100px;
+    width: 100%;
+    height: 100%;
+    background-color: $dashboard-highlight;
+}
+
+.main-page {
+    margin-top: 100px;
+    width: 100%;
+    height: 100%;
+}

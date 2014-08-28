@@ -1,19 +1,31 @@
 
+<div class='row'>
+  <div class='container'>
+    <div class="btn-toolbar-top">
+      <div class="col-md-12 text-right">
+        <button class='btn btn-primary btn-lg' ng-click='back()'>Go Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+
       <div class="well well-sm">
         <form class="form-horizontal">
         <fieldset>
           <legend class="text-center">
-            Add Pursuit
+            Job Details
           </legend>
 
           <!-- Link input-->
           <div class="form-group">
             <label class="col-md-2 control-label" for="positionLink">Link to Posting</label>
             <div class="col-md-9">
-              <input id="positionLink" name="positionLink" type="text" class="form-control" ng-model='job.url'>
+              <input id="positionLink" name="positionLink" type="text" class="form-control" ng-model='jobView.url' ng-disabled="viewOnly">
             </div>
           </div>
 
@@ -21,7 +33,7 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="coName">Company Name</label>
             <div class="col-md-9">
-              <input id="coName" name="coName" type="text" class="form-control" ng-model="job.companyName">
+              <input id="coName" name="coName" type="text" class="form-control" ng-model="jobView.companyName" ng-disabled="viewOnly">
             </div>
           </div>
 
@@ -29,7 +41,7 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="position">Position Title</label>
             <div class="col-md-9">
-              <input id="position" name="position" type="text" class="form-control" ng-model='job.positionTitle'>
+              <input id="position" name="position" type="text" class="form-control" ng-model='jobView.positionTitle' ng-disabled="viewOnly">
             </div>
           </div>
 
@@ -37,7 +49,7 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="stageStatus">Status</label>
             <div class="col-md-9">
-              <select id="stageStatus" name="stageStatus" class='form-control' ng-model='job.stage.stageName' ng-options='stage for stage in stages.values'></select>
+              <select id="stageStatus" name="stageStatus" class='form-control' ng-model='jobView.stage[jobView.stage.length-1].stageName' ng-options='stage for stage in stages.values' ng-disabled="viewOnly"></select>
             </div>
           </div>
 
@@ -45,7 +57,7 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="notes">Notes</label>
             <div class="col-md-9">
-              <textarea class="form-control" id="notes" name="notes" rows="3" ng-model='job.stage.notes' placeholder="Enter your notes here..."></textarea>
+              <textarea class="form-control" id="notes" name="notes" rows="4" ng-model='jobView.stage[jobView.stage.length-1].notes' ng-disabled="viewOnly"></textarea>
             </div>
           </div>
 
@@ -53,15 +65,15 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="jobDetails">Job Details</label>
             <div class="col-md-9">
-              <textarea class="form-control" id="jobDetails" name="jobDetails" rows="8" ng-model='job.jobDetails'></textarea>
+              <textarea class="form-control" id="jobDetails" name="jobDetails" rows="10" ng-model='jobView.jobDetails' ng-disabled="viewOnly"></textarea>
             </div>
           </div>
+
 
           <!-- Form actions -->
           <div class="form-group">
             <div class="col-md-11 text-right">
-              <button class="btn btn-primary btn-lg" ng-click="cancelAdd()">Cancel</button>
-              <button class="btn btn-success btn-lg" ng-click="createJob()">Submit</button>
+
             </div>
           </div>
         </fieldset>

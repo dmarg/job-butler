@@ -7,7 +7,7 @@ angular.module('jobButlerApp')
     $scope.jobApps = [];
 
     $scope.stages = {
-      "values": ['Applied', 'Interview', 'Post-Interview', 'Negotiation', 'Closed']
+      "values": ['To Apply', 'Applied', 'Interview Scheduled', 'Post-Interview', 'Offer Received', 'Closed']
     };
 
     $scope.email = {};
@@ -31,6 +31,9 @@ angular.module('jobButlerApp')
     $scope.closeAlert = function() {
       $scope.showEmailError = false;
     }
+
+    $scope.disableEditJob = true;
+
 
     $http.get('/api/jobs').success(function(jobs) {
       $scope.jobApps = jobs || [];
@@ -65,27 +68,31 @@ angular.module('jobButlerApp')
 
 
     $scope.createJob = function() {
-      var job = $scope.job;
-      job.userId = $scope.user._id;
-      // console.log('job is: ', job);
-      $scope.job.stage.unixTC = $moment().format('X');
-      $scope.job.stage.date = $moment().format('YYYY-MM-DD');
 
-      $http.post('/api/jobs/create', job).success(function(data) {
-        console.log(data);
-        $scope.jobApps.push(data);
-        $scope.isCollapsedJob = true;
-        $scope.job = {
-          companyName: '',
-          positionTitle: '',
-          url: '',
-          jobDetails: '',
-          stage: {
-            stageName: "Applied",
-            notes: ''
-          }
-        };
-      })
+      if ($scope.job.companyName.length > 0 && $scope.job.positionTitle.length > 0) {
+        var job = $scope.job;
+        job.userId = $scope.user._id;
+        // console.log('job is: ', job);
+        $scope.job.stage.unixTC = $moment().format('X');
+        $scope.job.stage.date = $moment().format('YYYY-MM-DD');
+
+        $http.post('/api/jobs/create', job).success(function(data) {
+          console.log(data);
+          $scope.jobApps.push(data);
+          $scope.isCollapsedJob = true;
+          $scope.job = {
+            companyName: '',
+            positionTitle: '',
+            url: '',
+            jobDetails: '',
+            stage: {
+              stageName: "Applied",
+              notes: ''
+            }
+          };
+        })
+      }
+
     };
 
     $scope.shareView = function() {
@@ -120,35 +127,42 @@ angular.module('jobButlerApp')
     };
 
     $scope.defaultView = true;
-    $scope.detailView = false
-    $scope.editView = false;
+    $scope.detailAndEditView = false;
+
     $scope.openDetails = function(jobApp) {
-      $scope.jobDetail = jobApp;
+      $scope.jobView = jobApp;
       $scope.defaultView = false;
-      $scope.detailView = true;
-      console.log(jobApp);
-      console.log($scope.jobDetail);
-    };
-    $scope.openEdit = function(jobDetail) {
-      $scope.detailView = false;
-      $scope.editView = true;
-      $scope.job = jobDetail;
-      console.log($scope.job);
+      $scope.detailAndEditView = true;
+
+      $scope.isCollapsedJob = true;
+      $scope.isCollapsedShare = true;
+      // console.log(jobApp);
+      // console.log($scope.jobView);
     };
 
+    // $scope.openEdit = function(jobView) {
+    //   $scope.detailView = false;
+    //   $scope.editView = true;
+    //   $scope.jobView = jobView;
+    //   console.log($scope.jobView);
+    // };
+
     $scope.submitJobEdits = function() {
-      var job = $scope.job;
+      var job = $scope.jobView;
+
       job.stage[job.stage.length-1].unixTC = $moment().format('X');
       job.stage[job.stage.length-1].date = $moment().format('YYYY-MM-DD');
+
       $http.put('/api/jobs/'+job._id, job).success(function(data) {
         console.log(data);
-        $scope.editView = false;
+        $scope.detailAndEditView = false;
         $scope.defaultView = true;
+        $scope.disableEditJob = true;
       })
     };
 
     $scope.removeJob = function() {
-      var job = $scope.job;
+      var job = $scope.jobView;
       console.log(job);
       if(confirm('Are you sure you want to delete this pursuit?')) {
         console.log(job);
@@ -157,16 +171,49 @@ angular.module('jobButlerApp')
         $http.delete('/api/jobs/'+jobId).success(function(data) {
           console.log('deleted job response: ', data);
           $window.location.reload();
-          $scope.editView = false;
+          $scope.detailAndEditView = false;
           $scope.defaultView = true;
+          $scope.disableEditJob = true;
         })
       }
     };
 
-    $scope.cancelEdit = function () {
-      $scope.editView = false;
+    $scope.defaultAndDetailToggle = function () {
+      $scope.detailAndEditView = false;
       $scope.defaultView = true;
+      $scope.disableEditJob = true;
     };
+
+    $scope.cancelAdd = function() {
+      $scope.job = {
+        companyName: '',
+        positionTitle: '',
+        url: '',
+        jobDetails: '',
+        stage: {
+          stageName: "Applied",
+          notes: ''
+        }
+      };
+
+      $scope.isCollapsedJob = true;
+      $scope.isCollapsedShare = true;
+    }
+
+    $scope.cancelShare = function() {
+      $scope.email = {};
+
+      $scope.isCollapsedJob = true;
+      $scope.isCollapsedShare = true;
+    }
+
+    $scope.editViewJobToggle = function() {
+      if($scope.disableEditJob === true) {
+        $scope.disableEditJob = false;
+      } else {
+        $scope.disableEditJob = true;
+      }
+    }
 
   //   $scope.open = function (jobApp) {
   //     $scope.jobApp = jobApp;
@@ -231,5 +278,5 @@ angular.module('jobButlerApp')
   //       $modalInstance.close($scope.selected.item);
   //     };
 
-    });
+});
 

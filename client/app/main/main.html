@@ -1,7 +1,8 @@
 
 
-<div ng-include="'components/navbar/navbar.html'"></div>
+<div ng-include="'components/navbar/navbar.html'" ng-show="isLoggedIn()"></div>
 
+<!-- Logged In -->
 <div class="container" ng-show="isLoggedIn()">
   <div class="col-lg-12">
     <div class="col-lg-12">
@@ -45,47 +46,58 @@
 
 
 
-<!-- Begin Original Template -->
-<div ng-show="!isLoggedIn()">
+<!-- Not Logged In -->
+<div ng-show="!isLoggedIn()" class="main-info">
   <header class="hero-unit" id="banner">
-
+    <div class="main-page">
+      <h1>Job Butler</h1>
+      <p>Replace your job search spreadsheet.</p>
+    </div>
+    <br>
     <div ng-controller="LoginCtrl">
       <a class="btn btn-google-plus" href="" ng-click="loginOauth('google')">
         <i class="fa fa-google-plus"></i> Connect with Google+
       </a>
     </div>
-    <!-- <div class="container">
-      <h1>'Allo, 'Allo!</h1>
-      <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-      <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-    </div> -->
   </header>
+  <div class="main-bottom">
+    <br>
+    <br>
+  </div>
+  <footer class="footer">
+    <div class="container">
+        <ul class="created-by">
+          <li>created by:</li>
+          <li>Andrew Lin
+          <a target="_blank" href="https://github.com/andrwln" class="main-links"><i class="fa fa-github-square"></i></a>
+          <a target="_blank" href="https://www.linkedin.com/in/andrewlin90" class="main-links"><i class="fa fa-linkedin-square"></i></a>
+          <a target="_blank" href="https://twitter.com/" class="main-links"><i class="fa fa-twitter-square"></i></a>
+          </li>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h1 class="page-header">Features:</h1>
-        <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-          <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
+          <li>Daniel Margol
+          <a target="_blank" href="https://github.com/dmarg" class="main-links"><i class="fa fa-github-square"></i></a>
+          <a target="_blank" href="https://www.linkedin.com/in/danielmargol" class="main-links"><i class="fa fa-linkedin-square"></i></a>
+          <a target="_blank" href="https://twitter.com/danielmargol" class="main-links"><i class="fa fa-twitter-square"></i></a>
+          </li>
         </ul>
-      </div>
     </div>
+  </footer>
+</div>
 
-    <form class="thing-form">
-      <label>Syncs in realtime across clients</label>
-      <p class="input-group">
-        <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" ng-click="addThing()">Add New</button>
-        </span>
-      </p>
-    </form>
+<!-- <div class="row">
+  <div class="container">
+
   </div>
 </div>
+ -->
 <!-- End Original Template -->
 
-<footer class="footer">
+<!-- <footer class="footer">
   <div class="container">
-      <p>created by team Jo Butler!</p>
+      <ul class="created-by">
+        <li>created by:</li>
+        <li>andrew lin</li>
+        <li>daniel margol</li>
+      </ul>
   </div>
-</footer>
+</footer> -->

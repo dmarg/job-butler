@@ -36,9 +36,10 @@ angular.module('jobButlerApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
+
     $scope.user = Auth.getCurrentUser();
 
-    console.log('getCurrentUser: ', $scope.getCurrentUser());
+    // console.log('getCurrentUser: ', $scope.getCurrentUser());
 
     $scope.logout = function() {
       Auth.logout();
@@ -48,5 +49,6 @@ angular.module('jobButlerApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
 
   });

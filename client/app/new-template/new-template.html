@@ -1,9 +1,70 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="col-md-12">
-  <h1>Create New Template</h1>
-  <input class='form-control' placeholder='What do you want to name this template?' ng-model='newTemplate.name'></input><br>
-  <div text-angular ng-model="newTemplate.body" ta-toolbar-class='btn-toolbar' ta-toolbar-group-class="btn-group" ta-toolbar-button-class="btn btn-default" ta-toolbar-button-active-class="active"></div><br>
-  <button class='btn btn-primary' ng-click="save()">Create Template</button>
-  <button class='btn btn-warning' ng-click="cancel()">Cancel</button>
+<!-- <div class="row">
+  <div class="container">
+
+    <h1>Create New Template</h1>
+    <input class='form-control' placeholder='What do you want to name this template?' ng-model='newTemplate.name'></input><br>
+    <div text-angular ng-model="newTemplate.body" ta-toolbar-class='btn-toolbar' ta-toolbar-group-class="btn-group" ta-toolbar-button-class="btn btn-default" ta-toolbar-button-active-class="active"></div><br>
+
+    <div class="form-group">
+      <div class="col-md-12 text-right">
+        <button class='btn btn-success btn-lg' ng-click="save()">Create Template</button>
+        <button class='btn btn-warning btn-lg' ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div> -->
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="well well-sm">
+        <form class="form-horizontal">
+        <fieldset>
+          <legend class="text-center">
+            Create New Template
+          </legend>
+
+          <!-- Template Name -->
+          <div class="form-group">
+            <label class="col-md-2 control-label" for="templateName">Template Name</label>
+            <div class="col-md-9">
+              <input id="templateName" name="templateName" type="text" class='form-control' placeholder='What do you want to name this template?' ng-model='newTemplate.name'></input>
+            </div>
+          </div>
+
+          <!-- Text Angular  -->
+          <div class="form-group">
+            <div class="col-md-12">
+              <div text-angular ng-model="newTemplate.body" ta-toolbar-class='btn-toolbar' ta-toolbar-group-class="btn-group" ta-toolbar-button-class="btn btn-default" ta-toolbar-button-active-class="active"></div>
+            </div>
+          </div>
+
+          <!-- Form actions -->
+          <div class="form-group">
+            <div class="col-md-12 text-right">
+              <button class='btn btn-warning btn-lg' ng-click="cancel()">Cancel</button>
+              <button class='btn btn-primary btn-lg' ng-click="save()">Create Template</button>
+            </div>
+          </div>
+
+        </fieldset>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="container">
+    <div class="col-md-12">
+
+    </div>
+  </div>
 </div>

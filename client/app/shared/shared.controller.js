@@ -5,19 +5,25 @@ angular.module('jobButlerApp')
 
     var user = Auth.getCurrentUser();
 
+    $scope.viewOnly = true;
+
+    $scope.stages = {
+      "values": ['To Apply', 'Applied', 'Interview Scheduled', 'Post-Interview', 'Offer Received', 'Closed']
+    };
 
     var sharedViews = [];
     $http.get('/api/jobs/sharedViews').success(function(data) {
-      console.log('http get request data: ', data);
+      // console.log('http get request data: ', data);
       $scope.sharedViews = data;
       $scope.sharedViewsDisplay = [].concat($scope.sharedViews);
+      console.log($scope.sharedViews);
     });
 
     $scope.defaultView = true;
     $scope.detailView = false;
     $scope.openDetail = function(job) {
       console.log(job);
-      $scope.job = job;
+      $scope.jobView = job;
       $scope.defaultView = false;
       $scope.detailView = true;
     };

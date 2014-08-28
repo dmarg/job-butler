@@ -1,53 +1,42 @@
 
 <div ng-include="'components/navbar/navbar.html'"></div>
+
 <div ng-controller='SharedCtrl'>
 
-    <div ng-show='defaultView' class="col-md-12">
-      <div>
-        <table st-table='sharedViewsDisplay' st-safe-src="sharedViews" class='table table-striped'>
-          <thead>
-            <tr>
-              <th st-sort='companyName'>Company Name</th>
-              <th st-sort='positionTitle'>Position Title</th>
-              <th st-sort='stage[stage.length-1].stageName'>Status</th>
-              <th st-sort='stage[stage.length-1].date'>Last Updated</th>
-              <th>Details</th>
-            </tr>
-            <tr>
-              <th colspan="5">
-                <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat='sharedView in sharedViewsDisplay'>
-              <td>{{sharedView.companyName}}</td>
-              <td>{{sharedView.positionTitle}}</td>
-              <td>{{sharedView.stage[sharedView.stage.length-1].stageName}}</td>
-              <td>{{sharedView.stage[sharedView.stage.length-1].date}}</td>
-              <td><i class="fa fa-pencil-square" ng-click="openDetail(sharedView)"></i></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div ng-show='defaultView' class="col-md-12">
+    <div>
+      <table st-table='sharedViewsDisplay' st-safe-src="sharedViews" class='table table-striped'>
+        <thead>
+          <tr>
+            <th st-sort='userName'>User Name</th>
+            <th st-sort='companyName'>Company Name</th>
+            <th st-sort='positionTitle'>Position Title</th>
+            <th st-sort='stage[stage.length-1].stageName'>Status</th>
+            <th st-sort='stage[stage.length-1].date'>Last Updated</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <th colspan="6">
+              <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='sharedView in sharedViewsDisplay'>
+            <td>{{sharedView.userName}}</td>
+            <td>{{sharedView.companyName}}</td>
+            <td>{{sharedView.positionTitle}}</td>
+            <td>{{sharedView.stage[sharedView.stage.length-1].stageName}}</td>
+            <td>{{sharedView.stage[sharedView.stage.length-1].date}}</td>
+            <td><i class="fa fa fa-eye fa-2x" ng-click="openDetail(sharedView)"></i></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 
-  <div>
-    <div ng-show='detailView' class='row'>
-      <div class='col-md-12'>
-
-        <div class='col-md-12'>
-          <h1>Job Details</h1>
-          <div class='jumbotron'>
-            <h3>Company Name</h3>
-            <p>{{job.companyName}}</p>
-            <h3>Position Title</h3>
-            <p>{{job.positionTitle}}</p>
-          </div>
-          <button class='btn btn-primary' ng-click='back()'>Back</button>
-        </div>
-      </div>
-    </div>
+  <div ng-show='detailView' class='row'>
+    <div ng-include="'app/shared/shared-job-view.html'"></div>
   </div>
 
 </div>
