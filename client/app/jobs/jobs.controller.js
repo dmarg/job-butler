@@ -24,7 +24,6 @@ angular.module('jobButlerApp')
       }
     };
 
-
     $scope.filterOptions = {};
     $scope.isCollapsedJob = true;
     $scope.isCollapsedShare = true;
@@ -67,6 +66,10 @@ angular.module('jobButlerApp')
 
     });
 
+
+    $scope.fromNow = function(date) {
+      return $moment(date, 'X').fromNow();
+    };
 
     $scope.createJob = function() {
 

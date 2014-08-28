@@ -27,7 +27,7 @@
             <td>{{sharedView.companyName}}</td>
             <td>{{sharedView.positionTitle}}</td>
             <td>{{sharedView.stage[sharedView.stage.length-1].stageName}}</td>
-            <td>{{sharedView.stage[sharedView.stage.length-1].date}}</td>
+            <td>{{fromNow(sharedView.stage[sharedView.stage.length-1].unixTC)}}</td>
             <td><i class="fa fa fa-eye fa-2x" ng-click="openDetail(sharedView)"></i></td>
           </tr>
         </tbody>

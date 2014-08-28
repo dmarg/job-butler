@@ -15,6 +15,7 @@ var JobSchema = new Schema({
   url: String,
   companyName: String,
   positionTitle: String,
+  positionAtCompany: String,
   jobDetails: String,
   userName: String,
   stage: [StageSchema],

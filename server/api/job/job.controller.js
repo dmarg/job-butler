@@ -40,6 +40,7 @@ exports.create = function(req, res) {
   newJob.stage = req.body.stage;
   newJob.userName = req.user.name;
   newJob.jobDetails = req.body.jobDetails;
+  newJob.positionAtCompany = req.body.positionTitle + ' at ' + req.body.companyName;
   newJob.save(function(err, job) {
     if (err) {
       console.log('error: ', err);

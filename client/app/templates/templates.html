@@ -15,6 +15,15 @@
                 Text Fields to Update
               </legend>
 
+
+              <!-- Select Job App -->
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="pursuit">Select Pursuit</label>
+                <div class="col-md-6">
+                  <select id="pursuit" name="pursuit" class='form-control' ng-model='pursuit.job' ng-options="job.positionAtCompany for job in jobApps"></select>
+                </div>
+              </div>
+
               <!-- Fields -->
               <div class="form-group" ng-repeat="match in matchArr">
                 <label class="col-md-3 control-label" for="match.trimmed">{{match.trimmed}}</label>
@@ -44,20 +53,20 @@
 
 <div class="row">
   <div class="container">
-    <alert ng-show='showNoMatch' type='danger' close='closeAlert()'>Job Butler found no fields to edit. Please indicate fields to customize with words enclosed by double square bracks ([[ ]]).</alert>
+    <alert ng-show='showNoMatch' type='danger' close='showNoMatch = false'>Job Butler found no fields to edit. Please indicate fields to customize with words enclosed by double square bracks ([[ ]]).</alert>
   </div>
 </div>
 
 
 <div class="row">
   <div class="container">
-    <alert ng-show='updateMatchSuccess' type='success' close='closeAlert()'>Successfully updated matched fields!</alert>
+    <alert ng-show='updateMatchSuccess' type='success' close='updateMatchSuccess = false'>Successfully updated matched fields!</alert>
   </div>
 </div>
 
 <div class="row">
   <div class="container">
-    <alert ng-show='draftCreated' type='success' close='closeAlert()'>Successfully injected this template into {{user.email}}'s drafts!</alert>
+    <alert ng-show='draftCreated' type='success' close='draftCreated = false'>Successfully injected this template into {{user.email}}'s drafts!</alert>
   </div>
 </div>
 

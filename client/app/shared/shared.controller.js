@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('SharedCtrl', function ($scope, $http, $modal, $log, Auth) {
+  .controller('SharedCtrl', function ($scope, $http, $modal, $log, Auth, $moment) {
 
     var user = Auth.getCurrentUser();
 
@@ -9,6 +9,10 @@ angular.module('jobButlerApp')
 
     $scope.stages = {
       "values": ['To Apply', 'Applied', 'Interview Scheduled', 'Post-Interview', 'Offer Received', 'Closed']
+    };
+
+    $scope.fromNow = function(date) {
+      return $moment(date, 'X').fromNow();
     };
 
     var sharedViews = [];

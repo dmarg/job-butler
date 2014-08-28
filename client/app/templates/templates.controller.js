@@ -6,6 +6,10 @@ angular.module('jobButlerApp')
     $scope.user = Auth.getCurrentUser();
     $scope.templates = {};
 
+    $scope.pursuit = {
+      job: ''
+    };
+
     $scope.email = {
       email: ''
     };
@@ -17,6 +21,10 @@ angular.module('jobButlerApp')
     $scope.isCollapsed = true;
     $scope.draftCreated = false;
 
+    $http.get('/api/jobs').success(function(jobs) {
+      $scope.jobApps = jobs || [];
+    });
+
     $http.get('/api/templates/renderTemplates').success(function(data) {
       $scope.templates = data;
       $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
@@ -27,6 +35,38 @@ angular.module('jobButlerApp')
     //   console.log()
     //   return $scope.currentTemplate.body;
     // };
+
+    var fieldToTemplateMatch = {
+      'company': 'companyName',
+      'company name': 'companyName',
+      'position': 'positionTitle',
+      'position title': 'positionTitle',
+      'your name': 'userName',
+      'my name': 'userName',
+      'user name': 'userName'
+    };
+
+    function fieldMatcher(templateField) {
+      return fieldToTemplateMatch[templateField.toLowerCase()];
+    }
+
+    $scope.$watch('pursuit.job', function(newVal, oldVal) {
+      if(newVal) {
+        // debugger;
+        // for (var i = 0; i < $scope.jobApps.length; i++) {
+          // if($scope.jobApps[i].positionAtCompany === $scope.pursuit.job) {
+            for(var j = 0; j < $scope.matchArr.length; j++) {
+              var match = $scope.matchArr[j];
+              var field = fieldMatcher(match.trimmed);
+              if(field && newVal[field]) {
+                match.replace = newVal[field];
+              }
+            }
+          // }
+        // }
+      }
+
+    });
 
     $scope.findMatches = function() {
       var template = $scope.currentTemplate.body;
@@ -50,12 +90,6 @@ angular.module('jobButlerApp')
       $scope.showNoMatch = false;
     };
 
-    $scope.closeAlert = function() {
-      $scope.updateMatchSuccess = false;
-      $scope.showNoMatch = false;
-      $scope.draftCreated = false;
-    }
-
     $scope.replaceMatches = function() {
       for(var i = 0; i < $scope.matchArr.length; i++) {
         $scope.currentTemplate.body = $scope.currentTemplate.body.replace($scope.matchArr[i].original, $scope.matchArr[i].replace);
@@ -67,6 +101,9 @@ angular.module('jobButlerApp')
 
     $scope.cancel = function() {
       $scope.showFieldForm = false;
+      $scope.pursuit = {
+        job: ''
+      };
     };
 
     $scope.renderContent = function(template) {

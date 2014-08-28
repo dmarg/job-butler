@@ -45,7 +45,7 @@
             <td>{{jobApp.companyName}}</td>
             <td>{{jobApp.positionTitle}}</td>
             <td>{{jobApp.stage[jobApp.stage.length-1].stageName}}</td>
-            <td>{{jobApp.stage[jobApp.stage.length-1].date}}</td>
+            <td>{{fromNow(jobApp.stage[jobApp.stage.length-1].unixTC)}}</td>
             <td><i class="fa fa-eye fa-2x" ng-click="openDetails(jobApp)"></i></td>
           </tr>
         </tbody>
