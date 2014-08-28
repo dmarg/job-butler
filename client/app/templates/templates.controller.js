@@ -15,8 +15,10 @@ angular.module('jobButlerApp')
 
     $http.get('/api/templates/renderTemplates').success(function(data) {
       console.log('http get request data: ', data);
+      console.log('rendering templates')
       $scope.templates = data;
       $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
+      console.log($scope.currentTemplate);
     });
 
     // $scope.getTextToCopy = function() {
@@ -135,6 +137,7 @@ angular.module('jobButlerApp')
       }
     };
 
+    console.log($scope.currentTemplate)
 
 
   });
