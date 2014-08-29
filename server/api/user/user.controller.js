@@ -117,15 +117,15 @@ exports.destroy = function(req, res) {
  * Change a users password
  */
 exports.update = function(req, res) {
-  console.log('user obj sent from front end: ', req.body);
-  console.log(req.params.id);
+  // console.log('user obj sent from front end: ', req.body);
+  console.log('update function running');
   var updatedUser = req.body;
   // if(req.body._id) { delete req.body._id; }
   // if(req.body.__v) { delete req.body.__v; }
   User.findById(req.params.id, function (err, user) {
     if (err) { return handleError(res, err); }
     if(!user) { return res.send(404); }
-    console.log('found user: ', user);
+    // console.log('found user: ', user);
     // user = updatedUser;
     user.sharedViews = updatedUser.sharedViews;
     user.sharedWith = updatedUser.sharedWith;

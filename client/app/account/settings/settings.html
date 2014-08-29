@@ -6,29 +6,31 @@
     <div class="col-sm-12">
       <h1>Manage Shared Access</h1>
     </div>
-    <div class="col-sm-12">
+    <div ng-show="showTable" class="col-sm-12">
       <div>
         <table st-table='sharedWithDisplay' st-safe-src="sharedWith" class='table table-striped'>
           <thead>
             <tr>
               <th st-sort='name'>User Name</th>
-              <!-- <th st-sort='id'>ID</th> -->
               <th>Revoke Access</th>
             </tr>
-<!--             <tr>
-              <th colspan="2">
-                <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
-              </th>
-            </tr> -->
           </thead>
           <tbody>
             <tr ng-repeat='shared in sharedWith'>
               <td>{{shared.name}}</td>
-              <!-- <td>{{shared.id}}</td> -->
               <td><i class="fa fa-pencil-square" ng-click="revokeAccess(shared)"></i></td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div ng-hide="showTable" class="col-sm-12">
+      <div>
+        <br>
+        <br>
+        <br>
+        <p class='text-center'>You are not currently sharing your pursuits with any other users.</p>
       </div>
     </div>
   </div>

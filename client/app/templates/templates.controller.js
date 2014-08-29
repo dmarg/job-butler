@@ -27,8 +27,22 @@ angular.module('jobButlerApp')
 
     $http.get('/api/templates/renderTemplates').success(function(data) {
       $scope.templates = data;
-      $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
-      console.log($scope.currentTemplate);
+      if($scope.templates.length === 0) {
+        var template = {
+          name: 'Cover Letter',
+          body: "<p>Hello [[Contact Name]],</p><p>I'm writing to apply to the [[Position Title]] opening at [[Company Name]]. I am a web developer with experience in JavaScript. I have built RESTful APIs using the MVC framework and relational databases on the back-end, and used JavaScript, HTML5, and CSS3 to create simple, intuitive front-end for web applications.</p><p>I'm looking for a team that's building an innovative product while solving complicated, stimulating problems. I would love to talk more about your product and the engineering profile you're looking for.</p><p>My r&#233;sum&#233; is attached for your convenience. You can also see my portfolio here: [[Portfolio URL]], and read some of the code I've written here: [[Github URL]]. I look forward to being in touch.</p><p>Regards,</p><p>[[My Name]]</p>",
+          permanent: true
+        };
+        $http.post('/api/templates/create', template).success(function(data) {
+          $http.get('/api/templates/renderTemplates').success(function(data) {
+            $scope.templates = data;
+            $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
+          })
+        })
+      }
+      else {
+        $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
+      }
     });
 
     // $scope.getTextToCopy = function() {
@@ -107,6 +121,9 @@ angular.module('jobButlerApp')
     };
 
     $scope.renderContent = function(template) {
+      $scope.pursuit = {
+        job: ''
+      };
       console.log(template);
       $scope.currentTemplate = template;
 
@@ -131,8 +148,6 @@ angular.module('jobButlerApp')
             $scope.templates = data;
             $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
           });
-
-          // $window.location.reload();
         });
       }
     };
@@ -147,7 +162,6 @@ angular.module('jobButlerApp')
             bodyOfEmail: $scope.currentTemplate.body
           }
         }
-
         $http.post('/api/messages/send', message).success(function(data) {
           console.log('returned from create: ', data.results)
           $scope.isCollapsed = true;

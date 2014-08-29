@@ -28,12 +28,22 @@ angular.module('jobButlerApp')
     $scope.isCollapsedJob = true;
     $scope.isCollapsedShare = true;
     $scope.showEmailError = false;
-    $scope.closeAlert = function() {
-      $scope.showEmailError = false;
-    }
-
+    $scope.emailDuplicateError = false;
     $scope.disableEditJob = true;
+    $scope.shareSuccess = false;
+    $scope.incompleteFields = false;
 
+    $scope.closeEmailError = function() {
+      $scope.showEmailError = false;
+    };
+
+    $scope.closeEmailDuplicate = function() {
+      $scope.emailDuplicateError = false;
+    };
+
+    $scope.closeShareSuccess = function() {
+      $scope.shareSuccess = false;
+    }
 
     $http.get('/api/jobs').success(function(jobs) {
       $scope.jobApps = jobs || [];
@@ -96,6 +106,9 @@ angular.module('jobButlerApp')
           };
         })
       }
+      else {
+        $scope.incompleteFields = true;
+      }
 
     };
 
@@ -104,7 +117,8 @@ angular.module('jobButlerApp')
 
       if($scope.user.email === email.email) {
         console.log('same email')
-        alert("Enter an email of another Job Butler user.")
+        $scope.email = {};
+        $scope.showEmailError = true;
         return;
       }
 
@@ -118,17 +132,19 @@ angular.module('jobButlerApp')
       if (counter === 0) {
         console.log('adding user');
         $http.post('/api/users/shareView', email).success(function(data) {
+          $scope.sharedEmail = email.email;
           $scope.email = {};
           $scope.isCollapsedShare = true;
+          $scope.shareSuccess = true;
           $scope.user.sharedWith = data;
           console.log('data from shared: ', data);
         }).error(function() {
           $scope.showEmailError = true;
-          console.log('email not found');
         })
       }
       else {
         console.log('email already shared with');
+        $scope.emailDuplicateError = true;
       }
     };
 

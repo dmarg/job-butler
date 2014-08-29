@@ -2,9 +2,18 @@
 
 <div class="col-md-12" ng-controller="JobsCtrl">
   <div ng-show='defaultView'>
+
+    <div class='text-center'>
+      <alert ng-show='incompleteFields' type='danger' close='incompleteFields = false'>Please complete the Company Name and Position Title fields.</alert>
+    </div>
+
     <div collapse='isCollapsedShare'>
       <div ng-include="'app/jobs/sharepursuit.html'"></div>
       <br><br>
+    </div>
+
+    <div class='text-center'>
+      <alert ng-show='shareSuccess' type='success' close='closeShareSuccess()'>You are now sharing your pursuits with {{sharedEmail}}.</alert>
     </div>
 
     <div collapse='isCollapsedJob'>
@@ -16,15 +25,15 @@
       <div class='container'>
         <div class="btn-toolbar-top">
           <div class="col-md-12 text-right">
-            <button type="button" class="btn btn-success btn-lg" ng-click="isCollapsedJob = !isCollapsedJob; isCollapsedShare = true">Add Pursuit</button>
-            <button type="button" class="btn btn-success btn-lg" ng-click="isCollapsedShare = !isCollapsedShare; isCollapsedJob = true">Share</button>
+            <button type="button" class="btn btn-success btn-lg" ng-show="isCollapsedJob" ng-click="isCollapsedJob = !isCollapsedJob; isCollapsedShare = true">Add Pursuit</button>
+            <button type="button" class="btn btn-success btn-lg" ng-show="isCollapsedJob" ng-click="isCollapsedShare = !isCollapsedShare; isCollapsedJob = true">Share</button>
           </div>
         </div>
       </div>
     </div>
 
 
-    <div class="smart-table">
+    <div ng-hide='addJobText' class="smart-table">
       <table st-table='jobAppsDisplay' st-safe-src="jobApps" class='table table-striped'>
         <thead>
           <tr>
@@ -50,6 +59,16 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div ng-show="addJobText" class="col-sm-12">
+      <div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p class='text-center'>You are not currently sharing your pursuits with any other users.</p>
+      </div>
     </div>
 
 

@@ -13,6 +13,16 @@ angular.module('jobButlerApp', [
   'ngClipboard'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $momentProvider) {
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl: 'app/main/main.html'
+      })
+      .state('jobs.add', {
+        url: '/addpursuit',
+        templateUrl: 'app/jobs/addpursuit.html'
+      })
+
     $urlRouterProvider
       .otherwise('/');
 

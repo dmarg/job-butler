@@ -24,6 +24,12 @@
         </fieldset>
         </form>
       </div>
+      <br>
+      <div class='text-center'>
+        <alert ng-show='showEmailError' type='danger' close='closeEmailError()'>Please enter an email of a Job Butler user other than your own.</alert>
+        <alert ng-show='emailDuplicateError' type='danger' close='closeEmailDuplicate()'>You are already sharing your pursuits with this user.</alert>
+        <alert ng-show='shareSuccess' type='success' close='closeShareSuccess()'>You are now sharing your pursuits with {{sharedEmail}}.</alert>
+      </div>
     </div>
   </div>
 </div>
