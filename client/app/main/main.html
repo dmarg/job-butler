@@ -1,72 +1,27 @@
 
 
-<div ng-include="'components/navbar/navbar.html'" ng-show="isLoggedIn()"></div>
+
 
 <!-- Logged In -->
-<div class="container" ng-show="isLoggedIn()">
-  <div class="col-lg-12">
+<div ng-show="isLoggedIn()">
+  <div ng-include="'components/navbar/navbar.html'" ng-show="isLoggedIn()"></div>
+
+  <div class="container">
     <div class="col-lg-12">
+      <div class="col-lg-12">
 
 
+      </div>
     </div>
   </div>
 </div>
+
+
 
 
 
 
 <!-- Not Logged In -->
 <div ng-show="!isLoggedIn()" class="main-info">
-  <header class="hero-unit" id="banner">
-    <div class="main-page">
-      <h1>Job Butler</h1>
-      <p>Replace your job search spreadsheet.</p>
-    </div>
-    <br>
-    <div ng-controller="LoginCtrl">
-      <a class="btn btn-google-plus" href="" ng-click="loginOauth('google')">
-        <i class="fa fa-google-plus"></i> Connect with Google+
-      </a>
-    </div>
-  </header>
-  <div class="main-bottom">
-    <br>
-    <br>
-  </div>
-  <footer class="footer">
-    <div class="container">
-        <ul class="created-by">
-          <li>created by:</li>
-          <li>Andrew Lin
-          <a target="_blank" href="https://github.com/andrwln" class="main-links"><i class="fa fa-github-square"></i></a>
-          <a target="_blank" href="https://www.linkedin.com/in/andrewlin90" class="main-links"><i class="fa fa-linkedin-square"></i></a>
-          <a target="_blank" href="https://twitter.com/" class="main-links"><i class="fa fa-twitter-square"></i></a>
-          </li>
-
-          <li>Daniel Margol
-          <a target="_blank" href="https://github.com/dmarg" class="main-links"><i class="fa fa-github-square"></i></a>
-          <a target="_blank" href="https://www.linkedin.com/in/danielmargol" class="main-links"><i class="fa fa-linkedin-square"></i></a>
-          <a target="_blank" href="https://twitter.com/danielmargol" class="main-links"><i class="fa fa-twitter-square"></i></a>
-          </li>
-        </ul>
-    </div>
-  </footer>
+  <div ng-include="'app/main/main-notloggedin.html'"></div>
 </div>
-
-<!-- <div class="row">
-  <div class="container">
-
-  </div>
-</div>
- -->
-<!-- End Original Template -->
-
-<!-- <footer class="footer">
-  <div class="container">
-      <ul class="created-by">
-        <li>created by:</li>
-        <li>andrew lin</li>
-        <li>daniel margol</li>
-      </ul>
-  </div>
-</footer> -->

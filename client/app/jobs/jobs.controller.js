@@ -28,6 +28,8 @@ angular.module('jobButlerApp')
     $scope.isCollapsedJob = true;
     $scope.isCollapsedShare = true;
     $scope.showEmailError = false;
+    $scope.addAndShareBtns = true;
+
     $scope.closeAlert = function() {
       $scope.showEmailError = false;
     }
@@ -209,6 +211,7 @@ angular.module('jobButlerApp')
 
       $scope.isCollapsedJob = true;
       $scope.isCollapsedShare = true;
+      $scope.addAndShareBtns = true;
     }
 
     $scope.cancelShare = function() {
@@ -216,6 +219,7 @@ angular.module('jobButlerApp')
 
       $scope.isCollapsedJob = true;
       $scope.isCollapsedShare = true;
+      $scope.addAndShareBtns = true;
     }
 
     $scope.editViewJobToggle = function() {

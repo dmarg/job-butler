@@ -71,17 +71,10 @@ legend {
   color: $dashboard-color;
 }
 
-a {
-  color: $dashboard-color;
-}
-
-a:hover, a:focus, a:active {
-  color: $dashboard-text;
-}
 
 // App wide Button styling
 
-.btn-toolbar-top {
+.btn-toolbar-right {
   margin-bottom: 5%;
 
   .btn:first-of-type {
