@@ -28,10 +28,12 @@ angular.module('jobButlerApp')
     $scope.isCollapsedJob = true;
     $scope.isCollapsedShare = true;
     $scope.showEmailError = false;
+
     $scope.emailDuplicateError = false;
     $scope.disableEditJob = true;
     $scope.shareSuccess = false;
     $scope.incompleteFields = false;
+    $scope.addAndShareBtns = true;
 
     $scope.closeEmailError = function() {
       $scope.showEmailError = false;
@@ -225,6 +227,7 @@ angular.module('jobButlerApp')
 
       $scope.isCollapsedJob = true;
       $scope.isCollapsedShare = true;
+      $scope.addAndShareBtns = true;
     }
 
     $scope.cancelShare = function() {
@@ -232,6 +235,7 @@ angular.module('jobButlerApp')
 
       $scope.isCollapsedJob = true;
       $scope.isCollapsedShare = true;
+      $scope.addAndShareBtns = true;
     }
 
     $scope.editViewJobToggle = function() {

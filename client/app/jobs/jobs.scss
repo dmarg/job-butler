@@ -1,12 +1,12 @@
 
 .fa-eye {
   // font-size: 2em;
-  color: #49B49D;
+  color: $ib-green;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .fa-eye:hover {
-  color: #439C89;
+  color: $ib-green-highlight;
 }
 
 .fa-2x {
@@ -32,6 +32,10 @@
 
 .form-control {
   color: $dashboard-highlight;
+}
+
+.view-right {
+  padding-right: 0px;
 }
 
 th {

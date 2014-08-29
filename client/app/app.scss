@@ -71,17 +71,10 @@ legend {
   color: $dashboard-color;
 }
 
-a {
-  color: $dashboard-color;
-}
-
-a:hover, a:focus, a:active {
-  color: $dashboard-text;
-}
 
 // App wide Button styling
 
-.btn-toolbar-top {
+.btn-toolbar-right {
   margin-bottom: 5%;
 
   .btn:first-of-type {
@@ -207,6 +200,16 @@ legend {
   border-bottom: 0px solid rgba(53, 77, 93, 0.2);
 }
 
+
+.fa-trash-o {
+  // font-size: 2em;
+  color: $ib-red;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.fa-trash-o:hover {
+  color: $ib-red-highlight;
+}
 
 // /**
 //  * Left Menu Style

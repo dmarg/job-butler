@@ -18,7 +18,8 @@
           <tbody>
             <tr ng-repeat='shared in sharedWith'>
               <td>{{shared.name}}</td>
-              <td><i class="fa fa-pencil-square" ng-click="revokeAccess(shared)"></i></td>
+              <td><i class="fa fa-trash-o fa-2x" ng-click="revokeAccess(shared)"></i>
+              </td>
             </tr>
           </tbody>
         </table>

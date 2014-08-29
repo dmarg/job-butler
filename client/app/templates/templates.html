@@ -132,12 +132,13 @@
 
   <div class="row">
     <div class="container">
-
-      <button class='btn btn-primary btn-lg' ng-click="createDraft()">Send to Gmail Drafts</button>
-      <button class='btn btn-success btn-lg' ng-click="newTemplate()">Create New Template</button>
-      <button class='btn btn-warning btn-lg' ng-click='findMatches()'>Update Text Fields</button>
-      <button class="btn btn-primary btn-lg" ng-show="deletable" ng-click="isCollapsed = !isCollapsed">Share Template</button>
-      <button class='btn btn-danger btn-lg' ng-show="deletable" ng-click="deleteTemplate(template)">Delete Template</button>
+      <div class="btn-toolbar-templates">
+        <button class='btn btn-primary btn-lg btn-templates' ng-click="createDraft()">Send to Gmail Drafts</button>
+        <button class='btn btn-success btn-lg btn-templates' ng-click="newTemplate()">Create New Template</button>
+        <button class='btn btn-warning btn-lg btn-templates' ng-click='findMatches()'>Update Text Fields</button>
+        <button class="btn btn-primary btn-lg btn-templates" ng-show="deletable" ng-click="isCollapsed = !isCollapsed">Share Template</button>
+        <button class='btn btn-danger btn-lg btn-templates' ng-show="deletable" ng-click="deleteTemplate(template)">Delete Template</button>
+      </div>
     </div>
   </div>
 
