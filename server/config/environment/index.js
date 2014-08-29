@@ -44,7 +44,7 @@ var all = {
   google: {
     clientID:     process.env.GOOGLE_ID|| 'id',
     clientSecret: process.env.GOOGLE_SECRET || 'secret',
-    callbackURL: 'http://jobbutler.me/auth/google/callback'
+    callbackURL: 'http://localhost:9000/auth/google/callback'
   }
 };
 
