@@ -84,6 +84,7 @@ angular.module('jobButlerApp')
 
     $scope.findMatches = function() {
       var template = $scope.currentTemplate.body;
+      $location.path('/templates/'+$scope.currentTemplate.name+'/updatefields')
       var matches = template.match(/\[\[([^\]]*)\]\]/g);
       if(matches === null) {
         console.log('no matches found', matches);
@@ -105,6 +106,7 @@ angular.module('jobButlerApp')
     };
 
     $scope.replaceMatches = function() {
+
       for(var i = 0; i < $scope.matchArr.length; i++) {
         $scope.currentTemplate.body = $scope.currentTemplate.body.replace($scope.matchArr[i].original, $scope.matchArr[i].replace);
       };
@@ -114,6 +116,7 @@ angular.module('jobButlerApp')
     };
 
     $scope.cancel = function() {
+      $location.path('/templates')
       $scope.showFieldForm = false;
       $scope.pursuit = {
         job: ''
@@ -121,6 +124,7 @@ angular.module('jobButlerApp')
     };
 
     $scope.renderContent = function(template) {
+      $location.path('/templates/'+template.name)
       $scope.pursuit = {
         job: ''
       };

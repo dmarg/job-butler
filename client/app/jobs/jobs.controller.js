@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $window) {
+  .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $window, $location) {
     $scope.user = Auth.getCurrentUser();
 
     $scope.jobApps = [];
@@ -88,6 +88,8 @@ angular.module('jobButlerApp')
     $scope.createJob = function() {
 
       if ($scope.job.companyName.length > 0 && $scope.job.positionTitle.length > 0) {
+        $scope.addAndShareBtns = true;
+        $scope.noPursuits = false;
         var job = $scope.job;
         job.userId = $scope.user._id;
         // console.log('job is: ', job);
@@ -156,6 +158,8 @@ angular.module('jobButlerApp')
     $scope.detailAndEditView = false;
 
     $scope.openDetails = function(jobApp) {
+      console.log(jobApp);
+      $location.path('/jobs/edit/'+jobApp._id)
       $scope.jobView = jobApp;
       $scope.defaultView = false;
       $scope.detailAndEditView = true;
@@ -210,12 +214,14 @@ angular.module('jobButlerApp')
     };
 
     $scope.defaultAndDetailToggle = function () {
+      $location.path('/jobs');
       $scope.detailAndEditView = false;
       $scope.defaultView = true;
       $scope.disableEditJob = true;
     };
 
     $scope.cancelAdd = function() {
+      $location.path('/jobs');
       $scope.job = {
         companyName: '',
         positionTitle: '',

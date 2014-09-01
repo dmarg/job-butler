@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('SharedCtrl', function ($scope, $http, $modal, $log, Auth, $moment) {
+  .controller('SharedCtrl', function ($scope, $http, $modal, $log, Auth, $moment, $location) {
 
     var user = Auth.getCurrentUser();
 
@@ -25,7 +25,9 @@ angular.module('jobButlerApp')
 
     $scope.defaultView = true;
     $scope.detailView = false;
+
     $scope.openDetail = function(job) {
+      $location.path(/shared/+job._id)
       console.log(job);
       $scope.jobView = job;
       $scope.defaultView = false;
