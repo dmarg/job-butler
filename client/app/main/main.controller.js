@@ -4,7 +4,8 @@ angular.module('jobButlerApp')
   .controller('MainCtrl', function ($scope, $rootScope, $http, socket, Auth) {
     $scope.awesomeThings = [];
 
-    $rootScope.user = Auth.getCurrentUser();
+    $scope.user = Auth.getCurrentUser();
+    console.log($scope.user);
     $scope.isLoggedIn = Auth.isLoggedIn;
 
     $scope.job = {

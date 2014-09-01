@@ -6,13 +6,62 @@
 <div ng-show="isLoggedIn()">
   <div ng-include="'components/navbar/navbar.html'" ng-show="isLoggedIn()"></div>
 
-  <div class="container">
-    <div class="col-lg-12">
-      <div class="col-lg-12">
+    <div class="row">
+      <div class="container">
+        <div class="col-md-12">
+          <header class="hero-unit" id="banner">
+            <div class="main-page">
+              <h2>Hello, {{user.google.given_name}}!</h2>
+              <h1 class="jobButlerText">Welcome to Job Butler</h1>
+            </div>
 
-
+          </header>
+        </div>
       </div>
     </div>
+
+    <!-- Marketing Icons Section -->
+    <div class="row">
+      <div class="container">
+        <div class="col-lg-12">
+          <!-- <h1 class="page-header">
+              Welcome to your new job search
+          </h1> -->
+        </div>
+
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="fa fa-fw fa-th-list"></i><a ng-href='/jobs'> Track Your Pursuits</a></h4>
+            </div>
+            <div class="panel-body">
+                <p>Track your pursuits on a dynamic tracking system that's linked to Job Butler's automated web crawler. This feature will populate job details on your spreadsheet with a simple input of a job posting's URL from popular job search platforms like LinkedIn, StackOverflow, AngelList, Indeed, and Dice.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="fa fa-fw fa-share-square-o"></i><a ng-href='/shared'> Share Your Pursuits</a></h4>
+            </div>
+            <div class="panel-body">
+                <p>Share your pursuits with mentors, peers, and other users with read-only access to your pursuits. This will enable your job search advocates to provide advice based on real-time, up-to-date statuses of each of your job pursuits. Easily manage access you've provided in your user settings.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="fa fa-fw fa-file-text"></i><a ng-href='/templates'> Template Your Pursuits</a></h4>
+            </div>
+            <div class="panel-body">
+                <p>Reduce time spent on repetitive correspondence with your contacts by creating customizable templates. Further customize each template with our templating engine that will search through each template for user indicated text fields to be updated for each email. Once the text fields are updated, easily inject the updated template into your Gmail with a click of a button and find the email ready to go in your Drafts folder.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 

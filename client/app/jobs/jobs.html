@@ -61,18 +61,20 @@
       </table>
     </div>
 
-    <div ng-show="addJobText" class="col-sm-12">
+
+
+
+  </div>
+
+    <div ng-show='noPursuits' class="col-sm-12">
       <div>
         <br>
         <br>
         <br>
         <br>
-        <p class='text-center'>You are not currently sharing your pursuits with any other users.</p>
+        <h4 class='text-center'>You are not currently sharing your pursuits with any other users. Click <a ng-click="isCollapsedJob = !isCollapsedJob; isCollapsedShare = true; addAndShareBtns = false; noPursuits = false;">here</a> to get started by adding your first pursuit!</h4>
       </div>
     </div>
-
-
-  </div>
 
 
   <!-- Open Detail View -->

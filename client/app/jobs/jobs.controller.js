@@ -3,7 +3,6 @@
 angular.module('jobButlerApp')
   .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $window) {
     $scope.user = Auth.getCurrentUser();
-    console.log($scope.user);
 
     $scope.jobApps = [];
 
@@ -50,6 +49,9 @@ angular.module('jobButlerApp')
     $http.get('/api/jobs').success(function(jobs) {
       $scope.jobApps = jobs || [];
       $scope.jobAppsDisplay = [].concat($scope.jobApps);
+      if ($scope.jobApps.length === 0) {
+        $scope.noPursuits = true;
+      }
     });
 
     $scope.$watch('job.url', function(newVal, oldVal) {
