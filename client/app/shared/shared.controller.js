@@ -27,7 +27,7 @@ angular.module('jobButlerApp')
     $scope.detailView = false;
 
     $scope.openDetail = function(job) {
-      $location.path(/shared/+job._id)
+      $location.path('/shared/'+job._id);
       console.log(job);
       $scope.jobView = job;
       $scope.defaultView = false;
@@ -35,6 +35,7 @@ angular.module('jobButlerApp')
     };
 
     $scope.back = function() {
+      $location.path('/shared');
       $scope.defaultView = true;
       $scope.detailView = false;
     }
