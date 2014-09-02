@@ -81,7 +81,7 @@ angular.module('jobButlerApp')
 
     $scope.findMatches = function() {
       var template = $scope.currentTemplate.body;
-      $location.path('/templates/'+$scope.currentTemplate.name+'/updatefields')
+      // $location.path('/templates/'+$scope.currentTemplate.name+'/updatefields');
       var matches = template.match(/\[\[([^\]]*)\]\]/g);
       if(matches === null) {
         console.log('no matches found', matches);
