@@ -7,5 +7,10 @@ angular.module('jobButlerApp')
         url: '/jobs',
         templateUrl: 'app/jobs/jobs.html',
         controller: 'JobsCtrl'
-      });
+      })
+      .state('jobs.edit', {
+        url: '/edit/:id',
+        // templateUrl: 'app/jobs/job-detail-view.html',
+        controller:'JobsCtrl'
+      })
   });

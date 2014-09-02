@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $window, $location) {
+  .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $window, $location, $stateParams) {
     $scope.user = Auth.getCurrentUser();
 
     $scope.jobApps = [];
@@ -33,6 +33,26 @@ angular.module('jobButlerApp')
     $scope.shareSuccess = false;
     $scope.incompleteFields = false;
     $scope.addAndShareBtns = true;
+
+    $scope.isActive = function(route) {
+      return route === $location.path();
+    };
+
+    var id = $stateParams.id;
+    console.log($stateParams);
+    if (typeof $stateParams.id !== 'undefined') {
+      $http.get('/api/jobs/'+id).success(function(data) {
+        console.log(data);
+        $scope.jobView = data;
+      });
+    };
+
+    $scope.isActiveParams = function(route) {
+      if (typeof $scope.jobView === 'undefined') {
+        return;
+      }
+      return route + $scope.jobView._id === $location.path();
+    };
 
     $scope.closeEmailError = function() {
       $scope.showEmailError = false;
@@ -158,7 +178,7 @@ angular.module('jobButlerApp')
     $scope.detailAndEditView = false;
 
     $scope.openDetails = function(jobApp) {
-      console.log(jobApp);
+      // console.log(jobApp);
       $location.path('/jobs/edit/'+jobApp._id)
       $scope.jobView = jobApp;
       $scope.defaultView = false;

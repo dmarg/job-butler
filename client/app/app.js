@@ -18,18 +18,6 @@ angular.module('jobButlerApp', [
         url: '/home',
         templateUrl: 'app/main/main.html'
       })
-      .state('jobs.edit', {
-        url: '/edit/:id',
-        templateUrl: 'app/jobs/job-detail-view.html'
-      })
-      .state('templates.name', {
-        url: '/:name',
-        templateUrl: 'app/templates/templates.html'
-      })
-      .state('templates.name.update', {
-        url: '/updatefields'
-        // templateUrl: 'app/templates/templates.html'
-      })
       .state('shared.detail', {
         url: '/:id',
         templateUrl: 'app/shared/shared.html'

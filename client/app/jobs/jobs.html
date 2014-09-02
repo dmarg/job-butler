@@ -1,7 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="col-md-12" ng-controller="JobsCtrl">
-  <div ng-show='defaultView'>
+  <div ng-show="isActive('/jobs')">
 
     <div class='text-center'>
       <alert ng-show='incompleteFields' type='danger' close='incompleteFields = false'>Please complete the Company Name and Position Title fields.</alert>
@@ -78,7 +78,7 @@
 
 
   <!-- Open Detail View -->
-  <div ng-show='detailAndEditView' class='row'>
+  <div ng-show="isActiveParams('/jobs/edit/')" class='row'>
     <div ng-include="'app/jobs/job-detail-view.html'"></div>
   </div>
 

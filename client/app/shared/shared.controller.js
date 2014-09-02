@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('SharedCtrl', function ($scope, $http, $modal, $log, Auth, $moment, $location) {
+  .controller('SharedCtrl', function ($scope, $http, $modal, $log, Auth, $moment, $location, $stateParams) {
 
     var user = Auth.getCurrentUser();
 
@@ -15,12 +15,35 @@ angular.module('jobButlerApp')
       return $moment(date, 'X').fromNow();
     };
 
+    $scope.isActive = function(route) {
+      return route === $location.path();
+    };
+
+    var id = $stateParams.id;
+    if (typeof $stateParams.id !== 'undefined') {
+      $http.get('/api/jobs/'+id).success(function(data) {
+        console.log(data);
+        $scope.jobView = data;
+      });
+    };
+
+    $scope.isActiveParams = function(route) {
+      // console.log('url id param: ', $stateParams.id);
+      // console.log(route+$scope.paramsId);
+
+      // return route + $scope.paramsId === $location.path();
+      if (typeof $scope.jobView === 'undefined') {
+        return;
+      }
+      return route + $scope.jobView._id === $location.path();
+    };
+
     var sharedViews = [];
     $http.get('/api/jobs/sharedViews').success(function(data) {
       // console.log('http get request data: ', data);
       $scope.sharedViews = data;
       $scope.sharedViewsDisplay = [].concat($scope.sharedViews);
-      console.log($scope.sharedViews);
+      // console.log($scope.sharedViews);
     });
 
     $scope.defaultView = true;
@@ -28,7 +51,6 @@ angular.module('jobButlerApp')
 
     $scope.openDetail = function(job) {
       $location.path('/shared/'+job._id);
-      console.log(job);
       $scope.jobView = job;
       $scope.defaultView = false;
       $scope.detailView = true;

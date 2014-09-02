@@ -3,7 +3,7 @@
 
 <div ng-controller='SharedCtrl'>
 
-  <div ng-show='defaultView' class="col-md-12">
+  <div ng-show="isActive('/shared')" class="col-md-12">
     <div>
       <table st-table='sharedViewsDisplay' st-safe-src="sharedViews" class='table table-striped'>
         <thead>
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div ng-show='detailView' class='row'>
+  <div ng-show="isActiveParams('/shared/')" class='row'>
     <div ng-include="'app/shared/shared-job-view.html'"></div>
   </div>
 

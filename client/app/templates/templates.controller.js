@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobButlerApp')
-  .controller('TemplatesCtrl', function ($scope, $http, $location, $window, Auth, $modal, $log) {
+  .controller('TemplatesCtrl', function ($scope, $http, $location, $window, Auth, $stateParams) {
 
     $scope.user = Auth.getCurrentUser();
     $scope.templates = {};
@@ -45,10 +45,7 @@ angular.module('jobButlerApp')
       }
     });
 
-    // $scope.getTextToCopy = function() {
-    //   console.log()
-    //   return $scope.currentTemplate.body;
-    // };
+
 
     var fieldToTemplateMatch = {
       'company': 'companyName',
@@ -124,7 +121,9 @@ angular.module('jobButlerApp')
     };
 
     $scope.renderContent = function(template) {
-      $location.path('/templates/'+template.name)
+
+      $location.path('/templates/'+template._id)
+      // console.log($stateParams)
       $scope.pursuit = {
         job: ''
       };
