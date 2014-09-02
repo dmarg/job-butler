@@ -233,6 +233,8 @@ angular.module('jobButlerApp')
         $http.delete('/api/jobs/'+jobId).success(function(data) {
           console.log('deleted job response: ', data);
 
+          $location.path('/jobs');
+
           $http.get('/api/jobs').success(function(jobs) {
             $scope.jobApps = jobs || [];
             $scope.jobAppsDisplay = [].concat($scope.jobApps);
