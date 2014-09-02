@@ -187,6 +187,7 @@ angular.module('jobButlerApp')
       // console.log(jobApp);
       $location.path('/jobs/edit/'+jobApp._id)
       $scope.jobView = jobApp;
+      $scope.jobViewOriginal = jobApp;
       $scope.defaultView = false;
       $scope.detailAndEditView = true;
 
@@ -210,11 +211,16 @@ angular.module('jobButlerApp')
       job.stage[job.stage.length-1].date = $moment().format('YYYY-MM-DD');
 
       $http.put('/api/jobs/'+job._id, job).success(function(data) {
-        console.log(data);
-        $scope.detailAndEditView = false;
-        $scope.defaultView = true;
+        $scope.jobView = data;
         $scope.disableEditJob = true;
+
+        $http.get('/api/jobs').success(function(jobs) {
+          $scope.jobApps = jobs || [];
+          $scope.jobAppsDisplay = [].concat($scope.jobApps);
+        });
       })
+
+
     };
 
     $scope.removeJob = function() {
