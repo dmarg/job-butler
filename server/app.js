@@ -1,9 +1,8 @@
 /**
  * Main application file
  */
-
 'use strict';
-
+require('newrelic');
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
