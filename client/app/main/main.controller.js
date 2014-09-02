@@ -11,6 +11,8 @@ angular.module('jobButlerApp')
       url: ''
     };
 
+
+
     $scope.scrapeLink = function() {
 
       $http.post('/api/joblinks/scrape', $scope.job).success(function(data) {

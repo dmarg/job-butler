@@ -33,6 +33,12 @@ angular.module('jobButlerApp')
     $scope.shareSuccess = false;
     $scope.incompleteFields = false;
     $scope.addAndShareBtns = true;
+    $scope.noPursuits = false;
+
+
+    if($location.search().addPursuit === true) {
+      $scope.isCollapsedJob = false;
+    };
 
     $scope.closeEmailError = function() {
       $scope.showEmailError = false;
