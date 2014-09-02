@@ -9,27 +9,13 @@ angular.module('jobButlerApp')
       'title': 'Jobs',
       'link': '/jobs'
     }, {
-      'title': 'Shared',
-      'link': '/shared'
-    }, {
       'title': 'Templates',
       'link': '/templates'
+    }, {
+      'title': 'Shared',
+      'link': '/shared'
     }];
 
-    // $rootScope.$watch("user", function(newval, oldval) {
-    //   if(newval) {
-    //     $scope.picture = $rootScope.user.pictureLink;
-    //   }
-    // });
-
-    // $scope.menuRight = [{
-    //     'title': 'Settings',
-    //     'link': '/settings'
-    //   },{
-    //     'title': 'Logout',
-    //     'link': '/settings'
-    //   }
-    // ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;

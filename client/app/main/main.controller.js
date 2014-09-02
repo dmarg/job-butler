@@ -2,7 +2,6 @@
 
 angular.module('jobButlerApp')
   .controller('MainCtrl', function ($scope, $rootScope, $http, socket, Auth) {
-    $scope.awesomeThings = [];
 
     $scope.user = Auth.getCurrentUser();
     console.log($scope.user);
@@ -11,6 +10,8 @@ angular.module('jobButlerApp')
     $scope.job = {
       url: ''
     };
+
+
 
     $scope.scrapeLink = function() {
 
