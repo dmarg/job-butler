@@ -22,4 +22,5 @@ var JobSchema = new Schema({
   active: Boolean
 });
 
+mongoose.model('Stage', StageSchema);
 module.exports = mongoose.model('Job', JobSchema);

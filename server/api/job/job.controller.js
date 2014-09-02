@@ -2,7 +2,8 @@
 
 var _ = require('lodash');
 var Job = require('./job.model');
-var Stage = require('./job.model');
+var mongoose = require('mongoose');
+var Stage = mongoose.model('Stage');
 
 // Get list of jobs
 exports.index = function(req, res) {

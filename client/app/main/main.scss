@@ -118,3 +118,11 @@ a > i.share-fa:hover, a > i.share-fa:focus, a > i.share-fa:active {
   font-size: 75px;
   text-align: center;
 }
+
+img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+}
