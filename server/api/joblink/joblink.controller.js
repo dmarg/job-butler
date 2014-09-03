@@ -13,6 +13,9 @@ scrapers['stackoverflow'] = require('./scrapers/stackoverflow.scraper');
 scrapers['angel'] = require('./scrapers/angel.scraper');
 scrapers['indeed'] = require('./scrapers/indeed.scraper');
 scrapers['dice'] = require('./scrapers/dice.scraper');
+scrapers['theresumator'] = require('./scrapers/theresumator.scraper');
+scrapers['greenhouse'] = require('./scrapers/greenhouse.scraper');
+
 
 // Crawl Link that is submitted
 exports.scrape = function(req, res) {
@@ -30,6 +33,10 @@ exports.scrape = function(req, res) {
     scraperToUse = 'indeed';
   } else if(url.indexOf("dice") > -1) {
     scraperToUse = 'dice';
+  } else if(url.indexOf("theresumator") > -1) {
+    scraperToUse = 'theresumator';
+  } else if(url.indexOf("boards.greenhouse") > -1) {
+    scraperToUse = 'greenhouse';
   } else {
     return res.send({companyName: "", positionTitle: "", jobDetails: ""});
   }
