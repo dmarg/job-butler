@@ -4,7 +4,20 @@ angular.module('jobButlerApp')
   .controller('JobsCtrl', function ($scope, $rootScope, socket, $http, Auth, $moment, $window, $location, $stateParams) {
     $scope.user = Auth.getCurrentUser();
 
-    $scope.jobApps = [];
+    function getjobs() {
+      $http.get('/api/jobs').success(function(jobs) {
+        $scope.jobApps = jobs || [];
+        $scope.jobAppsDisplay = [].concat($scope.jobApps);
+        if ($scope.jobApps.length === 0) {
+          $scope.noPursuits = true;
+          $scope.isCollapsedJob = false;
+          $scope.addAndShareBtns = false;
+        }
+      });
+    }
+
+    getjobs();
+
 
     $scope.stages = {
       "values": ['To Apply', 'Applied', 'Interview Scheduled', 'Post-Interview', 'Offer Received', 'Closed']
@@ -38,6 +51,7 @@ angular.module('jobButlerApp')
 
     if($location.search().addPursuit === true) {
       $scope.isCollapsedJob = false;
+      $scope.addAndShareBtns = false;
     };
 
     $scope.isActive = function(route) {
@@ -72,14 +86,6 @@ angular.module('jobButlerApp')
       $scope.shareSuccess = false;
     }
 
-    $http.get('/api/jobs').success(function(jobs) {
-      $scope.jobApps = jobs || [];
-      $scope.jobAppsDisplay = [].concat($scope.jobApps);
-      if ($scope.jobApps.length === 0) {
-        $scope.noPursuits = true;
-        $scope.isCollapsedJob = false;
-      }
-    });
 
     $scope.$watch('job.url', function(newVal, oldVal) {
 
@@ -105,13 +111,6 @@ angular.module('jobButlerApp')
         })
       }
 
-    });
-
-    $scope.$watch('jobApps', function(newVal, oldVal) {
-      if(newVal.length < 1) {
-        $scope.noPursuits = true;
-        $scope.isCollapsedJob = false;
-      }
     });
 
 
@@ -205,12 +204,6 @@ angular.module('jobButlerApp')
       // console.log($scope.jobView);
     };
 
-    // $scope.openEdit = function(jobView) {
-    //   $scope.detailView = false;
-    //   $scope.editView = true;
-    //   $scope.jobView = jobView;
-    //   console.log($scope.jobView);
-    // };
 
     $scope.submitJobEdits = function() {
       var job = $scope.jobView;
@@ -243,10 +236,7 @@ angular.module('jobButlerApp')
 
           $location.path('/jobs');
 
-          $http.get('/api/jobs').success(function(jobs) {
-            $scope.jobApps = jobs || [];
-            $scope.jobAppsDisplay = [].concat($scope.jobApps);
-          });
+          getjobs();
 
           $scope.detailAndEditView = false;
           $scope.defaultView = true;
