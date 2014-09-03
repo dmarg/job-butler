@@ -77,6 +77,7 @@ angular.module('jobButlerApp')
       $scope.jobAppsDisplay = [].concat($scope.jobApps);
       if ($scope.jobApps.length === 0) {
         $scope.noPursuits = true;
+        $scope.isCollapsedJob = false;
       }
     });
 
@@ -104,6 +105,13 @@ angular.module('jobButlerApp')
         })
       }
 
+    });
+
+    $scope.$watch('jobApps', function(newVal, oldVal) {
+      if(newVal.length < 1) {
+        $scope.noPursuits = true;
+        $scope.isCollapsedJob = false;
+      }
     });
 
 
