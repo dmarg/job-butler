@@ -135,3 +135,10 @@ img {
 .youtube {
   margin-bottom: 30px;
 }
+
+@media (max-width: 768px) {
+  iframe {
+    max-width: 100%
+  }
+
+}
