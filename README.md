@@ -1,7 +1,7 @@
 Job Butler
 ========
 Fullstack Academy Capstone Project --
-This is a tool for job seekers to optimize their job search.
+This is a tool for job seekers to optimize their job search process.
 [jobbutler.me](http://jobbutler.me)
 
 Overview
