@@ -16,5 +16,5 @@ angular.module('jobButlerApp')
       .state('templates.name.update', {
         url: '/updatefields'
         // templateUrl: 'app/templates/templates.html'
-      });
+      })
   });

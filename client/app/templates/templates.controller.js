@@ -123,11 +123,10 @@ angular.module('jobButlerApp')
     $scope.renderContent = function(template) {
 
       $location.path('/templates/'+template._id)
-      // console.log($stateParams)
       $scope.pursuit = {
         job: ''
       };
-      console.log(template);
+      // console.log(template);
       $scope.currentTemplate = template;
 
       if (template.permanent === false) {
@@ -142,18 +141,22 @@ angular.module('jobButlerApp')
       $location.path('/new-template');
     };
 
-    $scope.deleteTemplate = function() {
-      if(confirm('Are you sure you want to delete this template?')) {
-        var templateId = $scope.currentTemplate._id;
-        $http.delete('/api/templates/'+templateId).success(function(data) {
-
-          $http.get('/api/templates/renderTemplates').success(function(data) {
-            $scope.templates = data;
-            $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
-          });
-        });
-      }
+    $scope.editTemplate = function(template) {
+      $location.path('/edit-template/'+template._id);
     };
+
+    // $scope.deleteTemplate = function() {
+    //   if(confirm('Are you sure you want to delete this template?')) {
+    //     var templateId = $scope.currentTemplate._id;
+    //     $http.delete('/api/templates/'+templateId).success(function(data) {
+
+    //       $http.get('/api/templates/renderTemplates').success(function(data) {
+    //         $scope.templates = data;
+    //         $scope.currentTemplate = {name: $scope.templates[0].name, body: $scope.templates[0].body};
+    //       });
+    //     });
+    //   }
+    // };
 
     $scope.sendTemplate = function() {
       console.log($scope.currentTemplate);

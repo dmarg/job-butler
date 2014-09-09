@@ -8,7 +8,7 @@ angular.module('jobButlerApp')
     $scope.viewOnly = true;
 
     $scope.stages = {
-      "values": ['To Apply', 'Applied', 'Interview Scheduled', 'Post-Interview', 'Offer Received', 'Closed']
+      "values": ['To Apply', 'Applied', 'Phone Screen', 'Interview Scheduled', 'Post-Interview', 'Offer Received', 'Closed']
     };
 
     $scope.fromNow = function(date) {
