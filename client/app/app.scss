@@ -237,6 +237,28 @@ hr {
   border-bottom: 1px solid $dashboard-color;
 }
 
+
+// /**
+//  * Progress Bar Styles
+//  */
+
+.progress-bar-default, .progress-bar-primary {
+  background-color: $dashboard-color;
+}
+
+.progress-bar-warning {
+  background-color: $ib-orange;
+}
+
+.progress-bar-success {
+  background-color: $ib-green;
+}
+
+.progress-bar-danger {
+  background-color: $ib-red;
+}
+
+
 // /**
 //  * Left Menu Style
 //  */

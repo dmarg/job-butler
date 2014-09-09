@@ -13,7 +13,7 @@ angular.module('jobButlerApp')
           $scope.isCollapsedJob = false;
           $scope.addAndShareBtns = false;
         }
-      });
+      })
     }
 
     getjobs();
@@ -285,6 +285,7 @@ angular.module('jobButlerApp')
         $scope.disableEditJob = true;
       }
     }
+
 
 });
 
